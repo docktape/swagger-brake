@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.3"
+        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.4"
     }
 }
 
@@ -69,7 +69,7 @@ subprojects {
     }
 
     checkstyle {
-        toolVersion = '12.0.1'
+        toolVersion = '12.1.1'
     }
 
     tasks.withType(Checkstyle) {
