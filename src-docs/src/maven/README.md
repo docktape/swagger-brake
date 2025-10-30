@@ -9,9 +9,9 @@ within your `pom.xml`.
     <plugins>
         ...
         <plugin>
-            <groupId>io.redskap</groupId>
+            <groupId>com.docktape</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>2.4.0</version>
+            <version>2.6.0</version>
             <executions>
                 <execution>
                     <goals>
@@ -37,7 +37,7 @@ after configuring the plugin in your `pom.xml`, you should be good to go.
 Executing a simple `mvn clean package` command will result in the following output:
 ```bash
 ...
-[INFO] Downloading latest artifact with groupId 'io.redskap.example' artifactId 'swagger-brake-maven-example'
+[INFO] Downloading latest artifact with groupId 'com.docktape.example' artifactId 'swagger-brake-maven-example'
 [INFO] Loading old API from /tmp/swagger-brake3424744906122776692swagger.yaml
 [INFO] Loading new API from /swagger-brake-maven-example/target/generated-sources/swagger/swagger.json
 [INFO] io.swagger.v3.parser.OpenAPIV3Parser@4535bdc6: attribute openapi is missing
@@ -54,8 +54,8 @@ Of course in case this is the first time the artifact is getting built, swagger-
 and skip the check:
 
 ```bash
-[INFO] Downloading latest artifact with groupId 'io.redskap.example' artifactId 'swagger-brake-maven-example'
-[INFO] Latest version of the artifact could not be retrieved from http://${REPO_URL}:8081/artifactory/libs-release-local, http://${REPO_URL}/artifactory/libs-snapshot-local with io.redskap.example:swagger-brake-maven-example
+[INFO] Downloading latest artifact with groupId 'com.docktape.example' artifactId 'swagger-brake-maven-example'
+[INFO] Latest version of the artifact could not be retrieved from http://${REPO_URL}:8081/artifactory/libs-release-local, http://${REPO_URL}/artifactory/libs-snapshot-local with com.docktape.example:swagger-brake-maven-example
 [INFO] Assuming this is the first version of the artifact, skipping check for breaking changes
 ```
 
@@ -77,9 +77,9 @@ Example:
     <plugins>
         ...
         <plugin>
-            <groupId>io.redskap</groupId>
+            <groupId>com.docktape</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>2.4.0</version>
+            <version>2.6.0</version>
             <executions>
                 <execution>
                     <goals>
@@ -116,9 +116,9 @@ Example:
     <plugins>
         ...
         <plugin>
-            <groupId>io.redskap</groupId>
+            <groupId>com.docktape</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>2.4.0</version>
+            <version>2.6.0</version>
             <executions>
                 <execution>
                     <goals>
@@ -160,9 +160,9 @@ Example configuration with authentication:
     <plugins>
         ...
         <plugin>
-            <groupId>io.redskap</groupId>
+            <groupId>com.docktape</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>2.4.0</version>
+            <version>2.6.0</version>
             <executions>
                 <execution>
                     <goals>
@@ -205,9 +205,9 @@ Example:
     <plugins>
         ...
         <plugin>
-            <groupId>io.redskap</groupId>
+            <groupId>com.docktape</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>2.4.0</version>
+            <version>2.6.0</version>
             <executions>
                 <execution>
                     <goals>
@@ -239,9 +239,9 @@ Example:
     <plugins>
         ...
         <plugin>
-            <groupId>io.redskap</groupId>
+            <groupId>com.docktape</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>2.4.0</version>
+            <version>2.6.0</version>
             <executions>
                 <execution>
                     <goals>
@@ -276,9 +276,9 @@ Example:
     <plugins>
         ...
         <plugin>
-            <groupId>io.redskap</groupId>
+            <groupId>com.docktape</groupId>
             <artifactId>swagger-brake-maven-plugin</artifactId>
-            <version>2.4.0</version>
+            <version>2.6.0</version>
             <executions>
                 <execution>
                     <goals>

@@ -1,4 +1,4 @@
-group 'io.redskap'
+group 'com.docktape'
 version '2.6.0-SNAPSHOT'
 
 buildscript {
@@ -10,6 +10,7 @@ buildscript {
     }
     dependencies {
         classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.3"
+        classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.20.0"
     }
 }
 
@@ -30,6 +31,7 @@ subprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'checkstyle'
     apply plugin: 'com.github.spotbugs'
+    apply plugin: 'org.jreleaser'
 
     java {
         toolchain {
@@ -97,68 +99,126 @@ subprojects {
         from sourceSets.main.allSource
     }
 
-    if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
-        publishing {
-            publications {
-                mavenJava(MavenPublication) {
-                    groupId = project.group
-                    artifactId = project.name
-                    version = project.version
+    publishing {
+        publications {
+            mavenJava(MavenPublication) {
+                groupId = project.group
+                artifactId = project.name
+                version = project.version
 
-                    from components.java
-                    artifact javadocJar
-                    artifact sourcesJar
+                from components.java
+                artifact javadocJar
+                artifact sourcesJar
 
-                    pom {
-                        name = 'Swagger Brake'
-                        packaging = 'jar'
-                        description = 'Swagger contract checker for breaking API changes'
-                        url = 'https://github.com/redskap/swagger-brake'
+                pom {
+                    name = 'Swagger Brake'
+                    packaging = 'jar'
+                    description = 'Swagger contract checker for breaking API changes'
+                    url = 'https://github.com/docktape/swagger-brake'
 
-                        scm {
-                            connection = 'scm:git:git://github.com/redskap/swagger-brake.git'
-                            developerConnection = 'scm:git:ssh://github.com:redskap/swagger-brake.git'
-                            url = 'https://github.com/redskap/swagger-brake'
+                    scm {
+                        connection = 'scm:git:git://github.com/docktape/swagger-brake.git'
+                        developerConnection = 'scm:git:ssh://github.com:docktape/swagger-brake.git'
+                        url = 'https://github.com/docktape/swagger-brake'
+                    }
+
+                    licenses {
+                        license {
+                            name = 'The Apache License, Version 2.0'
+                            url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
                         }
+                    }
 
-                        licenses {
-                            license {
-                                name = 'The Apache License, Version 2.0'
-                                url = 'http://www.apache.org/licenses/LICENSE-2.0.txt'
-                            }
+                    developers {
+                        developer {
+                            id = 'galovics'
+                            name = 'Arnold Galovics'
+                            email = 'info@arnoldgalovics.com'
                         }
-
-                        developers {
-                            developer {
-                                id = 'galovics'
-                                name = 'Arnold Galovics'
-                                email = 'info@arnoldgalovics.com'
-                            }
-                        }
-                        scm {
-                            connection = 'scm:git:git://github.com/redskap/swagger-brake.git'
-                            developerConnection = 'scm:git:ssh://github.com:redskap/swagger-brake.git'
-                            url = 'https://github.com/redskap/swagger-brake'
-                        }
+                    }
+                    scm {
+                        connection = 'scm:git:git://github.com/docktape/swagger-brake.git'
+                        developerConnection = 'scm:git:ssh://github.com:docktape/swagger-brake.git'
+                        url = 'https://github.com/docktape/swagger-brake'
                     }
                 }
             }
-            repositories {
-                maven {
-                    url = isReleaseBuild() ? 'https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/' : 'https://central.sonatype.com/repository/maven-snapshots/'
+        }
+        repositories {
+            maven {
+                url = layout.buildDirectory.dir('staging-deploy')
+            }
+        }
+    }
 
-                    credentials {
+    def moduleName = project.name
+
+    jreleaser {
+        gitRootSearch = true
+
+        project {
+            name = moduleName
+            description = 'Swagger contract checker for breaking API changes'
+            website = 'https://github.com/docktape/swagger-brake'
+            authors = ['Arnold Galovics']
+            license = 'Apache-2.0'
+            inceptionYear = '2018'
+
+            links {
+                homepage = 'https://github.com/docktape/swagger-brake'
+            }
+        }
+
+        release {
+            github {
+                repoOwner = 'docktape'
+                name = 'swagger-brake'
+                overwrite = true
+                changelog {
+                    formatted = 'ALWAYS'
+                }
+            }
+        }
+
+        signing {
+            active = 'ALWAYS'
+            armored = true
+
+            mode = 'FILE'
+        }
+        deploy {
+            maven {
+                mavenCentral {
+                    'release-deploy' {
+                        active = 'RELEASE'
+                        url = 'https://central.sonatype.com/api/v1/publisher'
+                        stagingRepository("build/staging-deploy")
+                        username = ossrhUsername
+                        password = ossrhPassword
+                    }
+                }
+                nexus2 {
+                    'snapshot-deploy' {
+                        active = 'SNAPSHOT'
+                        snapshotUrl = 'https://central.sonatype.com/repository/maven-snapshots/'
+                        applyMavenCentralRules = true
+                        snapshotSupported = true
+                        closeRepository = true
+                        releaseRepository = true
+                        stagingRepository('build/staging-deploy')
                         username = ossrhUsername
                         password = ossrhPassword
                     }
                 }
             }
         }
-    }
 
-    if (project.hasProperty('signing.keyId')) {
-        signing {
-            sign publishing.publications.mavenJava
+        distributions {
+            swaggerbrake {
+                artifact {
+                    path = rootProject.rootDir.absolutePath + "/swagger-brake/build/libs/{{projectName}}-{{projectVersion}}.jar"
+                }
+            }
         }
     }
     //</editor-fold>

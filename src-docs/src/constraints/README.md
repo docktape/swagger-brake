@@ -15,7 +15,7 @@ has the following definition with `maxLength`:
 ``` 
 
 Did not find the constraint you're looking for? It might not be implemented, feel free to file a ticket on 
-[GitHub](https://github.com/redskap/swagger-brake/issues).
+[GitHub](https://github.com/docktape/swagger-brake/issues).
 
 ## Array constraints
 ### maxItems constraint

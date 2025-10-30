@@ -16,18 +16,18 @@ it as a dependency without bringing in any unnecessary dependency from the inter
 For Maven:
 ```xml
 <dependency>
-    <groupId>io.redskap</groupId>
+    <groupId>com.docktape</groupId>
     <artifactId>swagger-brake</artifactId>
-    <version>2.4.0</version>
+    <version>2.6.0</version>
 </dependency>
 ```
 
 For Gradle:
 ```groovy
-compile group: 'io.redskap', name: 'swagger-brake', version: '2.4.0'
+compile group: 'com.docktape', name: 'swagger-brake', version: '2.6.0'
 ```
 
-The entrypoint for the execution is the `io.redskap.swagger.brake.runner.Starter` class. There are several methods available:
+The entrypoint for the execution is the `com.docktape.swagger.brake.runner.Starter` class. There are several methods available:
 * `start(Options)`
     * Used for kicking-off the CLI, full-fledged check with the additional features like downloading from repositories, etc.
 * `check(OpenAPI, OpenAPI)`

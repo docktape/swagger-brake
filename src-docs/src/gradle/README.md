@@ -5,7 +5,7 @@ Using the Gradle plugin is easy. Similarly, to any other plugins, you just need 
 With plugins DSL:
 ```groovy
 plugins {
-  id "io.redskap.swagger-brake" version "2.4.0"
+  id "com.docktape.swagger-brake" version "2.4.0"
 }
 ```
 
@@ -18,11 +18,11 @@ buildscript {
     }
   }
   dependencies {
-    classpath "io.redskap:swagger-brake-gradle:2.4.0"
+    classpath "com.docktape:swagger-brake-gradle:2.4.0"
   }
 }
 
-apply plugin: "io.redskap.swagger-brake"
+apply plugin: "com.docktape.swagger-brake"
 ```
 
 ## Basics
@@ -53,7 +53,7 @@ and skip the check:
 
 ```bash
 > Task :checkBreakingChanges
-Latest version of the artifact could not be retrieved from http://${REPO_URL}/artifactory/libs-release-local with io.redskap.example:swagger-brake-gradle-example
+Latest version of the artifact could not be retrieved from http://${REPO_URL}/artifactory/libs-release-local with com.docktape.example:swagger-brake-gradle-example
 Assuming this is the first version of the artifact, skipping check for breaking changes
 ```
 
