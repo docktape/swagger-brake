@@ -1,4 +1,4 @@
-group 'io.redskap'
+group 'com.docktape'
 version '2.6.0-SNAPSHOT'
 
 buildscript {
@@ -10,17 +10,15 @@ buildscript {
     }
     dependencies {
         classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.3"
+        classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.20.0"
     }
 }
+apply plugin: 'base'
+apply plugin: 'org.jreleaser'
 
 repositories {
     mavenCentral()
 }
-
-def isReleaseBuild() {
-    return version.contains("SNAPSHOT") == false
-}
-
 
 subprojects {
     group = rootProject.group
@@ -51,7 +49,7 @@ subprojects {
         implementation "org.apache.commons:commons-lang3:3.19.0"
         implementation "org.springframework:spring-context:6.2.12"
         implementation "org.springframework:spring-context:6.2.12"
-        implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.13.4"
+        implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.19.2"
 
         testImplementation "org.assertj:assertj-core:3.27.6"
         testImplementation "org.springframework:spring-test:6.2.12"
@@ -97,7 +95,9 @@ subprojects {
         from sourceSets.main.allSource
     }
 
-    if (project.hasProperty('ossrhUsername') && project.hasProperty('ossrhPassword')) {
+    def skipPublishingProjects = ['swagger-brake-integration-tests']
+
+    if (!skipPublishingProjects.contains(project.name)) {
         publishing {
             publications {
                 mavenJava(MavenPublication) {
@@ -113,12 +113,12 @@ subprojects {
                         name = 'Swagger Brake'
                         packaging = 'jar'
                         description = 'Swagger contract checker for breaking API changes'
-                        url = 'https://github.com/redskap/swagger-brake'
+                        url = 'https://github.com/docktape/swagger-brake'
 
                         scm {
-                            connection = 'scm:git:git://github.com/redskap/swagger-brake.git'
-                            developerConnection = 'scm:git:ssh://github.com:redskap/swagger-brake.git'
-                            url = 'https://github.com/redskap/swagger-brake'
+                            connection = 'scm:git:git://github.com/docktape/swagger-brake.git'
+                            developerConnection = 'scm:git:ssh://github.com:docktape/swagger-brake.git'
+                            url = 'https://github.com/docktape/swagger-brake'
                         }
 
                         licenses {
@@ -136,31 +136,91 @@ subprojects {
                             }
                         }
                         scm {
-                            connection = 'scm:git:git://github.com/redskap/swagger-brake.git'
-                            developerConnection = 'scm:git:ssh://github.com:redskap/swagger-brake.git'
-                            url = 'https://github.com/redskap/swagger-brake'
+                            connection = 'scm:git:git://github.com/docktape/swagger-brake.git'
+                            developerConnection = 'scm:git:ssh://github.com:docktape/swagger-brake.git'
+                            url = 'https://github.com/docktape/swagger-brake'
                         }
                     }
                 }
             }
             repositories {
                 maven {
-                    url = isReleaseBuild() ? 'https://ossrh-staging-api.central.sonatype.com/service/local/staging/deploy/maven2/' : 'https://central.sonatype.com/repository/maven-snapshots/'
-
-                    credentials {
-                        username = ossrhUsername
-                        password = ossrhPassword
-                    }
+                    url = rootProject.layout.buildDirectory.dir('staging-deploy')
                 }
             }
         }
     }
 
-    if (project.hasProperty('signing.keyId')) {
-        signing {
-            sign publishing.publications.mavenJava
-        }
-    }
     //</editor-fold>
 }
 
+
+jreleaser {
+    gitRootSearch = true
+
+    project {
+        name = 'swagger-brake'
+        description = 'Swagger contract checker for breaking API changes'
+        website = 'https://github.com/docktape/swagger-brake'
+        authors = ['Arnold Galovics']
+        license = 'Apache-2.0'
+        inceptionYear = '2018'
+
+        links {
+            homepage = 'https://github.com/docktape/swagger-brake'
+        }
+    }
+
+    release {
+        github {
+            repoOwner = 'docktape'
+            name = 'swagger-brake'
+            overwrite = true
+            changelog {
+                formatted = 'ALWAYS'
+            }
+        }
+    }
+
+    signing {
+        active = 'ALWAYS'
+        armored = true
+
+        mode = 'FILE'
+    }
+    deploy {
+        maven {
+            mavenCentral {
+                'releaseDeploy' {
+                    active = 'RELEASE'
+                    url = 'https://central.sonatype.com/api/v1/publisher'
+                    stagingRepository("build/staging-deploy")
+                }
+            }
+            nexus2 {
+                'snapshotDeploy' {
+                    active = 'SNAPSHOT'
+                    snapshotUrl = 'https://central.sonatype.com/repository/maven-snapshots/'
+                    applyMavenCentralRules = true
+                    snapshotSupported = true
+                    closeRepository = true
+                    releaseRepository = true
+                    stagingRepository('build/staging-deploy')
+                }
+            }
+        }
+    }
+
+    distributions {
+        swaggerbrake {
+            artifact {
+                path = rootProject.rootDir.absolutePath + "/swagger-brake/build/libs/swagger-brake-{{projectVersion}}.jar"
+            }
+        }
+        swaggerbrakecli {
+            artifact {
+                path = rootProject.rootDir.absolutePath + "/swagger-brake-cli/build/libs/swagger-brake-{{projectVersion}}-cli.jar"
+            }
+        }
+    }
+}

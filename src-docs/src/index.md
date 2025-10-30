@@ -13,7 +13,7 @@ swagger-brakes comes with different types of integration patterns. For generic u
 CLI interface is recommended and can be used by any ecosystem.
 
 First of all, just use the latest version of the client, you can download it from 
-[here](https://github.com/redskap/swagger-brake/releases).
+[here](https://github.com/docktape/swagger-brake/releases).
 
 Then as an example, [download the Petstore Swagger descriptor](https://petstore.swagger.io/v2/swagger.json).
 

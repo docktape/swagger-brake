@@ -2,7 +2,7 @@
 <suite name="artifactory" parallel="methods" thread-count="3">
     <test name="tests">
         <packages>
-            <package name="io.redskap.swagger.brake.integration" />
+            <package name="com.docktape.swagger.brake.integration" />
         </packages>
     </test>
 </suite>

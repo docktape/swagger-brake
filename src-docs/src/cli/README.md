@@ -6,7 +6,7 @@ sure you have Java 11+ installed.
 *Note: Java 8 has been tested regularly and no issues have been encountered so far.*
  
 Use the latest version of the client, you can download it from 
-[here](https://github.com/redskap/swagger-brake/releases).
+[here](https://github.com/docktape/swagger-brake/releases).
 
 ## Basics
 The idea of the command-line interface is to provide a way to integrate swagger-brake into

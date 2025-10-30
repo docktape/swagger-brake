@@ -3,7 +3,7 @@ This page is going to list and describe which rules are implemented within swagg
 as a breaking change in an API.
 
 Did not find the rule you're looking for? It might not be implemented, feel free to file a ticket on 
-[GitHub](https://github.com/redskap/swagger-brake/issues).
+[GitHub](https://github.com/docktape/swagger-brake/issues).
 
 ## R001 - StandardApiToBetaApiRule
 The rule addresses the case when a normal - non-beta API - is marked as beta in the new API, meaning that an exposed

@@ -11,7 +11,7 @@ module.exports = {
     ['meta', { name: 'apple-mobile-web-app-status-bar-style', content: 'black' }]
   ],
   themeConfig: {
-    repo: 'redskap/swagger-brake',
+    repo: 'docktape/swagger-brake',
     editLinks: true,
     docsDir: 'src-docs/src',
     editLinkText: 'Help improve these docs!',

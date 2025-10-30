@@ -25,7 +25,7 @@ dependencies {
 jar {
     enabled = true
     manifest {
-        attributes 'Main-Class': 'io.redskap.swagger.brake.cli.SwaggerBrakeMain'
+        attributes 'Main-Class': 'com.docktape.swagger.brake.cli.SwaggerBrakeMain'
     }
 }
 
@@ -34,6 +34,7 @@ shadowJar {
     archiveClassifier = 'cli'
 }
 
+project.tasks.assemble.dependsOn project.tasks.shadowJar
 
 tasks.named('test', Test) {
     useJUnitPlatform()

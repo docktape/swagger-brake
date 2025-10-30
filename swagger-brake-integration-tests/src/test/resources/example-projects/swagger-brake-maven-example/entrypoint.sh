@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ -d "local-swagger-brake" ]; then
-    mkdir -p /root/.m2/repository/io/redskap/
-    cp -r local-swagger-brake/* /root/.m2/repository/io/redskap/
+    mkdir -p /root/.m2/repository/com/docktape/
+    cp -r local-swagger-brake/* /root/.m2/repository/com/docktape/
     echo "Local Swagger Brake has been successfully copied from the host"
 fi
 

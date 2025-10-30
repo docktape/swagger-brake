@@ -6,31 +6,33 @@ buildscript {
             url "https://plugins.gradle.org/m2/"
         }
         maven {
-            url "https://oss.sonatype.org/content/repositories/snapshots"
+            name = 'Central Portal Snapshots'
+            url = 'https://central.sonatype.com/repository/maven-snapshots/'
         }
     }
     dependencies {
         classpath("io.swagger:swagger-codegen:2.4.28")
-        classpath "io.redskap:swagger-brake-gradle:${swaggerBrakeVersion}"
+        classpath "com.docktape:swagger-brake-gradle:${swaggerBrakeVersion}"
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:5.1.10"
     }
 }
 
-group = 'io.redskap.example'
+group = 'com.docktape.example'
 version = '<VERSION_PLACEHOLDER>'
 
 apply plugin: 'java'
 apply plugin: "maven-publish"
 apply plugin: "com.jfrog.artifactory"
-apply plugin: "io.redskap.swagger-brake"
+apply plugin: "com.docktape.swagger-brake"
 
-sourceCompatibility = 17
-targetCompatibility = 17
+sourceCompatibility = 21
+targetCompatibility = 21
 
 repositories {
     mavenCentral()
     maven {
-        url "https://oss.sonatype.org/content/repositories/snapshots"
+        name = 'Central Portal Snapshots'
+        url = 'https://central.sonatype.com/repository/maven-snapshots/'
     }
 }
 import io.swagger.codegen.DefaultGenerator

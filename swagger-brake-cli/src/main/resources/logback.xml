@@ -10,7 +10,7 @@
         </encoder>
     </appender>
 
-    <logger name="io.redskap.swagger.brake" level="INFO" additivity="false">
+    <logger name="com.docktape.swagger.brake" level="INFO" additivity="false">
         <appender-ref ref="INFO_STDOUT" />
     </logger>
 
