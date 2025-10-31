@@ -32,7 +32,7 @@ public class ClasspathDuplicatesTest {
                     List<String> jars = dupe.getValue().stream().map(resource -> resource.getURL().toExternalForm())
                             .collect(Collectors.toList());
                     for (String jar : jars) {
-                        if (skipJAR(jar)) {
+                        if (skipJar(jar)) {
                             addIt = false;
                             break;
                         }
@@ -53,7 +53,7 @@ public class ClasspathDuplicatesTest {
         }
     }
 
-    private boolean skipJAR(String jarPath) {
+    private boolean skipJar(String jarPath) {
         // ./gradlew test finds classes from the Gradle Wrapper (which don't
         // show up in-IDE), exclude those
         return jarPath.contains("/.gradle/wrapper/dists/") //
