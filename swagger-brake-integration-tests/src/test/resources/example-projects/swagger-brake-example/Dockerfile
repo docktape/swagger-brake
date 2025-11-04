@@ -1,4 +1,4 @@
-FROM openjdk:21-jdk
+FROM amazoncorretto:21-alpine-jdk
 
 RUN env
 WORKDIR swagger-brake-example
