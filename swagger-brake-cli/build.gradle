@@ -4,7 +4,7 @@ buildscript {
         gradlePluginPortal()
     }
     dependencies {
-        classpath("com.gradleup.shadow:shadow-gradle-plugin:9.2.2")
+        classpath("com.gradleup.shadow:shadow-gradle-plugin:9.3.0")
     }
 }
 
@@ -18,7 +18,7 @@ dependencies {
     implementation project(":swagger-brake")
     implementation "ch.qos.logback:logback-core:1.5.18"
     implementation "ch.qos.logback:logback-classic:1.5.18"
-    testImplementation 'org.junit.jupiter:junit-jupiter:6.0.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:6.0.1'
     testRuntimeOnly  'org.junit.platform:junit-platform-launcher'
 }
 
