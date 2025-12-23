@@ -34,7 +34,6 @@ public class CliOptionsProvider {
             handler.handle(propertyValue, options);
         }
         cliOptionsValidator.validate(options);
-        log.debug("All Options {}", options);
         return options;
     }
 
