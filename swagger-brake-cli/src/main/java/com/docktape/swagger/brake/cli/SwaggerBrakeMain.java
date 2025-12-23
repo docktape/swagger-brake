@@ -20,7 +20,6 @@ public class SwaggerBrakeMain {
             log.error("Failed with Exiting with error code {}", exitCode);
             System.exit(exitCode);
         }
-        log.info("Successful Exiting with code {}", exitCode);
     }
 
     /**
