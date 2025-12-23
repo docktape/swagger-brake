@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class RunnerTest {
+class RunnerTest {
     @Mock
     private BreakChecker breakChecker;
 
@@ -29,7 +29,7 @@ public class RunnerTest {
     private Runner underTest;
 
     @Test
-    public void testRunShouldThrowExceptionWhenOldApiPathIsNotPresent() {
+    void testRunShouldThrowExceptionWhenOldApiPathIsNotPresent() {
         // given
         Options options = new Options();
         options.setNewApiPath("newApi");
@@ -39,7 +39,7 @@ public class RunnerTest {
     }
 
     @Test
-    public void testRunShouldThrowExceptionWhenNewApiPathIsNotPresent() {
+    void testRunShouldThrowExceptionWhenNewApiPathIsNotPresent() {
         // given
         Options options = new Options();
         options.setOldApiPath("oldApi");

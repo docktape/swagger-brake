@@ -7,11 +7,11 @@ import com.docktape.swagger.brake.runner.Options;
 import com.docktape.swagger.brake.runner.OutputFormat;
 import org.junit.jupiter.api.Test;
 
-public class OutputFormatsHandlerTest {
-    private OutputFormatsHandler underTest = new OutputFormatsHandler();
+class OutputFormatsHandlerTest {
+    private final OutputFormatsHandler underTest = new OutputFormatsHandler();
 
     @Test
-    public void testHandleShouldSetFormatToStandardOutWhenPropertyValueIsNull() {
+    void testHandleShouldSetFormatToStandardOutWhenPropertyValueIsNull() {
         // given
         Options options = new Options();
         // when
@@ -21,7 +21,7 @@ public class OutputFormatsHandlerTest {
     }
 
     @Test
-    public void testHandleShouldSetFormatToStandardOutWhenPropertyValueIsEmpty() {
+    void testHandleShouldSetFormatToStandardOutWhenPropertyValueIsEmpty() {
         // given
         Options options = new Options();
         // when
@@ -31,7 +31,7 @@ public class OutputFormatsHandlerTest {
     }
 
     @Test
-    public void testHandleShouldSetFormatToStandardOutWhenPropertyValueIsNotMappable() {
+    void testHandleShouldSetFormatToStandardOutWhenPropertyValueIsNotMappable() {
         // given
         Options options = new Options();
         // when
@@ -41,7 +41,7 @@ public class OutputFormatsHandlerTest {
     }
 
     @Test
-    public void testHandleShouldSetFormatToStandardOutWhenPropertyValueIsStdOut() {
+    void testHandleShouldSetFormatToStandardOutWhenPropertyValueIsStdOut() {
         // given
         Options options = new Options();
         // when
@@ -51,7 +51,7 @@ public class OutputFormatsHandlerTest {
     }
 
     @Test
-    public void testHandleShouldSetFormatToJsonWhenPropertyValueIsJson() {
+    void testHandleShouldSetFormatToJsonWhenPropertyValueIsJson() {
         // given
         Options options = new Options();
         // when
@@ -61,7 +61,7 @@ public class OutputFormatsHandlerTest {
     }
 
     @Test
-    public void testHandleShouldSetFormatToJsonAndHtmlWhenValueIsJsonCommaHtml() {
+    void testHandleShouldSetFormatToJsonAndHtmlWhenValueIsJsonCommaHtml() {
         // given
         Options options = new Options();
         // when
@@ -70,9 +70,8 @@ public class OutputFormatsHandlerTest {
         assertThat(options.getOutputFormats()).isEqualTo(of(OutputFormat.HTML, OutputFormat.JSON));
     }
 
-
     @Test
-    public void testHandleShouldSetFormatToJsonAndHtmlWhenValueIsJsonCommaHtmlWithSpaces() {
+    void testHandleShouldSetFormatToJsonAndHtmlWhenValueIsJsonCommaHtmlWithSpaces() {
         // given
         Options options = new Options();
         // when

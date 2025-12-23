@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.integration.v2.response;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import com.docktape.swagger.brake.core.BreakingChange;
 import com.docktape.swagger.brake.core.model.HttpMethod;
@@ -13,9 +14,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class RecursiveTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIntTest {
+class RecursiveTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testResponseTypeChangeIsBreakingChangeWhenExistingAttributeRemoved() {
+    void testResponseTypeChangeIsBreakingChangeWhenExistingAttributeRemoved() {
         // given
         String oldApiPath = "swaggers/v2/response/recursiveresponseattributeremoved/schema.json";
         String newApiPath = "swaggers/v2/response/recursiveresponseattributeremoved/schema_v2.json";
@@ -27,7 +28,9 @@ public class RecursiveTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIn
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(2);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(2),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 }

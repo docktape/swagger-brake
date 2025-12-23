@@ -15,9 +15,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class V3RequestBodyOneOfIntTest extends AbstractSwaggerBrakeIntTest {
+class V3RequestBodyOneOfIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testV3RequestBodyOneOfPropertyRemovedIsBreakingChange() {
+    void testV3RequestBodyOneOfPropertyRemovedIsBreakingChange() {
         // given
         String oldApiPath = "swaggers/v3/request/requestbody/oneof/propertydeleted/petstore.yaml";
         String newApiPath = "swaggers/v3/request/requestbody/oneof/propertydeleted/petstore_v2.yaml";
@@ -31,7 +31,7 @@ public class V3RequestBodyOneOfIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testV3RequestBodyOneOfPropertyTypeChangedIsBreakingChange() {
+    void testV3RequestBodyOneOfPropertyTypeChangedIsBreakingChange() {
         // given
         String oldApiPath = "swaggers/v3/request/requestbody/oneof/propertytypechanged/petstore.yaml";
         String newApiPath = "swaggers/v3/request/requestbody/oneof/propertytypechanged/petstore_v2.yaml";

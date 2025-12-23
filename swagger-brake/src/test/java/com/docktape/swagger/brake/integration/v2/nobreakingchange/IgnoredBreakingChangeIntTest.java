@@ -12,9 +12,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class IgnoredBreakingChangeIntTest extends AbstractSwaggerBrakeIntTest {
+class IgnoredBreakingChangeIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testIgnoreBreakingChangeRulesWorksCorrectlyForExactMatch() {
+    void testIgnoreBreakingChangeRulesWorksCorrectlyForExactMatch() {
         // given
         String oldApiPath = "swaggers/v2/request/parameterdeleted/petstore.yaml";
         String newApiPath = "swaggers/v2/request/parameterdeleted/petstore_v2.yaml";

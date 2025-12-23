@@ -11,9 +11,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class RecursiveSchemaNoBreakingChangeIntTest extends AbstractSwaggerBrakeIntTest {
+class RecursiveSchemaNoBreakingChangeIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testNoBreakingChangeWorksCorrectly() {
+    void testNoBreakingChangeWorksCorrectly() {
         // given
         String oldApiPath = "swaggers/v2/nobreakingchange/recursive/schema.json";
         String newApiPath = "swaggers/v2/nobreakingchange/recursive/schema_v2.json";
@@ -24,7 +24,7 @@ public class RecursiveSchemaNoBreakingChangeIntTest extends AbstractSwaggerBrake
     }
 
     @Test
-    public void testNoBreakingChangeWorksCorrectly2() {
+    void testNoBreakingChangeWorksCorrectly2() {
         // given
         String oldApiPath = "swaggers/v2/nobreakingchange/recursive2/swagger.json";
         String newApiPath = "swaggers/v2/nobreakingchange/recursive2/swagger.json";

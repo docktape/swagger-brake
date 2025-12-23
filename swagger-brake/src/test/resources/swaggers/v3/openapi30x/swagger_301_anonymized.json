@@ -1,0 +1,91 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Generic API Specification",
+    "license": {
+      "name": "View Source Code",
+      "url": "https://github.example.com/Sample/invalid-repo"
+    },
+    "version": "1.0.304"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com",
+      "description": "Generic server"
+    }
+  ],
+  "security": [
+    {
+      "SecurityScheme1": []
+    },
+    {
+      "SecurityScheme2": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Tag1",
+      "description": "Generic description 1",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://example.com/docs"
+      }
+    }
+  ],
+  "paths": {
+    "/endpoint1": {
+      "put": {
+        "tags": [
+          "Tag1"
+        ],
+        "operationId": "op1_put",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Schema1": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "SecurityScheme1": {
+        "type": "oauth2"
+      },
+      "SecurityScheme2": {
+        "type": "http"
+      }
+    }
+  }
+}

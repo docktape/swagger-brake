@@ -8,11 +8,11 @@ import com.docktape.swagger.brake.core.rule.request.parameter.constraint.ArrayCo
 import com.docktape.swagger.brake.core.rule.request.parameter.constraint.ConstraintChange;
 import org.junit.jupiter.api.Test;
 
-public class ArrayUniqueItemsConstraintTest {
+class ArrayUniqueItemsConstraintTest {
     private ArrayUniqueItemsConstraint underTest = new ArrayUniqueItemsConstraint();
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenUniqueItemsGetsSet() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenUniqueItemsGetsSet() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             2,
@@ -34,7 +34,7 @@ public class ArrayUniqueItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenUniqueItemsGetsChangedToTrue() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenUniqueItemsGetsChangedToTrue() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             2,
@@ -56,7 +56,7 @@ public class ArrayUniqueItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenUniqueItemsGetsSetToFalse() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenUniqueItemsGetsSetToFalse() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             2,
@@ -75,7 +75,7 @@ public class ArrayUniqueItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenUniqueItemsGetsChangedToFalse() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenUniqueItemsGetsChangedToFalse() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             2,

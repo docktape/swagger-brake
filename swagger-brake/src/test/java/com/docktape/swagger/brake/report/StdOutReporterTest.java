@@ -5,11 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.docktape.swagger.brake.runner.OutputFormat;
 import org.junit.jupiter.api.Test;
 
-public class StdOutReporterTest {
+class StdOutReporterTest {
     private StdOutReporter underTest = new StdOutReporter();
 
     @Test
-    public void testCanReportShouldReturnTrueIfOutputFormatIsStdOut() {
+    void testCanReportShouldReturnTrueIfOutputFormatIsStdOut() {
         // given
         // when
         boolean result = underTest.canReport(OutputFormat.STDOUT);
@@ -18,7 +18,7 @@ public class StdOutReporterTest {
     }
 
     @Test
-    public void testCanReportShouldReturnFalseIfOutputFormatIsHtml() {
+    void testCanReportShouldReturnFalseIfOutputFormatIsHtml() {
         // given
         // when
         boolean result = underTest.canReport(OutputFormat.HTML);

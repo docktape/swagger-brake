@@ -1,0 +1,2167 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Generic API Specification (Obfuscated)",
+    "description": "Test data obfuscated for open-source distribution.",
+    "license": {
+      "name": "Open Source Placeholder",
+      "url": "https://example.com/license"
+    },
+    "version": "1.0.304"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com",
+      "description": "Generic server"
+    }
+  ],
+  "tags": [
+    {
+      "name": "Tag1",
+      "description": "Generic tag",
+      "externalDocs": {
+        "description": "Documentation",
+        "url": "https://example.com/docs"
+      }
+    }
+  ],
+  "paths": {
+    "/api/v1/notifications/resend": {
+      "put": {
+        "tags": [
+          "Tag4"
+        ],
+        "operationId": "op1",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "type": "integer"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/updateLogs": {
+      "post": {
+        "tags": [
+          "Tag6"
+        ],
+        "operationId": "op2",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/restoreTokens": {
+      "post": {
+        "tags": [
+          "Tag6"
+        ],
+        "operationId": "op3",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/public/restoreTokens/{entityId}": {
+      "post": {
+        "tags": [
+          "Tag6"
+        ],
+        "operationId": "op4",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tokens/setToken/{entityId}": {
+      "post": {
+        "tags": [
+          "Tag7"
+        ],
+        "operationId": "op5",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema1"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/entity": {
+      "get": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op6",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schema29"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op7",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema2"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema3"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entity/{id}/newtoken": {
+      "post": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op8",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entity/partnerA": {
+      "post": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op9",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema4"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema5"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/restart": {
+      "post": {
+        "tags": [
+          "Tag1"
+        ],
+        "summary": "Endpoint summary",
+        "operationId": "op10",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entity/{id}/notificationConfig": {
+      "patch": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op11",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema6"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/entity/{id}/notification-url": {
+      "patch": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op12",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema7"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/entity/{id}/config": {
+      "patch": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op13",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema8"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/entity/{id}/companyName": {
+      "patch": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op14",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema9"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/entity/{id}/active": {
+      "patch": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op15",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema10"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/entity/security": {
+      "patch": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op16",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema11"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema11"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entity/bulkactive": {
+      "patch": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op17",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/Schema12"
+                }
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/v1/fundingSourceType/{id}/allowedForAutoApproval": {
+      "patch": {
+        "tags": [
+          "Tag3"
+        ],
+        "operationId": "op18",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Schema13"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/info": {
+      "get": {
+        "tags": [
+          "Tag2"
+        ],
+        "operationId": "op19",
+        "responses": {
+          "301": {
+            "description": "Moved Permanently",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema22"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "Tag2"
+        ],
+        "operationId": "op20",
+        "responses": {
+          "301": {
+            "description": "Moved Permanently",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema22"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/v1/tokens/{entityId}": {
+      "get": {
+        "tags": [
+          "Tag7"
+        ],
+        "operationId": "op21",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schema27"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/tokens/": {
+      "get": {
+        "tags": [
+          "Tag7"
+        ],
+        "operationId": "op22",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schema27"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entity/{id}/security": {
+      "get": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op23",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/Schema11"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entity/distinct": {
+      "get": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op24",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schema30"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entity/partnerA/isLinked/{accountId}": {
+      "get": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op25",
+        "parameters": [
+          {
+            "name": "accountId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/entity/ByName/{companyName}": {
+      "get": {
+        "tags": [
+          "Tag5"
+        ],
+        "operationId": "op26",
+        "parameters": [
+          {
+            "name": "companyName",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Schema30"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator": {
+      "get": {
+        "tags": [
+          "Tag1"
+        ],
+        "summary": "Endpoint summary",
+        "operationId": "op27",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Schema31"
+                    }
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Schema31"
+                    }
+                  }
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Schema31"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/info": {
+      "get": {
+        "tags": [
+          "Tag1"
+        ],
+        "summary": "Endpoint summary",
+        "operationId": "op28",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/health": {
+      "get": {
+        "tags": [
+          "Tag1"
+        ],
+        "summary": "Endpoint summary",
+        "operationId": "op29",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/health/**": {
+      "get": {
+        "tags": [
+          "Tag1"
+        ],
+        "summary": "Endpoint summary",
+        "operationId": "op30",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Schema1": {
+        "type": "object",
+        "properties": {
+          "token": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "Schema2": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "canExceedMaxFundingDays": {
+            "type": "boolean"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "configurationFile": {
+            "type": "string"
+          },
+          "clientActivationRequired": {
+            "type": "boolean"
+          },
+          "lowerPartnerToken": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "notificationEnabled": {
+            "type": "boolean"
+          },
+          "notificationUrl": {
+            "type": "string"
+          },
+          "productionEntityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "productionPartnerToken": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "usePartnerAsSeller": {
+            "type": "boolean"
+          },
+          "autoApprovalMaxFloorAge": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Schema3": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Schema4": {
+        "type": "object",
+        "properties": {
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "externalId": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema5": {
+        "type": "object",
+        "properties": {
+          "success": {
+            "type": "boolean"
+          },
+          "message": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema6": {
+        "type": "object",
+        "properties": {
+          "configurationFile": {
+            "type": "string"
+          },
+          "notificationEnabled": {
+            "type": "boolean"
+          },
+          "notificationInt": {
+            "type": "integer"
+          },
+          "settings": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema7": {
+        "type": "object",
+        "properties": {
+          "notificationUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema8": {
+        "type": "object",
+        "properties": {
+          "usePartnerAsSeller": {
+            "type": "boolean"
+          },
+          "clientActivationRequired": {
+            "type": "boolean"
+          },
+          "canExceedMaxFundingDays": {
+            "type": "boolean"
+          },
+          "maxFundingDaysDifference": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxDaysToUsePurchaseDate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "forceFundingApproval": {
+            "type": "boolean"
+          },
+          "autoApprovalMaxFloorAge": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Schema9": {
+        "type": "object",
+        "properties": {
+          "companyName": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema10": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Schema11": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "entityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "clientAvailCredit": {
+            "type": "boolean"
+          },
+          "clientAvailCreditMarketplaceAccess": {
+            "type": "boolean"
+          },
+          "clientActivationRequest": {
+            "type": "boolean"
+          },
+          "fundingRequest": {
+            "type": "boolean"
+          },
+          "fundingRequestSourceId": {
+            "type": "boolean"
+          },
+          "fundingRequestMarketplaceAccess": {
+            "type": "boolean"
+          },
+          "fundingRequestMarketplaceAccessSourceId": {
+            "type": "boolean"
+          },
+          "updateAssetDocument": {
+            "type": "boolean"
+          },
+          "updateAssetDocumentMarketplaceAccessSourceId": {
+            "type": "boolean"
+          },
+          "partnerA": {
+            "type": "boolean"
+          },
+          "soldIdentifierCheck": {
+            "type": "boolean"
+          },
+          "submitIntercompanyPayment": {
+            "type": "boolean"
+          },
+          "getTitleAction": {
+            "type": "boolean"
+          },
+          "submitTitleAction": {
+            "type": "boolean"
+          },
+          "getCurrentTitleInfo": {
+            "type": "boolean"
+          },
+          "identifierCheck": {
+            "type": "boolean"
+          },
+          "fundingRequestSalesChannel": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Schema12": {
+        "type": "object",
+        "properties": {
+          "active": {
+            "type": "boolean"
+          },
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "Schema13": {
+        "type": "object",
+        "properties": {
+          "allowedForAutoApproval": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Schema14": {
+        "type": "object",
+        "properties": {
+          "autowireCapableBeanFactory": {
+            "$ref": "#/components/schemas/Schema15"
+          },
+          "startupDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "applicationName": {
+            "type": "string"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/Schema14"
+          },
+          "id": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/Schema17"
+          },
+          "beanDefinitionCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "beanDefinitionNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "parentBeanFactory": {
+            "$ref": "#/components/schemas/Schema16"
+          },
+          "classLoader": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "registeredAsParallelCapable": {
+                "type": "boolean"
+              },
+              "parent": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "registeredAsParallelCapable": {
+                    "type": "boolean"
+                  },
+                  "unnamedModule": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "classLoader": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "registeredAsParallelCapable": {
+                            "type": "boolean"
+                          },
+                          "definedPackages": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "annotations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "declaredAnnotations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "sealed": {
+                                  "type": "boolean"
+                                },
+                                "specificationTitle": {
+                                  "type": "string"
+                                },
+                                "specificationVersion": {
+                                  "type": "string"
+                                },
+                                "specificationVendor": {
+                                  "type": "string"
+                                },
+                                "implementationTitle": {
+                                  "type": "string"
+                                },
+                                "implementationVersion": {
+                                  "type": "string"
+                                },
+                                "implementationVendor": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "defaultAssertionStatus": {
+                            "type": "boolean",
+                            "writeOnly": true
+                          }
+                        }
+                      },
+                      "descriptor": {
+                        "type": "object",
+                        "properties": {
+                          "open": {
+                            "type": "boolean"
+                          },
+                          "automatic": {
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "named": {
+                        "type": "boolean"
+                      },
+                      "annotations": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        }
+                      },
+                      "declaredAnnotations": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        }
+                      },
+                      "packages": {
+                        "uniqueItems": true,
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "layer": {
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "definedPackages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "annotations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        },
+                        "declaredAnnotations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        },
+                        "sealed": {
+                          "type": "boolean"
+                        },
+                        "specificationTitle": {
+                          "type": "string"
+                        },
+                        "specificationVersion": {
+                          "type": "string"
+                        },
+                        "specificationVendor": {
+                          "type": "string"
+                        },
+                        "implementationTitle": {
+                          "type": "string"
+                        },
+                        "implementationVersion": {
+                          "type": "string"
+                        },
+                        "implementationVendor": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "defaultAssertionStatus": {
+                    "type": "boolean",
+                    "writeOnly": true
+                  }
+                }
+              },
+              "unnamedModule": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "classLoader": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "registeredAsParallelCapable": {
+                        "type": "boolean"
+                      },
+                      "definedPackages": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "annotations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object"
+                              }
+                            },
+                            "declaredAnnotations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object"
+                              }
+                            },
+                            "sealed": {
+                              "type": "boolean"
+                            },
+                            "specificationTitle": {
+                              "type": "string"
+                            },
+                            "specificationVersion": {
+                              "type": "string"
+                            },
+                            "specificationVendor": {
+                              "type": "string"
+                            },
+                            "implementationTitle": {
+                              "type": "string"
+                            },
+                            "implementationVersion": {
+                              "type": "string"
+                            },
+                            "implementationVendor": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "defaultAssertionStatus": {
+                        "type": "boolean",
+                        "writeOnly": true
+                      }
+                    }
+                  },
+                  "descriptor": {
+                    "type": "object",
+                    "properties": {
+                      "open": {
+                        "type": "boolean"
+                      },
+                      "automatic": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "named": {
+                    "type": "boolean"
+                  },
+                  "annotations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "declaredAnnotations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "packages": {
+                    "uniqueItems": true,
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "layer": {
+                    "type": "object"
+                  }
+                }
+              },
+              "definedPackages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "annotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "declaredAnnotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "sealed": {
+                      "type": "boolean"
+                    },
+                    "specificationTitle": {
+                      "type": "string"
+                    },
+                    "specificationVersion": {
+                      "type": "string"
+                    },
+                    "specificationVendor": {
+                      "type": "string"
+                    },
+                    "implementationTitle": {
+                      "type": "string"
+                    },
+                    "implementationVersion": {
+                      "type": "string"
+                    },
+                    "implementationVendor": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "defaultAssertionStatus": {
+                "type": "boolean",
+                "writeOnly": true
+              }
+            }
+          }
+        }
+      },
+      "Schema15": {
+        "type": "object"
+      },
+      "Schema16": {
+        "type": "object"
+      },
+      "Schema17": {
+        "type": "object",
+        "properties": {
+          "activeProfiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "defaultProfiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Schema18": {
+        "type": "object",
+        "properties": {
+          "servletNameMappings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "urlPatternMappings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "initParameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "className": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema19": {
+        "type": "object",
+        "properties": {
+          "is4xxClientError": {
+            "type": "boolean"
+          },
+          "is5xxServerError": {
+            "type": "boolean"
+          },
+          "is1xxInformational": {
+            "type": "boolean"
+          },
+          "is2xxSuccessful": {
+            "type": "boolean"
+          },
+          "is3xxRedirection": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Schema20": {
+        "type": "object",
+        "properties": {
+          "jspPropertyGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Schema21"
+            }
+          },
+          "taglibs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Schema26"
+            }
+          }
+        }
+      },
+      "Schema21": {
+        "type": "object",
+        "properties": {
+          "errorOnUndeclaredNamespace": {
+            "type": "string"
+          },
+          "elIgnored": {
+            "type": "string"
+          },
+          "pageEncoding": {
+            "type": "string"
+          },
+          "isXml": {
+            "type": "string"
+          },
+          "includePreludes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "includeCodas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "trimDirectiveWhitespaces": {
+            "type": "string"
+          },
+          "errorOnELNotFound": {
+            "type": "string"
+          },
+          "urlPatterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "defaultContentType": {
+            "type": "string"
+          },
+          "deferredSyntaxAllowedAsLiteral": {
+            "type": "string"
+          },
+          "scriptingInvalid": {
+            "type": "string"
+          },
+          "buffer": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema22": {
+        "type": "object",
+        "properties": {
+          "applicationContext": {
+            "$ref": "#/components/schemas/Schema14"
+          },
+          "servletContext": {
+            "$ref": "#/components/schemas/Schema23"
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "requestContextAttribute": {
+            "type": "string"
+          },
+          "staticAttributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "exposePathVariables": {
+            "type": "boolean"
+          },
+          "exposeContextBeansAsAttributes": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "exposedContextBeanNames": {
+            "type": "array",
+            "writeOnly": true,
+            "items": {
+              "type": "string"
+            }
+          },
+          "beanName": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "contextRelative": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "http10Compatible": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "exposeModelAttributes": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "encodingScheme": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "statusCode": {
+            "$ref": "#/components/schemas/Schema19"
+          },
+          "expandUriTemplateVariables": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "propagateQueryParams": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "hosts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "redirectView": {
+            "type": "boolean"
+          },
+          "propagateQueryProperties": {
+            "type": "boolean"
+          },
+          "attributesMap": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "attributesCSV": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "writeOnly": true
+          }
+        }
+      },
+      "Schema23": {
+        "type": "object",
+        "properties": {
+          "effectiveMajorVersion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "effectiveMinorVersion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filterRegistrations": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Schema18"
+            }
+          },
+          "defaultSessionTrackingModes": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "COOKIE",
+                "URL",
+                "SSL"
+              ]
+            }
+          },
+          "effectiveSessionTrackingModes": {
+            "uniqueItems": true,
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "COOKIE",
+                "URL",
+                "SSL"
+              ]
+            }
+          },
+          "jspConfigDescriptor": {
+            "$ref": "#/components/schemas/Schema20"
+          },
+          "requestCharacterEncoding": {
+            "type": "string"
+          },
+          "responseCharacterEncoding": {
+            "type": "string"
+          },
+          "sessionTrackingModes": {
+            "uniqueItems": true,
+            "type": "array",
+            "writeOnly": true,
+            "items": {
+              "type": "string",
+              "enum": [
+                "COOKIE",
+                "URL",
+                "SSL"
+              ]
+            }
+          },
+          "serverInfo": {
+            "type": "string"
+          },
+          "initParameterNames": {
+            "type": "object"
+          },
+          "sessionCookieConfig": {
+            "$ref": "#/components/schemas/Schema25"
+          },
+          "virtualServerName": {
+            "type": "string"
+          },
+          "sessionTimeout": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "servletContextName": {
+            "type": "string"
+          },
+          "contextPath": {
+            "type": "string"
+          },
+          "servletRegistrations": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/Schema24"
+            }
+          },
+          "attributeNames": {
+            "type": "object"
+          },
+          "classLoader": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "registeredAsParallelCapable": {
+                "type": "boolean"
+              },
+              "definedPackages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "annotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "declaredAnnotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "sealed": {
+                      "type": "boolean"
+                    },
+                    "specificationTitle": {
+                      "type": "string"
+                    },
+                    "specificationVersion": {
+                      "type": "string"
+                    },
+                    "specificationVendor": {
+                      "type": "string"
+                    },
+                    "implementationTitle": {
+                      "type": "string"
+                    },
+                    "implementationVersion": {
+                      "type": "string"
+                    },
+                    "implementationVendor": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "defaultAssertionStatus": {
+                "type": "boolean",
+                "writeOnly": true
+              }
+            }
+          },
+          "majorVersion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minorVersion": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Schema24": {
+        "type": "object",
+        "properties": {
+          "runAsRole": {
+            "type": "string"
+          },
+          "mappings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "initParameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "className": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema25": {
+        "type": "object",
+        "properties": {
+          "maxAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "httpOnly": {
+            "type": "boolean"
+          },
+          "secure": {
+            "type": "boolean"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "path": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "comment": {
+            "type": "string",
+            "deprecated": true
+          }
+        }
+      },
+      "Schema26": {
+        "type": "object",
+        "properties": {
+          "taglibURI": {
+            "type": "string"
+          },
+          "taglibLocation": {
+            "type": "string"
+          }
+        }
+      },
+      "Schema27": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "entityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "environment": {
+            "type": "string"
+          },
+          "lowerEnvironmentToken": {
+            "type": "string",
+            "format": "uuid"
+          }
+        }
+      },
+      "Schema28": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "type": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "isPartnerWebService": {
+            "type": "boolean"
+          },
+          "allowedForAutoApproval": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Schema29": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "token": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "accountId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "configurationFile": {
+            "type": "string"
+          },
+          "usePartnerAsSeller": {
+            "type": "boolean"
+          },
+          "clientActivationRequired": {
+            "type": "boolean"
+          },
+          "fundingSourceType": {
+            "$ref": "#/components/schemas/Schema28"
+          },
+          "notificationEnabled": {
+            "type": "boolean"
+          },
+          "notificationUrl": {
+            "type": "string"
+          },
+          "createDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "canExceedMaxFundingDays": {
+            "type": "boolean"
+          },
+          "maxFundingDaysDifference": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "maxDaysToUsePurchaseDate": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "forceFundingApproval": {
+            "type": "boolean"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "settings": {
+            "type": "string"
+          },
+          "autoApprovalMaxFloorAge": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "Schema30": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "token": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "companyName": {
+            "type": "string"
+          },
+          "createDateTime": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "Schema31": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          },
+          "templated": {
+            "type": "boolean"
+          }
+        }
+      }
+    }
+  }
+}

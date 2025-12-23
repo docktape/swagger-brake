@@ -4,9 +4,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-public class DownloadOptionsTest {
+class DownloadOptionsTest {
     @Test
-    public void testIsAuthenticationNeededShouldReturnTrueWhenUsernameAndPasswordIsSet() {
+    void testIsAuthenticationNeededShouldReturnTrueWhenUsernameAndPasswordIsSet() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setUsername("username");
@@ -18,7 +18,7 @@ public class DownloadOptionsTest {
     }
 
     @Test
-    public void testIsAuthenticationNeededShouldReturnFalseWhenOnlyUsernameIsSet() {
+    void testIsAuthenticationNeededShouldReturnFalseWhenOnlyUsernameIsSet() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setUsername("username");
@@ -29,7 +29,7 @@ public class DownloadOptionsTest {
     }
 
     @Test
-    public void testIsAuthenticationNeededShouldReturnFalseWhenOnlyUsernameIsSetAndPasswordIsBlank() {
+    void testIsAuthenticationNeededShouldReturnFalseWhenOnlyUsernameIsSetAndPasswordIsBlank() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setUsername("username");
@@ -41,7 +41,7 @@ public class DownloadOptionsTest {
     }
 
     @Test
-    public void testIsAuthenticationNeededShouldReturnFalseWhenOnlyPasswordIsSet() {
+    void testIsAuthenticationNeededShouldReturnFalseWhenOnlyPasswordIsSet() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setPassword("password");
@@ -52,7 +52,7 @@ public class DownloadOptionsTest {
     }
 
     @Test
-    public void testIsAuthenticationNeededShouldReturnFalseWhenOnlyPasswordIsSetAndUsernameIsBlank() {
+    void testIsAuthenticationNeededShouldReturnFalseWhenOnlyPasswordIsSetAndUsernameIsBlank() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setUsername("");

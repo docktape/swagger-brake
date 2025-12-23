@@ -5,9 +5,9 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
-public class ConfigurableApiFileNameCheckerTest {
+class ConfigurableApiFileNameCheckerTest {
     @Test
-    public void testConstructorShouldThrowExceptionIfNullParameterIsGiven() {
+    void testConstructorShouldThrowExceptionIfNullParameterIsGiven() {
         // given
         // when
         assertThatThrownBy(() -> new ConfigurableApiFileNameChecker(null)).isExactlyInstanceOf(IllegalArgumentException.class);
@@ -15,7 +15,7 @@ public class ConfigurableApiFileNameCheckerTest {
     }
 
     @Test
-    public void testConstructorShouldThrowExceptionIfEmptyStringParameterIsGiven() {
+    void testConstructorShouldThrowExceptionIfEmptyStringParameterIsGiven() {
         // given
         // when
         assertThatThrownBy(() -> new ConfigurableApiFileNameChecker("  ")).isExactlyInstanceOf(IllegalArgumentException.class);
@@ -23,7 +23,7 @@ public class ConfigurableApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiShouldReturnFalseWhenDoesntMatch() {
+    void testIsApiShouldReturnFalseWhenDoesntMatch() {
         // given
         ConfigurableApiFileNameChecker underTest = new ConfigurableApiFileNameChecker("openapi");
         // when
@@ -33,7 +33,7 @@ public class ConfigurableApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiShouldReturnTrueWhenYamlMatchesFullPath() {
+    void testIsApiShouldReturnTrueWhenYamlMatchesFullPath() {
         // given
         ConfigurableApiFileNameChecker underTest = new ConfigurableApiFileNameChecker("openapi");
         // when
@@ -43,7 +43,7 @@ public class ConfigurableApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiShouldReturnTrueWhenYamlMatches() {
+    void testIsApiShouldReturnTrueWhenYamlMatches() {
         // given
         ConfigurableApiFileNameChecker underTest = new ConfigurableApiFileNameChecker("openapi");
         // when
@@ -53,7 +53,7 @@ public class ConfigurableApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiShouldReturnTrueWhenYmlMatches() {
+    void testIsApiShouldReturnTrueWhenYmlMatches() {
         // given
         ConfigurableApiFileNameChecker underTest = new ConfigurableApiFileNameChecker("openapi");
         // when
@@ -63,7 +63,7 @@ public class ConfigurableApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiShouldReturnTrueWhenJsonMatches() {
+    void testIsApiShouldReturnTrueWhenJsonMatches() {
         // given
         ConfigurableApiFileNameChecker underTest = new ConfigurableApiFileNameChecker("openapi");
         // when
@@ -73,7 +73,7 @@ public class ConfigurableApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiShouldReturnTrueWhenExtensionIsProvidedAndMatches() {
+    void testIsApiShouldReturnTrueWhenExtensionIsProvidedAndMatches() {
         // given
         ConfigurableApiFileNameChecker underTest = new ConfigurableApiFileNameChecker("openapi.txt");
         // when

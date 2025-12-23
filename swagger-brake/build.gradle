@@ -9,6 +9,11 @@ repositories {
 }
 
 dependencies {
+    compileOnly "org.projectlombok:lombok:1.18.42"
+    annotationProcessor "org.projectlombok:lombok:1.18.42"
+    testCompileOnly "org.projectlombok:lombok:1.18.42"
+    testAnnotationProcessor "org.projectlombok:lombok:1.18.42"
+    
     implementation "org.apache.commons:commons-collections4:4.5.0"
     implementation "io.swagger.parser.v3:swagger-parser:2.1.35"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.19.2"
@@ -18,12 +23,51 @@ dependencies {
     testImplementation 'org.junit.jupiter:junit-jupiter:6.0.1'
     testRuntimeOnly  'org.junit.platform:junit-platform-launcher'
     testImplementation 'io.github.classgraph:classgraph:4.8.184'
+    testImplementation 'ch.qos.logback:logback-classic:1.5.15'
 }
 
 tasks.named('test', Test) {
     useJUnitPlatform()
+    finalizedBy jacocoTestReport
 
     testLogging {
         events "passed"
     }
 }
+jacocoTestReport {
+    dependsOn test
+    
+    reports {
+        xml.required = true
+        html.required = true
+        csv.required = false
+    }
+}
+
+jacocoTestCoverageVerification {
+    dependsOn jacocoTestReport
+    
+    violationRules {
+        rule {
+            element = 'CLASS'
+            
+            // Enforce 80%+ coverage for new OpenAPI 3.1 specific classes
+            includes = [
+                'com.docktape.swagger.brake.core.TypeResolver',
+                'com.docktape.swagger.brake.core.model.transformer.WebhookTransformer',
+                'com.docktape.swagger.brake.core.rule.webhook.WebhookDeletedRule',
+                'com.docktape.swagger.brake.core.rule.webhook.WebhookAddedRule',
+                'com.docktape.swagger.brake.core.rule.response.ResponseTypeNullabilityRemovedRule',
+                'com.docktape.swagger.brake.core.rule.request.RequestParameterNullabilityAddedRule'
+            ]
+            
+            limit {
+                counter = 'LINE'
+                value = 'COVEREDRATIO'
+                minimum = 0.80
+            }
+        }
+    }
+}
+
+check.dependsOn jacocoTestCoverageVerification

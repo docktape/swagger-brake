@@ -1,0 +1,627 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "swagger-brake Type Issues Demo API",
+    "description": "Comprehensive demonstration of all OpenAPI 3.1.0 type issues that cause swagger-brake failures",
+    "version": "1.0.444"
+  },
+  "servers": [
+    {
+      "url": "https://api.example.com/v1",
+      "description": "Demo server"
+    }
+  ],
+  "paths": {
+    "/parameter-ref-issues": {
+      "get": {
+        "summary": "Endpoint with parameter $ref issues",
+        "operationId": "getParameterRefIssues",
+        "parameters": [
+          {
+            "name": "pageableParam",
+            "in": "query",
+            "required": true,
+            "description": "Parameter with $ref to schema without explicit type",
+            "schema": {
+              "$ref": "#/components/schemas/PageableWithoutType"
+            }
+          },
+          {
+            "name": "filterParam",
+            "in": "query",
+            "required": false,
+            "description": "Parameter with inline schema missing type",
+            "schema": {
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              },
+              "required": ["name"]
+            }
+          },
+          {
+            "name": "sortParam",
+            "in": "query", 
+            "required": false,
+            "description": "Parameter with composition schema missing type",
+            "schema": {
+              "allOf": [
+                {
+                  "properties": {
+                    "field": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "direction": {
+                      "type": "string",
+                      "enum": ["asc", "desc"]
+                    }
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response with schema missing type",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "data": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/ItemWithoutType"
+                      }
+                    },
+                    "pagination": {
+                      "$ref": "#/components/schemas/PaginationWithoutType"
+                    }
+                  },
+                  "required": ["data"]
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "summary": "Endpoint with request body type issues",
+        "operationId": "postParameterRefIssues",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "metadata": {
+                    "properties": {
+                      "tags": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        }
+                      },
+                      "attributes": {
+                        "additionalProperties": {
+                          "oneOf": [
+                            {
+                              "type": "string"
+                            },
+                            {
+                              "type": "number"
+                            },
+                            {
+                              "properties": {
+                                "nested": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          ]
+                        }
+                      }
+                    },
+                    "required": ["tags"]
+                  }
+                },
+                "required": ["name"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatedResponseWithoutType"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/composition-issues": {
+      "get": {
+        "summary": "Endpoint demonstrating composition schema issues",
+        "operationId": "getCompositionIssues",
+        "parameters": [
+          {
+            "name": "complexParam",
+            "in": "query",
+            "schema": {
+              "anyOf": [
+                {
+                  "properties": {
+                    "stringValue": {
+                      "type": "string"
+                    }
+                  }
+                },
+                {
+                  "properties": {
+                    "numberValue": {
+                      "type": "number"
+                    }
+                  }
+                },
+                {
+                  "$ref": "#/components/schemas/NestedObjectWithoutType"
+                }
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "oneOf": [
+                    {
+                      "$ref": "#/components/schemas/SuccessResponseWithoutType"
+                    },
+                    {
+                      "properties": {
+                        "error": {
+                          "type": "string"
+                        },
+                        "details": {
+                          "properties": {
+                            "code": {
+                              "type": "integer"
+                            },
+                            "message": {
+                              "type": "string"
+                            }
+                          },
+                          "required": ["code"]
+                        }
+                      },
+                      "required": ["error"]
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nested-issues": {
+      "patch": {
+        "summary": "Endpoint with deeply nested schema issues",
+        "operationId": "patchNestedIssues",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "level1": {
+                    "properties": {
+                      "level2": {
+                        "properties": {
+                          "level3": {
+                            "properties": {
+                              "deepProperty": {
+                                "type": "string"
+                              },
+                              "deepObject": {
+                                "properties": {
+                                  "value": {
+                                    "type": "string"
+                                  }
+                                }
+                              }
+                            },
+                            "required": ["deepProperty"]
+                          }
+                        },
+                        "required": ["level3"]
+                      },
+                      "array": {
+                        "type": "array",
+                        "items": {
+                          "properties": {
+                            "itemId": {
+                              "type": "string"
+                            },
+                            "itemData": {
+                              "$ref": "#/components/schemas/ArrayItemWithoutType"
+                            }
+                          },
+                          "required": ["itemId"]
+                        }
+                      }
+                    },
+                    "required": ["level2"]
+                  }
+                },
+                "required": ["level1"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Updated",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "allOf": [
+                    {
+                      "$ref": "#/components/schemas/BaseResponseWithoutType"
+                    },
+                    {
+                      "properties": {
+                        "updatedAt": {
+                          "type": "string",
+                          "format": "date-time"
+                        },
+                        "changes": {
+                          "type": "array",
+                          "items": {
+                            "properties": {
+                              "field": {
+                                "type": "string"
+                              },
+                              "oldValue": {},
+                              "newValue": {}
+                            },
+                            "required": ["field"]
+                          }
+                        }
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PageableWithoutType": {
+        "description": "Pageable schema missing explicit type",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0,
+            "default": 0
+          },
+          "size": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 1,
+            "maximum": 100,
+            "default": 20
+          },
+          "sort": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Sort criteria in format: property(,asc|desc)"
+          }
+        },
+        "required": ["page", "size"]
+      },
+      "ItemWithoutType": {
+        "description": "Item schema missing explicit type",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string"
+          },
+          "metadata": {
+            "properties": {
+              "created": {
+                "type": "string",
+                "format": "date-time"
+              },
+              "tags": {
+                "type": "array",
+                "items": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": ["id", "name"]
+      },
+      "PaginationWithoutType": {
+        "description": "Pagination metadata missing explicit type",
+        "properties": {
+          "totalElements": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "totalPages": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "currentPage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "pageSize": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "hasNext": {
+            "type": "boolean"
+          },
+          "hasPrevious": {
+            "type": "boolean"
+          }
+        },
+        "required": ["totalElements", "currentPage", "pageSize"]
+      },
+      "CreatedResponseWithoutType": {
+        "description": "Created response schema missing type",
+        "properties": {
+          "id": {
+            "type": "integer"
+          },
+          "status": {
+            "type": "string",
+            "enum": ["created", "pending", "processing"]
+          },
+          "location": {
+            "type": "string",
+            "format": "uri"
+          },
+          "data": {
+            "$ref": "#/components/schemas/ItemWithoutType"
+          }
+        },
+        "required": ["id", "status"]
+      },
+      "NestedObjectWithoutType": {
+        "description": "Nested object for composition schemas missing type",
+        "properties": {
+          "nestedId": {
+            "type": "string"
+          },
+          "nestedData": {
+            "properties": {
+              "subField": {
+                "type": "string"
+              },
+              "subObject": {
+                "additionalProperties": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        },
+        "required": ["nestedId"]
+      },
+      "SuccessResponseWithoutType": {
+        "description": "Success response for oneOf composition missing type",
+        "properties": {
+          "success": {
+            "type": "boolean",
+            "enum": [true]
+          },
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ItemWithoutType"
+            }
+          },
+          "meta": {
+            "properties": {
+              "requestId": {
+                "type": "string"
+              },
+              "timestamp": {
+                "type": "string",
+                "format": "date-time"
+              }
+            }
+          }
+        },
+        "required": ["success", "data"]
+      },
+      "ArrayItemWithoutType": {
+        "description": "Array item schema missing type",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "attributes": {
+            "additionalProperties": true
+          },
+          "nested": {
+            "allOf": [
+              {
+                "properties": {
+                  "baseField": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "extendedField": {
+                    "type": "number"
+                  }
+                }
+              }
+            ]
+          }
+        }
+      },
+      "BaseResponseWithoutType": {
+        "description": "Base response for allOf composition missing type",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "version": {
+            "type": "integer"
+          },
+          "links": {
+            "properties": {
+              "self": {
+                "type": "string",
+                "format": "uri"
+              },
+              "related": {
+                "type": "array",
+                "items": {
+                  "properties": {
+                    "rel": {
+                      "type": "string"
+                    },
+                    "href": {
+                      "type": "string",
+                      "format": "uri"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        "required": ["id", "version"]
+      },
+      "ComplexCompositionWithoutType": {
+        "description": "Complex schema with multiple composition issues",
+        "anyOf": [
+          {
+            "properties": {
+              "stringVariant": {
+                "type": "string"
+              },
+              "metadata": {
+                "properties": {
+                  "source": {
+                    "type": "string"
+                  }
+                }
+              }
+            },
+            "required": ["stringVariant"]
+          },
+          {
+            "properties": {
+              "objectVariant": {
+                "properties": {
+                  "nested": {
+                    "properties": {
+                      "deep": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "required": ["objectVariant"]
+          },
+          {
+            "allOf": [
+              {
+                "properties": {
+                  "combinedField1": {
+                    "type": "string"
+                  }
+                }
+              },
+              {
+                "properties": {
+                  "combinedField2": {
+                    "type": "number"
+                  },
+                  "deepNested": {
+                    "oneOf": [
+                      {
+                        "properties": {
+                          "option1": {
+                            "type": "string"
+                          }
+                        }
+                      },
+                      {
+                        "properties": {
+                          "option2": {
+                            "type": "boolean"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                }
+              }
+            ]
+          }
+        ]
+      },
+      "AdditionalPropertiesWithoutType": {
+        "description": "Schema with additionalProperties missing type",
+        "properties": {
+          "knownField": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": {
+          "properties": {
+            "dynamicNested": {
+              "type": "string"
+            }
+          }
+        },
+        "required": ["knownField"]
+      }
+    }
+  }
+}

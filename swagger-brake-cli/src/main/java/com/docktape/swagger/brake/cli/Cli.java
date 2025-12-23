@@ -30,22 +30,23 @@ public class Cli {
      */
     public int start() {
         try {
+            log.debug("Starting Swagger Brake CLI");
             Options options = optionsProvider.provide();
             Collection<BreakingChange> breakingChanges = Starter.start(options);
             if (CollectionUtils.isNotEmpty(breakingChanges)) {
+                log.debug("List of Breaking changes found: {}", breakingChanges);
                 return 1;
             } else {
+                log.debug("No breaking changes found....");
                 return 0;
             }
         } catch (CliHelpException e) {
             log.info(e.getMessage());
             return 3;
         } catch (Exception e) {
-            log.error("Exception occured", e);
-            log.error("For help please use " + CliOption.HELP.asCliOption());
+            log.error("Exception occurred", e);
+            log.error("For help please use {}", CliOption.HELP.asCliOption());
             return 2;
         }
     }
-
-    // TODO: add test cases to verify the return codes
 }

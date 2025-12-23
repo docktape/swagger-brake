@@ -130,6 +130,46 @@ Example command:
 $ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --ignored-breaking-change-rules=R001,R002
 ```
 
+## Strict Validation Mode
+The `--strict-validation` parameter provides flexibility when customer specs are missing the `type` field on schemas, which is valid in OpenAPI 3.1.x specifications.
+
+**Default value**: `true` (maintains current behavior)
+
+**When to use `--strict-validation=false`**:
+* Your OpenAPI 3.1.x spec has schemas without explicit type fields
+* Generated specs from your tooling lack type definitions
+* You want scanning to default to object/null types instead of failing
+
+**Behavior**:
+* **Strict mode (`true`)**: Fails fast with `IllegalStateException` when encountering schemas with null or missing types
+* **Lenient mode (`false`)**: Logs warnings and continues processing, defaulting to object/null types for comparison
+
+For more details on OpenAPI 3.1.x support, see [Configuration documentation](../configuration/README.md#openapi-31x-support).
+
+Example commands:
+
+```bash
+# Default strict mode (current behavior)
+$ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml
+
+# Lenient mode for specs with missing type fields
+$ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --strict-validation=false
+```
+
+## Configuring log serialization depth
+For detailed description on the feature, see [Configuring log serialization depth](../configuration/README.md#configuring-log-serialization-depth).
+
+The `--max-log-serialization-depth` parameter controls how deeply nested objects are serialized in log messages. 
+This is particularly important when logging OpenAPI schemas that contain circular references, which would otherwise cause a StackOverflowError.
+
+The value must be between 1 and 20 (inclusive). The default value is 3.
+
+Example command:
+
+```bash
+$ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --max-log-serialization-depth=5
+```
+
 
 ## Full list of parameters
 | <div style="width:250px">Parameter</div>   | Description                                                                                                                                               |
@@ -149,4 +189,6 @@ $ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --i
 | `--api-filename`                           | The filename to search for within the artifact.                                                                                                           |
 | `--beta-api-extension-name`                | The name of the custom vendor extension attribute that denotes beta APIs.                                                                                 |
 | `--excluded-paths`                         | A comma separated list of path prefixes that shall be excluded from the scan.                
-| `--ignored-breaking-change-rules`                         | Specifies which breaking changes shall be ignored. Rules have to be provided (find them in the doc). Multiple values can be provided by using comma. Example: R001,R002                
+| `--ignored-breaking-change-rules`          | Specifies which breaking changes shall be ignored. Rules have to be provided (find them in the doc). Multiple values can be provided by using comma. Example: R001,R002 |
+| `--strict-validation`                      | Controls validation behavior for schemas with missing type fields. Default is `true` (strict mode). Set to `false` for lenient mode with specs missing type fields. |
+| `--max-log-serialization-depth`            | Controls the maximum depth of object serialization in logs (1-20). Default is 3. Prevents StackOverflowError with circular references.                    |                

@@ -1,40 +1,45 @@
 package com.docktape.swagger.brake.runner;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-public class OptionsValidatorTest {
+class OptionsValidatorTest {
     private OptionsValidator underTest = new OptionsValidator();
 
     @Test
-    public void testValidateThrowsExceptionWhenNewApiPathIsNotSet() {
+    void testValidateThrowsExceptionWhenNewApiPathIsNotSet() {
         // given
         Options options = new Options();
         options.setOldApiPath("something");
         // when
         Throwable result = Assertions.catchThrowable(() -> underTest.validate(options));
         // then
-        assertThat(result).isInstanceOf(IllegalArgumentException.class);
-        assertThat(result.getMessage()).contains("newApiPath");
+        assertAll(
+                () -> assertThat(result).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThat(result.getMessage()).contains("newApiPath")
+        );
     }
 
     @Test
-    public void testValidateThrowsExceptionWhenNeitherOldApiPathNorMavenIsSet() {
+    void testValidateThrowsExceptionWhenNeitherOldApiPathNorMavenIsSet() {
         // given
         Options options = new Options();
         options.setNewApiPath("something");
         // when
         Throwable result = Assertions.catchThrowable(() -> underTest.validate(options));
         // then
-        assertThat(result).isInstanceOf(IllegalArgumentException.class);
-        assertThat(result.getMessage()).contains("oldApiPath");
-        assertThat(result.getMessage()).containsIgnoringCase("maven");
+        assertAll(
+                () -> assertThat(result).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThat(result.getMessage()).contains("oldApiPath"),
+                () -> assertThat(result.getMessage()).containsIgnoringCase("maven")
+        );
     }
 
     @Test
-    public void testValidateWorksWhenOldAndNewApiIsSet() {
+    void testValidateWorksWhenOldAndNewApiIsSet() {
         // given
         Options options = new Options();
         options.setNewApiPath("something");
@@ -45,7 +50,7 @@ public class OptionsValidatorTest {
     }
 
     @Test
-    public void testValidateShouldNotThrowExceptionWhenMavenRepoUrlIsSetButSnapshotRepoIsNot() {
+    void testValidateShouldNotThrowExceptionWhenMavenRepoUrlIsSetButSnapshotRepoIsNot() {
         // given
         Options options = new Options();
         options.setNewApiPath("something");
@@ -60,7 +65,7 @@ public class OptionsValidatorTest {
     }
 
     @Test
-    public void testValidateShouldNotThrowExceptionWhenMavenSnapshotRepoUrlIsSetButReleaseRepoIsNot() {
+    void testValidateShouldNotThrowExceptionWhenMavenSnapshotRepoUrlIsSetButReleaseRepoIsNot() {
         // given
         Options options = new Options();
         options.setNewApiPath("something");
@@ -75,7 +80,7 @@ public class OptionsValidatorTest {
     }
 
     @Test
-    public void testValidateThrowsExceptionWhenMavenConfigIsSetExceptCurrentArtifactVersion() {
+    void testValidateThrowsExceptionWhenMavenConfigIsSetExceptCurrentArtifactVersion() {
         // given
         Options options = new Options();
         options.setNewApiPath("something");
@@ -86,12 +91,14 @@ public class OptionsValidatorTest {
         // when
         Throwable result = Assertions.catchThrowable(() -> underTest.validate(options));
         // then
-        assertThat(result).isInstanceOf(IllegalArgumentException.class);
-        assertThat(result.getMessage()).contains("currentArtifactVersion");
+        assertAll(
+                () -> assertThat(result).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThat(result.getMessage()).contains("currentArtifactVersion")
+        );
     }
 
     @Test
-    public void testValidateThrowsExceptionWhenMavenConfigIsSetExceptGroupId() {
+    void testValidateThrowsExceptionWhenMavenConfigIsSetExceptGroupId() {
         // given
         Options options = new Options();
         options.setNewApiPath("something");
@@ -102,12 +109,14 @@ public class OptionsValidatorTest {
         // when
         Throwable result = Assertions.catchThrowable(() -> underTest.validate(options));
         // then
-        assertThat(result).isInstanceOf(IllegalArgumentException.class);
-        assertThat(result.getMessage()).contains("groupId");
+        assertAll(
+                () -> assertThat(result).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThat(result.getMessage()).contains("groupId")
+        );
     }
 
     @Test
-    public void testValidateThrowsExceptionWhenMavenConfigIsSetExceptArtifactId() {
+    void testValidateThrowsExceptionWhenMavenConfigIsSetExceptArtifactId() {
         // given
         Options options = new Options();
         options.setNewApiPath("something");
@@ -118,12 +127,14 @@ public class OptionsValidatorTest {
         // when
         Throwable result = Assertions.catchThrowable(() -> underTest.validate(options));
         // then
-        assertThat(result).isInstanceOf(IllegalArgumentException.class);
-        assertThat(result.getMessage()).contains("artifactId");
+        assertAll(
+                () -> assertThat(result).isInstanceOf(IllegalArgumentException.class),
+                () -> assertThat(result.getMessage()).contains("artifactId")
+        );
     }
 
     @Test
-    public void testValidateShouldNotThrowExceptionWhenMavenIsConfigured() {
+    void testValidateShouldNotThrowExceptionWhenMavenIsConfigured() {
         // given
         Options options = new Options();
         options.setNewApiPath("something");
@@ -138,7 +149,7 @@ public class OptionsValidatorTest {
     }
 
     @Test
-    public void testValidateDoesNotThrowsExceptionWhenOldApiPathAndMavenIsConfigured() {
+    void testValidateDoesNotThrowsExceptionWhenOldApiPathAndMavenIsConfigured() {
         // given
         Options options = new Options();
         options.setOldApiPath("somethingelse");

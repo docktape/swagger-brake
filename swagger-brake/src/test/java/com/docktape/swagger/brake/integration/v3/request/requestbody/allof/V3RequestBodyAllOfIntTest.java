@@ -15,9 +15,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class V3RequestBodyAllOfIntTest extends AbstractSwaggerBrakeIntTest {
+class V3RequestBodyAllOfIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testV3RequestBodyAllOfPropertyRemovedIsBreakingChange() {
+    void testV3RequestBodyAllOfPropertyRemovedIsBreakingChange() {
         // given
         String oldApiPath = "swaggers/v3/request/requestbody/allof/propertydeleted/petstore.yaml";
         String newApiPath = "swaggers/v3/request/requestbody/allof/propertydeleted/petstore_v2.yaml";
@@ -31,7 +31,7 @@ public class V3RequestBodyAllOfIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testV3RequestBodyAllOfPropertyTypeChangedIsBreakingChange() {
+    void testV3RequestBodyAllOfPropertyTypeChangedIsBreakingChange() {
         // given
         String oldApiPath = "swaggers/v3/request/requestbody/allof/propertytypechanged/petstore.yaml";
         String newApiPath = "swaggers/v3/request/requestbody/allof/propertytypechanged/petstore_v2.yaml";
@@ -46,7 +46,7 @@ public class V3RequestBodyAllOfIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testV3RequestBodyAllOfSamePropertyNoBreakingChange() {
+    void testV3RequestBodyAllOfSamePropertyNoBreakingChange() {
         // given
         String apiPath = "swaggers/v3/request/requestbody/allof/nobreakingchange/sameattribute/petstore.yaml";
         // when

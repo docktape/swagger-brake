@@ -8,11 +8,11 @@ import com.docktape.swagger.brake.core.rule.request.parameter.constraint.ArrayCo
 import com.docktape.swagger.brake.core.rule.request.parameter.constraint.ConstraintChange;
 import org.junit.jupiter.api.Test;
 
-public class ArrayMaxItemsConstraintTest {
+class ArrayMaxItemsConstraintTest {
     private ArrayMaxItemsConstraint underTest = new ArrayMaxItemsConstraint();
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
         // given
         ArrayConstrainedValue oldRequestParameter = null;
         ArrayConstrainedValue newRequestParameter = new ArrayConstrainedValue(
@@ -27,7 +27,7 @@ public class ArrayMaxItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             1,
@@ -42,7 +42,7 @@ public class ArrayMaxItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotArrayTyped() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotArrayTyped() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             1,
@@ -61,7 +61,7 @@ public class ArrayMaxItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMaxItemsIsExtended() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMaxItemsIsExtended() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             1,
@@ -80,7 +80,7 @@ public class ArrayMaxItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMaxItemsIsRemoved() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMaxItemsIsRemoved() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             1,
@@ -99,7 +99,7 @@ public class ArrayMaxItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaxItemsGetsLimited() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaxItemsGetsLimited() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             2,
@@ -121,7 +121,7 @@ public class ArrayMaxItemsConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaxItemsGetsSet() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaxItemsGetsSet() {
         // given
         ArrayConstrainedValue oldRequestParameter = new ArrayConstrainedValue(
             null,
