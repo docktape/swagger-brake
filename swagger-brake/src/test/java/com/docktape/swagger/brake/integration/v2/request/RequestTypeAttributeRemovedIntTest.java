@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.integration.v2.request;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,9 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class RequestTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIntTest {
+class RequestTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testRequestTypeChangeIsBreakingChangeWhenExistingAttributeRemoved() {
+    void testRequestTypeChangeIsBreakingChangeWhenExistingAttributeRemoved() {
         // given
         String oldApiPath = "swaggers/v2/request/attributeremoved/petstore.yaml";
         String newApiPath = "swaggers/v2/request/attributeremoved/petstore_v2.yaml";
@@ -40,12 +41,14 @@ public class RequestTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIntT
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(15);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(15),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 
     @Test
-    public void testRequestTypeChangeIsBreakingChangeWhenExistingDeepAttributeRemoved() {
+    void testRequestTypeChangeIsBreakingChangeWhenExistingDeepAttributeRemoved() {
         // given
         String oldApiPath = "swaggers/v2/request/deepattributeremoved/petstore.yaml";
         String newApiPath = "swaggers/v2/request/deepattributeremoved/petstore_v2.yaml";
@@ -58,23 +61,25 @@ public class RequestTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIntT
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(5);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(5),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 
     @Test
-    public void testRequestTypeChangeIsNotBreakingChangeWhenDifferentTypeIsUsedButSameAttributes() {
+    void testRequestTypeChangeIsNotBreakingChangeWhenDifferentTypeIsUsedButSameAttributes() {
         // given
         String oldApiPath = "swaggers/v2/request/differenttypesameattributes/petstore.yaml";
         String newApiPath = "swaggers/v2/request/differenttypesameattributes/petstore_v2.yaml";
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(0);
+        assertThat(result).isEmpty();
     }
 
     @Test
-    public void testRequestTypeChangeIsBreakingChangeWhenDifferentTypeIsUsedWithDifferentAttributes() {
+    void testRequestTypeChangeIsBreakingChangeWhenDifferentTypeIsUsedWithDifferentAttributes() {
         // given
         String oldApiPath = "swaggers/v2/request/differenttypesdifferentattributes/petstore.yaml";
         String newApiPath = "swaggers/v2/request/differenttypesdifferentattributes/petstore_v2.yaml";
@@ -85,23 +90,25 @@ public class RequestTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIntT
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(3);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(3),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 
     @Test
-    public void testRequestTypeChangeIsNotBreakingChangeWhenDeprecatedExistingAttributeRemoved() {
+    void testRequestTypeChangeIsNotBreakingChangeWhenDeprecatedExistingAttributeRemoved() {
         // given
         String oldApiPath = "swaggers/v3/request/attributeremoved-deprecated/petstore.yaml";
         String newApiPath = "swaggers/v3/request/attributeremoved-deprecated/petstore_v2.yaml";
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(0);
+        assertThat(result).isEmpty();
     }
 
     @Test
-    public void testRequestTypeChangeIsBreakingChangeWhenExistingAttributeRemoved_V3Schema() {
+    void testRequestTypeChangeIsBreakingChangeWhenExistingAttributeRemoved_V3Schema() {
         // given
         String oldApiPath = "swaggers/v3/request/attributeremoved/petstore.yaml";
         String newApiPath = "swaggers/v3/request/attributeremoved/petstore_v2.yaml";
@@ -110,7 +117,9 @@ public class RequestTypeAttributeRemovedIntTest extends AbstractSwaggerBrakeIntT
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(1);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(1),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 }

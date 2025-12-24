@@ -4,11 +4,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import org.junit.jupiter.api.Test;
 
-public class SwaggerApiFileNameCheckerTest {
+class SwaggerApiFileNameCheckerTest {
     private SwaggerApiFileNameChecker underTest = new SwaggerApiFileNameChecker();
 
     @Test
-    public void testIsApiFileReturnsFalseWhenNotSwagger() {
+    void testIsApiFileReturnsFalseWhenNotSwagger() {
         // given
         // when
         boolean result = underTest.isApiFile("something.yaml");
@@ -17,7 +17,7 @@ public class SwaggerApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiFileReturnsTrueWhenSwaggerYaml() {
+    void testIsApiFileReturnsTrueWhenSwaggerYaml() {
         // given
         // when
         boolean result = underTest.isApiFile("swagger.yaml");
@@ -26,7 +26,7 @@ public class SwaggerApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiFilenameReturnsTrueWhenSwaggerYml() {
+    void testIsApiFilenameReturnsTrueWhenSwaggerYml() {
         // given
         // when
         boolean result = underTest.isApiFile("swagger.yml");
@@ -35,7 +35,7 @@ public class SwaggerApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiFilenameReturnsTrueWhenSwaggerJson() {
+    void testIsApiFilenameReturnsTrueWhenSwaggerJson() {
         // given
         // when
         boolean result = underTest.isApiFile("swagger.json");
@@ -44,7 +44,7 @@ public class SwaggerApiFileNameCheckerTest {
     }
 
     @Test
-    public void testIsApiFileReturnsTrueWhenSwaggerYamlAndFullPath() {
+    void testIsApiFileReturnsTrueWhenSwaggerYamlAndFullPath() {
         // given
         // when
         boolean result = underTest.isApiFile("c:/something/project/swagger.yaml");

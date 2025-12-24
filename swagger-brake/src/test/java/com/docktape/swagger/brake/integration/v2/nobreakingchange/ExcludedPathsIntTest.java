@@ -13,9 +13,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class ExcludedPathsIntTest extends AbstractSwaggerBrakeIntTest {
+class ExcludedPathsIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testExcludedPathsWorksCorrectlyForExactMatch() {
+    void testExcludedPathsWorksCorrectlyForExactMatch() {
         // given
         String oldApiPath = "swaggers/v2/request/parameterdeleted/petstore.yaml";
         String newApiPath = "swaggers/v2/request/parameterdeleted/petstore_v2.yaml";
@@ -30,7 +30,7 @@ public class ExcludedPathsIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testExcludedPathsWorksCorrectlyForStartingMatch() {
+    void testExcludedPathsWorksCorrectlyForStartingMatch() {
         // given
         String oldApiPath = "swaggers/v2/request/parameterdeleted/petstore.yaml";
         String newApiPath = "swaggers/v2/request/parameterdeleted/petstore_v2.yaml";

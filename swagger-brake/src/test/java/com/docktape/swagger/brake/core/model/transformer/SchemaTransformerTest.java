@@ -1,32 +1,46 @@
 package com.docktape.swagger.brake.core.model.transformer;
 
-import static com.google.common.collect.ImmutableMap.of;
-import static org.assertj.core.api.Assertions.assertThat;
-
 import java.util.function.Supplier;
 
-import com.google.common.collect.ImmutableList;
-import com.google.common.collect.ImmutableMap;
+import static org.assertj.core.api.Assertions.assertThat;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
+
+import com.docktape.swagger.brake.core.CheckerOptions;
+import com.docktape.swagger.brake.core.CheckerOptionsProvider;
 import com.docktape.swagger.brake.core.model.Schema;
 import com.docktape.swagger.brake.core.model.SchemaAttribute;
 import com.docktape.swagger.brake.core.model.SchemaBuilder;
 import com.docktape.swagger.brake.core.model.service.TypeRefNameResolver;
 import com.docktape.swagger.brake.core.model.store.SchemaStore;
 import com.docktape.swagger.brake.core.model.store.StoreProvider;
-import io.swagger.v3.oas.models.media.*;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import com.docktape.swagger.brake.core.util.SafeSwaggerSerializer;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableMap;
+import static com.google.common.collect.ImmutableMap.of;
 
-public class SchemaTransformerTest {
+import io.swagger.v3.oas.models.media.BooleanSchema;
+import io.swagger.v3.oas.models.media.ComposedSchema;
+import io.swagger.v3.oas.models.media.IntegerSchema;
+import io.swagger.v3.oas.models.media.ObjectSchema;
+import io.swagger.v3.oas.models.media.StringSchema;
+
+class SchemaTransformerTest {
     private SchemaTransformer underTest;
 
     @BeforeEach
-    public void setUp() {
-        underTest = new SchemaTransformer(new TypeRefNameResolver());
+    void setUp() {
+        CheckerOptionsProvider checkerOptionsProvider = mock(CheckerOptionsProvider.class);
+        CheckerOptions checkerOptions = new CheckerOptions();
+        when(checkerOptionsProvider.get()).thenReturn(checkerOptions);
+        SafeSwaggerSerializer safeSwaggerSerializer = new SafeSwaggerSerializer(checkerOptionsProvider);
+        underTest = new SchemaTransformer(new TypeRefNameResolver(), new TypeResolver(checkerOptionsProvider), safeSwaggerSerializer, checkerOptionsProvider);
     }
 
     @Test
-    public void testTransformWorksForAllOfComposedSchema() {
+    void testTransformWorksForAllOfComposedSchema() {
         // given
         ObjectSchema pet = new ObjectSchema();
         pet.setType("object");
@@ -62,7 +76,7 @@ public class SchemaTransformerTest {
     }
 
     @Test
-    public void testTransformWorksForAllOfComposedSchemaWithSamePropertyNamesAndSameTypes() {
+    void testTransformWorksForAllOfComposedSchemaWithSamePropertyNamesAndSameTypes() {
         // given
         ObjectSchema pet = new ObjectSchema();
         pet.setType("object");
@@ -97,7 +111,7 @@ public class SchemaTransformerTest {
     }
 
     @Test
-    public void testTransformWorksForAllOfComposedSchemaWithSamePropertyNamesAndDifferentTypes() {
+    void testTransformWorksForAllOfComposedSchemaWithSamePropertyNamesAndDifferentTypes() {
         // given
         ObjectSchema pet = new ObjectSchema();
         pet.setType("object");
@@ -141,7 +155,7 @@ public class SchemaTransformerTest {
     }
 
     @Test
-    public void testTransformWorksForAllOfComposedSchemaWithSamePropertyNamesAnd3DifferentTypes() {
+    void testTransformWorksForAllOfComposedSchemaWithSamePropertyNamesAnd3DifferentTypes() {
         // given
         ObjectSchema pet = new ObjectSchema();
         pet.setType("object");

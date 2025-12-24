@@ -22,8 +22,23 @@ public class SchemaBuilder {
     private Boolean uniqueItems;
     private BigDecimal maximum;
     private BigDecimal minimum;
+    /**
+     * Deprecated: Use {@link #exclusiveMaximumValue} instead.
+     *
+     * @deprecated Use {@link #exclusiveMaximumValue} instead
+     */
+    @Deprecated
     private boolean exclusiveMaximum;
+    /**
+     * Deprecated: Use {@link #exclusiveMinimumValue} instead.
+     *
+     * @deprecated Use {@link #exclusiveMinimumValue} instead
+     */
+    @Deprecated
     private boolean exclusiveMinimum;
+
+    private BigDecimal exclusiveMaximumValue;
+    private BigDecimal exclusiveMinimumValue;
 
     public SchemaBuilder(String type) {
         this.type = type;
@@ -84,13 +99,51 @@ public class SchemaBuilder {
         return this;
     }
 
+    /**
+     * Sets the exclusive maximum flag (OpenAPI 3.0.x style).
+     *
+     * @param exclusiveMaximum the exclusive maximum flag
+     * @return this builder
+     * @deprecated Use {@link #exclusiveMaximumValue(BigDecimal)} instead.
+     *     This method is maintained for backward compatibility with OpenAPI 3.0.x.
+     */
+    @Deprecated
     public SchemaBuilder exclusiveMaximum(Boolean exclusiveMaximum) {
         this.exclusiveMaximum = BooleanUtils.toBoolean(exclusiveMaximum);
         return this;
     }
 
+    /**
+     * Sets the exclusive minimum flag (OpenAPI 3.0.x style).
+     *
+     * @param exclusiveMinimum the exclusive minimum flag
+     * @return this builder
+     * @deprecated Use {@link #exclusiveMinimumValue(BigDecimal)} instead.
+     *     This method is maintained for backward compatibility with OpenAPI 3.0.x.
+     */
+    @Deprecated
     public SchemaBuilder exclusiveMinimum(Boolean exclusiveMinimum) {
         this.exclusiveMinimum = BooleanUtils.toBoolean(exclusiveMinimum);
+        return this;
+    }
+
+    /**
+     * Sets the exclusive maximum value (OpenAPI 3.1.x / JSON Schema Draft 2020-12).
+     * @param exclusiveMaximumValue the exclusive maximum value
+     * @return this builder
+     */
+    public SchemaBuilder exclusiveMaximumValue(BigDecimal exclusiveMaximumValue) {
+        this.exclusiveMaximumValue = exclusiveMaximumValue;
+        return this;
+    }
+
+    /**
+     * Sets the exclusive minimum value (OpenAPI 3.1.x / JSON Schema Draft 2020-12).
+     * @param exclusiveMinimumValue the exclusive minimum value
+     * @return this builder
+     */
+    public SchemaBuilder exclusiveMinimumValue(BigDecimal exclusiveMinimumValue) {
+        this.exclusiveMinimumValue = exclusiveMinimumValue;
         return this;
     }
 
@@ -123,7 +176,13 @@ public class SchemaBuilder {
         if (AttributeType.getStringTypes().contains(attributeType)) {
             return new StringSchema(type, enumValues, schemaAttributes, schema, maxLength, minLength);
         } else if (AttributeType.getNumberTypes().contains(attributeType)) {
-            return new NumberSchema(type, enumValues, schemaAttributes, schema, maximum, minimum, exclusiveMaximum, exclusiveMinimum);
+            // Use numeric exclusive bounds if available, otherwise convert from boolean flags
+            BigDecimal effectiveExclusiveMax = exclusiveMaximumValue != null ? exclusiveMaximumValue 
+                : (exclusiveMaximum && maximum != null ? maximum : null);
+            BigDecimal effectiveExclusiveMin = exclusiveMinimumValue != null ? exclusiveMinimumValue
+                : (exclusiveMinimum && minimum != null ? minimum : null);
+            return new NumberSchema(type, enumValues, schemaAttributes, schema, maximum, minimum, 
+                effectiveExclusiveMax, effectiveExclusiveMin);
         } else if (AttributeType.getArrayTypes().contains(attributeType)) {
             return new ArraySchema(type, enumValues, schemaAttributes, schema, maxItems, minItems, uniqueItems);
         } else {

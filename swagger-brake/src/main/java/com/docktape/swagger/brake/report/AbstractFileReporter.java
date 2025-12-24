@@ -1,16 +1,18 @@
 package com.docktape.swagger.brake.report;
 
-import com.docktape.swagger.brake.core.ApiInfo;
 import java.io.File;
 import java.util.Collection;
 
+import org.apache.commons.lang3.StringUtils;
+
+import com.docktape.swagger.brake.core.ApiInfo;
 import com.docktape.swagger.brake.core.BreakingChange;
 import com.docktape.swagger.brake.report.file.DirectoryCreator;
 import com.docktape.swagger.brake.report.file.FileWriter;
 import com.docktape.swagger.brake.runner.Options;
+
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 
 @RequiredArgsConstructor
 @Slf4j

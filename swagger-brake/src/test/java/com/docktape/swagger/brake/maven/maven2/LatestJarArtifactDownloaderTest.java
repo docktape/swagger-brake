@@ -15,7 +15,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class LatestJarArtifactDownloaderTest {
+class LatestJarArtifactDownloaderTest {
     @Mock
     private Maven2UrlFactory urlFactory;
 
@@ -29,7 +29,7 @@ public class LatestJarArtifactDownloaderTest {
     private LatestJarArtifactDownloader underTest;
 
     @Test
-    public void testDownloadShouldWorkProperly() {
+    void testDownloadShouldWorkProperly() {
         // given
         String url = "url";
         String latestVersion = "lv";

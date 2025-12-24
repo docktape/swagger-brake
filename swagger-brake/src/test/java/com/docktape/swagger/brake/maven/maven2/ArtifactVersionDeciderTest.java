@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.Test;
 
-public class ArtifactVersionDeciderTest {
+class ArtifactVersionDeciderTest {
     @Test
-    public void testIsSnapshotReturnsTrueWhenVersionIsEndingWithSnapshot() {
+    void testIsSnapshotReturnsTrueWhenVersionIsEndingWithSnapshot() {
         // given
         // when
         boolean result = ArtifactVersionDecider.isSnapshot("1.0.0-SNAPSHOT");
@@ -16,7 +16,7 @@ public class ArtifactVersionDeciderTest {
     }
 
     @Test
-    public void testIsSnapshotReturnsFalseWhenVersionIsNotEndingWithSnapshot() {
+    void testIsSnapshotReturnsFalseWhenVersionIsNotEndingWithSnapshot() {
         // given
         // when
         boolean result = ArtifactVersionDecider.isSnapshot("1.0.0");
@@ -25,7 +25,7 @@ public class ArtifactVersionDeciderTest {
     }
 
     @Test
-    public void testIsSnapshotReturnsFalseWhenVersionIsCompletelyRandom() {
+    void testIsSnapshotReturnsFalseWhenVersionIsCompletelyRandom() {
         // given
         // when
         boolean result = ArtifactVersionDecider.isSnapshot("something-else-that-is-not-a-version");

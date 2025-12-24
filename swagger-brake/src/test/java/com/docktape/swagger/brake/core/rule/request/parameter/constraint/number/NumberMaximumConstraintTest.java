@@ -9,11 +9,11 @@ import com.docktape.swagger.brake.core.rule.request.parameter.constraint.Constra
 import com.docktape.swagger.brake.core.rule.request.parameter.constraint.NumberConstrainedValue;
 import org.junit.jupiter.api.Test;
 
-public class NumberMaximumConstraintTest {
+class NumberMaximumConstraintTest {
     private NumberMaximumConstraint underTest = new NumberMaximumConstraint();
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
         // given
         NumberConstrainedValue oldRequestParameter = null;
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
@@ -29,7 +29,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,
@@ -45,7 +45,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMaximumValueSetIsExtended() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMaximumValueSetIsExtended() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,
@@ -66,7 +66,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMaximumValueSetIsExtendedWithExclusiveMaximumSetting() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMaximumValueSetIsExtendedWithExclusiveMaximumSetting() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -87,7 +87,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetIsLimitedWithExclusiveMaximumSetting() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetIsLimitedWithExclusiveMaximumSetting() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -111,7 +111,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetIsLimitedWithExclusiveMaximumSettingEdgeCase1() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetIsLimitedWithExclusiveMaximumSettingEdgeCase1() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN.add(BigDecimal.ONE),
@@ -132,7 +132,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetIsLimitedWithExclusiveMaximumSettingEdgeCase2() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetIsLimitedWithExclusiveMaximumSettingEdgeCase2() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -153,7 +153,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForInt64() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForInt64() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -177,7 +177,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForInt32() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForInt32() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -201,7 +201,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForInteger() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForInteger() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -225,7 +225,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForNumber() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForNumber() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -249,7 +249,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForFloat() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForFloat() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN.add(new BigDecimal("0.5")),
@@ -273,7 +273,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForDouble() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueSetGetsLimitedForDouble() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN.add(new BigDecimal("0.5")),
@@ -297,7 +297,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueGetsSet() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueGetsSet() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             null,
@@ -321,7 +321,7 @@ public class NumberMaximumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueGetsRemoved() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaximumValueGetsRemoved() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,

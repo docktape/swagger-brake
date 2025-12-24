@@ -7,11 +7,11 @@ import com.docktape.swagger.brake.maven.maven2.Maven2UrlFactory;
 import com.docktape.swagger.brake.runner.ArtifactPackaging;
 import org.junit.jupiter.api.Test;
 
-public class Maven2UrlFactoryTest {
+class Maven2UrlFactoryTest {
     private Maven2UrlFactory underTest = new Maven2UrlFactory();
 
     @Test
-    public void testCreateLatestArtifactSnapshotMetadataUrlShouldWorkProperlyForSnapshot() {
+    void testCreateLatestArtifactSnapshotMetadataUrlShouldWorkProperlyForSnapshot() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setGroupId("io.swagger.brake");
@@ -29,7 +29,7 @@ public class Maven2UrlFactoryTest {
     }
 
     @Test
-    public void testCreateLatestArtifactVersionMetadataUrlShouldWorkProperlyForSnapshot() {
+    void testCreateLatestArtifactVersionMetadataUrlShouldWorkProperlyForSnapshot() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setGroupId("io.swagger.brake");
@@ -46,7 +46,7 @@ public class Maven2UrlFactoryTest {
     }
 
     @Test
-    public void testCreateLatestArtifactUrlShouldWorkProperlyForSnapshot() {
+    void testCreateLatestArtifactUrlShouldWorkProperlyForSnapshot() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setGroupId("io.swagger.brake");
@@ -66,7 +66,7 @@ public class Maven2UrlFactoryTest {
     }
 
     @Test
-    public void testCreateLatestArtifactUrlShouldWorkProperlyForSnapshotWithWarPackaging() {
+    void testCreateLatestArtifactUrlShouldWorkProperlyForSnapshotWithWarPackaging() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setGroupId("io.swagger.brake");
@@ -87,7 +87,7 @@ public class Maven2UrlFactoryTest {
 
 
     @Test
-    public void testCreateLatestArtifactVersionMetadataUrlShouldWorkProperlyForRelease() {
+    void testCreateLatestArtifactVersionMetadataUrlShouldWorkProperlyForRelease() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setGroupId("io.swagger.brake");
@@ -104,7 +104,7 @@ public class Maven2UrlFactoryTest {
     }
 
     @Test
-    public void testCreateLatestArtifactUrlShouldWorkProperlyForRelease() {
+    void testCreateLatestArtifactUrlShouldWorkProperlyForRelease() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setGroupId("io.swagger.brake");
@@ -123,7 +123,7 @@ public class Maven2UrlFactoryTest {
     }
 
     @Test
-    public void testCreateLatestArtifactUrlShouldWorkProperlyForReleaseWithWarPackaging() {
+    void testCreateLatestArtifactUrlShouldWorkProperlyForReleaseWithWarPackaging() {
         // given
         DownloadOptions options = new DownloadOptions();
         options.setGroupId("io.swagger.brake");

@@ -11,9 +11,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class NoBreakingChangeIntTest extends AbstractSwaggerBrakeIntTest {
+class NoBreakingChangeIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testNoBreakingChangeWorksCorrectly() {
+    void testNoBreakingChangeWorksCorrectly() {
         // given
         String oldApiPath = "swaggers/v2/nobreakingchange/petstore.yaml";
         String newApiPath = "swaggers/v2/nobreakingchange/petstore_v2.yaml";
@@ -24,7 +24,7 @@ public class NoBreakingChangeIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testNoBreakingChangeWhenSameApiUsedWorksCorrectly() {
+    void testNoBreakingChangeWhenSameApiUsedWorksCorrectly() {
         // given
         String oldApiPath = "swaggers/v2/nobreakingchange/petstore.yaml";
         String newApiPath = "swaggers/v2/nobreakingchange/petstore.yaml";

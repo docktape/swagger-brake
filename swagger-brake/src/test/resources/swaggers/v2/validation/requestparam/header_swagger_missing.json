@@ -1,0 +1,37 @@
+{
+  "swagger": "2.0",
+  "basePath": "/",
+  "paths": {
+    "/file/external": {
+      "post": {
+        "tags": [
+          "file-controller"
+        ],
+        "summary": "saveUrlFile",
+        "operationId": "saveUrlFileUsingPOST",
+        "consumes": [
+          "multipart/form-data"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "access_token",
+            "description": "access_token",
+            "required": false
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

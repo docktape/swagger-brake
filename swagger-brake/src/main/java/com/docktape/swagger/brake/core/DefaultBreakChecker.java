@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
-
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -21,7 +20,11 @@ class DefaultBreakChecker implements BreakChecker {
     @Override
     public Collection<BreakingChange> check(Specification oldApi, Specification newApi) {
         if (log.isDebugEnabled()) {
-            rules.stream().map(BreakingChangeRule::getClass).map(Class::getName).forEach(name -> log.debug("Rule configured: {}", name));
+            log.info("Checking for breaking changes using {} rules.", rules.size());
+            rules.stream()
+                .map(BreakingChangeRule::getClass)
+                .map(Class::getName)
+                .forEach(name -> log.debug("Rule configured: {}", name));
         }
         if (oldApi == null) {
             throw new IllegalArgumentException("oldApi must be provided");

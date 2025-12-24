@@ -19,7 +19,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class RepositoryRequestFactoryTest {
+class RepositoryRequestFactoryTest {
     @Mock
     private HttpRequestFactory requestFactory;
 
@@ -27,7 +27,7 @@ public class RepositoryRequestFactoryTest {
     private RepositoryRequestFactory underTest;
 
     @Test
-    public void testCreateShouldReturnAuthenticatedRequestWhenAuthenticationIsNeeded() throws MalformedURLException, URISyntaxException {
+    void testCreateShouldReturnAuthenticatedRequestWhenAuthenticationIsNeeded() throws MalformedURLException, URISyntaxException {
         // given
         String url = "url";
         String username = "username";
@@ -47,7 +47,7 @@ public class RepositoryRequestFactoryTest {
     }
 
     @Test
-    public void testCreateShouldReturnUnauthenticatedRequestWhenAuthenticationIsNeeded() throws MalformedURLException, URISyntaxException {
+    void testCreateShouldReturnUnauthenticatedRequestWhenAuthenticationIsNeeded() throws MalformedURLException, URISyntaxException {
         // given
         String url = "url";
 
@@ -64,7 +64,7 @@ public class RepositoryRequestFactoryTest {
 
 
     @Test
-    public void testCreateShouldThrowExceptionWhenRequestCannotBeCreated() throws MalformedURLException, URISyntaxException {
+    void testCreateShouldThrowExceptionWhenRequestCannotBeCreated() throws MalformedURLException, URISyntaxException {
         // given
         String url = "url";
         DownloadOptions options = new DownloadOptions();

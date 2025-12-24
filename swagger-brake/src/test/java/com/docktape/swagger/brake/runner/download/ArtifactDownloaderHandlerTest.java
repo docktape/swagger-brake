@@ -20,7 +20,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class ArtifactDownloaderHandlerTest {
+class ArtifactDownloaderHandlerTest {
     @Mock
     private LatestArtifactDownloaderFactory downloaderFactory;
 
@@ -34,7 +34,7 @@ public class ArtifactDownloaderHandlerTest {
     private ArtifactDownloaderHandler underTest;
 
     @Test
-    public void testHandleShouldNotDoAnythingWhenLatestArtifactDownloadIsDisabled() {
+    void testHandleShouldNotDoAnythingWhenLatestArtifactDownloadIsDisabled() {
         // given
         Options options = new Options();
         options.setOldApiPath("oldApi");
@@ -46,7 +46,7 @@ public class ArtifactDownloaderHandlerTest {
     }
 
     @Test
-    public void testHandleShouldWorkCorrectlyWhenLatestArtifactDownloadIsEnabled() {
+    void testHandleShouldWorkCorrectlyWhenLatestArtifactDownloadIsEnabled() {
         // given
         String groupId = "groupId";
         String artifactId = "artifactId";
@@ -95,7 +95,7 @@ public class ArtifactDownloaderHandlerTest {
     }
 
     @Test
-    public void testHandleShouldNotDoAnythingIfLatestArtifactDownloadingIsNotEnabled() {
+    void testHandleShouldNotDoAnythingIfLatestArtifactDownloadingIsNotEnabled() {
         // given
         String groupId = "groupId";
         String artifactId = "artifactId";
@@ -110,7 +110,7 @@ public class ArtifactDownloaderHandlerTest {
     }
 
     @Test
-    public void testHandleShouldIgnoreMavenSettingsWhenOldApiIsProvided() {
+    void testHandleShouldIgnoreMavenSettingsWhenOldApiIsProvided() {
         // given
         Options options = new Options();
         options.setNewApiPath("newApi");

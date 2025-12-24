@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class LatestArtifactVersionResolverTest {
+class LatestArtifactVersionResolverTest {
     @Mock
     private Maven2UrlFactory urlFactory;
 
@@ -31,7 +31,7 @@ public class LatestArtifactVersionResolverTest {
 
 
     @Test
-    public void testResolveShouldThrowExceptionWhenNoVersionCanBeResolved() {
+    void testResolveShouldThrowExceptionWhenNoVersionCanBeResolved() {
         // given
         MavenMetadata mavenMetadata = new MavenMetadata("groupId", "artifactId", new MavenVersioning(null, null, null));
 
@@ -47,7 +47,7 @@ public class LatestArtifactVersionResolverTest {
     }
 
     @Test
-    public void testResolveShouldWorkProperlyForStandard() {
+    void testResolveShouldWorkProperlyForStandard() {
         // given
         String expected = "latest";
         MavenMetadata mavenMetadata = new MavenMetadata("groupId", "artifactId", new MavenVersioning(expected, null, null));
@@ -65,7 +65,7 @@ public class LatestArtifactVersionResolverTest {
     }
 
     @Test
-    public void testResolveShouldWorkProperlyForNexus() {
+    void testResolveShouldWorkProperlyForNexus() {
         // given
         String expected = "latest";
         MavenMetadata mavenMetadata = new MavenMetadata("groupId", "artifactId", new MavenVersioning(null, expected, null));
@@ -83,7 +83,7 @@ public class LatestArtifactVersionResolverTest {
     }
 
     @Test
-    public void testResolveShouldPreferStandardVersioningWhenStandardAndNexusSpecificIsPresent() {
+    void testResolveShouldPreferStandardVersioningWhenStandardAndNexusSpecificIsPresent() {
         // given
         String expected = "latest";
         MavenMetadata mavenMetadata = new MavenMetadata("groupId", "artifactId", new MavenVersioning(expected, "nexus", null));

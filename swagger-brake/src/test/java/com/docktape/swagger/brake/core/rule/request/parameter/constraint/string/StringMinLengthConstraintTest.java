@@ -8,11 +8,11 @@ import com.docktape.swagger.brake.core.rule.request.parameter.constraint.Constra
 import com.docktape.swagger.brake.core.rule.request.parameter.constraint.StringConstrainedValue;
 import org.junit.jupiter.api.Test;
 
-public class StringMinLengthConstraintTest {
+class StringMinLengthConstraintTest {
     private StringMinLengthConstraint underTest = new StringMinLengthConstraint();
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
         // given
         StringConstrainedValue oldRequestParameter = null;
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
@@ -26,7 +26,7 @@ public class StringMinLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
@@ -40,7 +40,7 @@ public class StringMinLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotStringTyped() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotStringTyped() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
@@ -57,7 +57,7 @@ public class StringMinLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMinLengthIsExtended() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMinLengthIsExtended() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
@@ -74,7 +74,7 @@ public class StringMinLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMinLengthIsRemoved() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMinLengthIsRemoved() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
@@ -91,7 +91,7 @@ public class StringMinLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinLengthGetsLimited() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinLengthGetsLimited() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             5,
@@ -111,7 +111,7 @@ public class StringMinLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinLengthGetsSet() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinLengthGetsSet() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,

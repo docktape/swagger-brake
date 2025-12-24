@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.integration.v2.request;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,9 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class RequestParameterRequiredIntTest extends AbstractSwaggerBrakeIntTest {
+class RequestParameterRequiredIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testRequestParameterRequiredWorksCorrectly() {
+    void testRequestParameterRequiredWorksCorrectly() {
         // given
         String oldApiPath = "swaggers/v2/request/parameterrequired/petstore.yaml";
         String newApiPath = "swaggers/v2/request/parameterrequired/petstore_v2.yaml";
@@ -27,12 +28,14 @@ public class RequestParameterRequiredIntTest extends AbstractSwaggerBrakeIntTest
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(2);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(2),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 
     @Test
-    public void testRequestParameterRequiredWorksForPostObjects() {
+    void testRequestParameterRequiredWorksForPostObjects() {
         // given
         String oldApiPath = "swaggers/v2/request/parameterrequired/post-object/swagger-old.json";
         String newApiPath = "swaggers/v2/request/parameterrequired/post-object/swagger-new.json";
@@ -41,12 +44,14 @@ public class RequestParameterRequiredIntTest extends AbstractSwaggerBrakeIntTest
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(1);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(1),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 
     @Test
-    public void testRequestParameterRequiredWorksForDottedPostObjects() {
+    void testRequestParameterRequiredWorksForDottedPostObjects() {
         // given
         String oldApiPath = "swaggers/v2/request/dottedparameterrequired/swagger-old.json";
         String newApiPath = "swaggers/v2/request/dottedparameterrequired/swagger-new.json";
@@ -56,7 +61,9 @@ public class RequestParameterRequiredIntTest extends AbstractSwaggerBrakeIntTest
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(1);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(1),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 }

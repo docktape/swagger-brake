@@ -8,11 +8,11 @@ import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class VerboseHandlerTest {
-    private VerboseHandler underTest = new VerboseHandler();
+class VerboseHandlerTest {
+    private final VerboseHandler underTest = new VerboseHandler();
 
     @Test
-    public void testHandleWorks() {
+    void testHandleWorks() {
         // given
         String propertyValue = "";
         Options options = new Options();
@@ -25,7 +25,7 @@ public class VerboseHandlerTest {
     }
 
     @Test
-    public void testHandleDoesNotDoAnythingIfPropertyIsNull() {
+    void testHandleDoesNotDoAnythingIfPropertyIsNull() {
         // given
         String propertyValue = null;
         Options options = new Options();
@@ -36,7 +36,7 @@ public class VerboseHandlerTest {
     }
 
     @Test
-    public void testGetHandledCliOptionIsCorrect() {
+    void testGetHandledCliOptionIsCorrect() {
         // given
         // when
         CliOption result = underTest.getHandledCliOption();

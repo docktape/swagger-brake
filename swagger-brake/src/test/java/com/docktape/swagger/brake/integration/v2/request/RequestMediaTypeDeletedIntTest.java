@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.integration.v2.request;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -15,9 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class RequestMediaTypeDeletedIntTest extends AbstractSwaggerBrakeIntTest {
+class RequestMediaTypeDeletedIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testRequestMediaTypeDeletedWorksCorrectly() {
+    void testRequestMediaTypeDeletedWorksCorrectly() {
         // given
         String oldApiPath = "swaggers/v2/request/mediatypedeleted/petstore.yaml";
         String newApiPath = "swaggers/v2/request/mediatypedeleted/petstore_v2.yaml";
@@ -26,7 +27,9 @@ public class RequestMediaTypeDeletedIntTest extends AbstractSwaggerBrakeIntTest 
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(1);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(1),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 }

@@ -22,6 +22,7 @@ public abstract class AbstractSwaggerBrakeIntTest {
         Options options = new Options();
         options.setOldApiPath(oldApiPath);
         options.setNewApiPath(newApiPath);
+        options.setStrictValidation(true);
         return execute(options);
     }
 

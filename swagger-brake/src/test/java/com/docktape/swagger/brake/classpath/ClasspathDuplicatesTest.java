@@ -15,11 +15,11 @@ import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.opentest4j.AssertionFailedError;
 
-public class ClasspathDuplicatesTest {
+class ClasspathDuplicatesTest {
 
     @Test
     @Disabled("javax.validation and jakarta.validation is messed up right now")
-    public void testNoDuplicatesPresent() {
+    void testNoDuplicatesPresent() {
         // given
         Map<String, List<String>> duplicates = new HashMap<>();
         ClassGraph classGraph = new ClassGraph();

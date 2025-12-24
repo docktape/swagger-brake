@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- Console appender for tests -->
+    <appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </encoder>
+    </appender>
+
+    <!-- Set DEBUG/TRACE level for our OpenAPI 3.1.x implementation classes -->
+    <logger name="com.docktape.swagger.brake.runner.openapi" level="DEBUG"/>
+    <logger name="com.docktape.swagger.brake.core.model.transformer.SchemaTransformer" level="TRACE"/>
+    <logger name="com.docktape.swagger.brake.runner.Checker" level="DEBUG"/>
+    <logger name="com.docktape.swagger.brake.runner.Runner" level="INFO"/>
+    
+    <!-- Root logger -->
+    <root level="WARN">
+        <appender-ref ref="CONSOLE"/>
+    </root>
+</configuration>

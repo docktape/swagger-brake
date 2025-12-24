@@ -28,4 +28,6 @@ public class Options {
     private String betaApiExtensionName;
     private Set<String> excludedPaths = Collections.emptySet();
     private Set<String> ignoredBreakingChangeRules = Collections.emptySet();
+    private Boolean strictValidation;
+    private Integer maxLogSerializationDepth;
 }

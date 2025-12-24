@@ -12,7 +12,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class ApiResponseTransformerTest {
+class ApiResponseTransformerTest {
     @Mock
     private MediaTypeTransformer mediaTypeTransformer;
 
@@ -23,7 +23,7 @@ public class ApiResponseTransformerTest {
     Totally valid case when the schema only says that the response is 401 and provides only a description without any schema.
      */
     @Test
-    public void testTransformShouldNotFailWhenFromContentIsNull() {
+    void testTransformShouldNotFailWhenFromContentIsNull() {
         // given
         String code = "401";
         ApiResponse apiResponse = new ApiResponse();

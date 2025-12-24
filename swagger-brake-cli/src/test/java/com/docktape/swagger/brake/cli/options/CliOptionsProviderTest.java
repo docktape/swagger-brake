@@ -16,7 +16,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.core.env.Environment;
 
 @ExtendWith(MockitoExtension.class)
-public class CliOptionsProviderTest {
+class CliOptionsProviderTest {
     @Mock
     private List<CliOptionHandler> handlers;
     @Mock
@@ -28,7 +28,7 @@ public class CliOptionsProviderTest {
     private CliOptionsProvider underTest;
 
     @Test
-    public void testProvideShouldThrowExceptionWhenHelpIsRequired() {
+    void testProvideShouldThrowExceptionWhenHelpIsRequired() {
         // given
         given(environment.getProperty("help")).willReturn("");
         // when

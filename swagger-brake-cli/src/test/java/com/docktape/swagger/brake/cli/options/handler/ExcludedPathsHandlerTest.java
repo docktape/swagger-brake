@@ -6,11 +6,11 @@ import com.google.common.base.Joiner;
 import com.docktape.swagger.brake.runner.Options;
 import org.junit.jupiter.api.Test;
 
-public class ExcludedPathsHandlerTest {
-    private ExcludedPathsHandler underTest = new ExcludedPathsHandler();
+class ExcludedPathsHandlerTest {
+    private final ExcludedPathsHandler underTest = new ExcludedPathsHandler();
 
     @Test
-    public void testHandleShouldNotSetValueWhenNullIsPassed() {
+    void testHandleShouldNotSetValueWhenNullIsPassed() {
         // given
         Options options = new Options();
         // when
@@ -20,7 +20,7 @@ public class ExcludedPathsHandlerTest {
     }
 
     @Test
-    public void testHandleShouldNotSetValueWhenBlankIsPassed() {
+    void testHandleShouldNotSetValueWhenBlankIsPassed() {
         // given
         Options options = new Options();
         // when
@@ -30,7 +30,7 @@ public class ExcludedPathsHandlerTest {
     }
 
     @Test
-    public void testHandleShouldSetSingleValue() {
+    void testHandleShouldSetSingleValue() {
         // given
         Options options = new Options();
         // when
@@ -41,7 +41,7 @@ public class ExcludedPathsHandlerTest {
     }
 
     @Test
-    public void testHandleShouldSetMultiValue() {
+    void testHandleShouldSetMultiValue() {
         // given
         Options options = new Options();
         // when

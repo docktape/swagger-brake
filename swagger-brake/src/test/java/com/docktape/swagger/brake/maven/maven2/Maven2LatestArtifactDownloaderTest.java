@@ -14,7 +14,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class Maven2LatestArtifactDownloaderTest {
+class Maven2LatestArtifactDownloaderTest {
     @Mock
     private LatestArtifactVersionResolver latestArtifactVersionResolver;
 
@@ -28,7 +28,7 @@ public class Maven2LatestArtifactDownloaderTest {
     private Maven2LatestArtifactDownloader underTest;
 
     @Test
-    public void testDownloadWorksCorrectlyForSnapshot() {
+    void testDownloadWorksCorrectlyForSnapshot() {
         // given
         String latestVersion = "1.0.0-SNAPSHOT";
         String latestArtifactName = "b";
@@ -45,7 +45,7 @@ public class Maven2LatestArtifactDownloaderTest {
     }
 
     @Test
-    public void testDownloadWorksCorrectlyForRelease() {
+    void testDownloadWorksCorrectlyForRelease() {
         // given
         String latestVersion = "1.0.0";
         String latestArtifactName = "b";

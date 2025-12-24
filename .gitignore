@@ -137,5 +137,7 @@ gradle-app.setting
 ### Gradle Patch ###
 **/build/
 
+# OS Specific
+.DS_Store
 
 # End of https://www.gitignore.io/api/java,maven,gradle,intellij

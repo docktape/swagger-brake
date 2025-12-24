@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.integration.v2.response;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -15,9 +16,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class ResponseTypeEnumValueDeletedIntTest extends AbstractSwaggerBrakeIntTest {
+class ResponseTypeEnumValueDeletedIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testResponseTypeEnumValueDeletedWorksCorrectly() {
+    void testResponseTypeEnumValueDeletedWorksCorrectly() {
         // given
         String oldApiPath = "swaggers/v2/response/typeenumvaluedeleted/petstore.yaml";
         String newApiPath = "swaggers/v2/response/typeenumvaluedeleted/petstore_v2.yaml";
@@ -28,7 +29,9 @@ public class ResponseTypeEnumValueDeletedIntTest extends AbstractSwaggerBrakeInt
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(3);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(3),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 }

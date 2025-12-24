@@ -5,11 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.docktape.swagger.brake.core.CheckerOptions;
 import org.junit.jupiter.api.Test;
 
-public class CheckerOptionsFactoryTest {
+class CheckerOptionsFactoryTest {
     private CheckerOptionsFactory underTest = new CheckerOptionsFactory();
 
     @Test
-    public void testCreateShouldLeaveTrueValueForDeprecatedApiDeletionAllowedWhenNullOptionGiven() {
+    void testCreateShouldLeaveTrueValueForDeprecatedApiDeletionAllowedWhenNullOptionGiven() {
         // given
         Options options = new Options();
         options.setDeprecatedApiDeletionAllowed(null);
@@ -22,7 +22,7 @@ public class CheckerOptionsFactoryTest {
     }
 
     @Test
-    public void testCreateShouldLeaveTrueValueForDeprecatedApiDeletionAllowedWhenTrueOptionGiven() {
+    void testCreateShouldLeaveTrueValueForDeprecatedApiDeletionAllowedWhenTrueOptionGiven() {
         // given
         Options options = new Options();
         options.setDeprecatedApiDeletionAllowed(true);
@@ -35,7 +35,7 @@ public class CheckerOptionsFactoryTest {
     }
 
     @Test
-    public void testCreateShouldLeaveFalseValueForDeprecatedApiDeletionAllowedWhenFalseOptionGiven() {
+    void testCreateShouldLeaveFalseValueForDeprecatedApiDeletionAllowedWhenFalseOptionGiven() {
         // given
         Options options = new Options();
         options.setDeprecatedApiDeletionAllowed(false);

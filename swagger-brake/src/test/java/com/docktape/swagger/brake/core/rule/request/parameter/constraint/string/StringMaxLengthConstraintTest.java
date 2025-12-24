@@ -8,11 +8,11 @@ import com.docktape.swagger.brake.core.rule.request.parameter.constraint.Constra
 import com.docktape.swagger.brake.core.rule.request.parameter.constraint.StringConstrainedValue;
 import org.junit.jupiter.api.Test;
 
-public class StringMaxLengthConstraintTest {
+class StringMaxLengthConstraintTest {
     private StringMaxLengthConstraint underTest = new StringMaxLengthConstraint();
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
         // given
         StringConstrainedValue oldRequestParameter = null;
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
@@ -26,7 +26,7 @@ public class StringMaxLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
@@ -40,7 +40,7 @@ public class StringMaxLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotStringTyped() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotStringTyped() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
@@ -57,7 +57,7 @@ public class StringMaxLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMaxLengthIsExtended() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMaxLengthIsExtended() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
@@ -74,7 +74,7 @@ public class StringMaxLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMaxLengthIsRemoved() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMaxLengthIsRemoved() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
@@ -91,7 +91,7 @@ public class StringMaxLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaxLengthGetsLimited() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaxLengthGetsLimited() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             2,
@@ -111,7 +111,7 @@ public class StringMaxLengthConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMaxLengthGetsSet() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMaxLengthGetsSet() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             null,

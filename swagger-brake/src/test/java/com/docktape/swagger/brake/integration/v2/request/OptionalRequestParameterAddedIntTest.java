@@ -10,11 +10,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-
 @ExtendWith(SpringExtension.class)
-public class OptionalRequestParameterAddedIntTest extends AbstractSwaggerBrakeIntTest {
+class OptionalRequestParameterAddedIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testOptionalRequestParameterAddedWorksCorrectly() {
+    void testOptionalRequestParameterAddedWorksCorrectly() {
         // given
         String oldApiPath = "swaggers/v2/request/optionalparameteradded/swagger_v1.yaml";
         String newApiPath = "swaggers/v2/request/optionalparameteradded/swagger_v2.yaml";
