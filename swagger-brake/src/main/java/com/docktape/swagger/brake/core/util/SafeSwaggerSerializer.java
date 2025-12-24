@@ -64,13 +64,19 @@ public class SafeSwaggerSerializer {
         }
 
         SerializationContext context = CONTEXT.get();
-        try {
+        boolean isTopLevelCall = context.currentDepth == 0;
+        if (isTopLevelCall) {
             context.reset();
+        }
+
+        try {
             int maxDepth = getMaxDepth();
             return serializeInternal(obj, context, maxDepth);
         } finally {
-            context.reset();
-            CONTEXT.remove();
+            if (isTopLevelCall) {
+                context.reset();
+                CONTEXT.remove();
+            }
         }
     }
 

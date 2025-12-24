@@ -95,14 +95,17 @@ public class OpenApiFactory {
             while ((line = reader.readLine()) != null && linesRead < MAX_LINES_TO_SCAN) {
                 linesRead++;
                 
+                // Trim the line to handle leading whitespace which is valid in YAML
+                String trimmedLine = line.trim();
+
                 // Check for YAML format: swagger: "2.0" or swagger: 2.0 or swagger: '2.0'
-                if (SWAGGER_2_YAML_PATTERN.matcher(line).find()) {
+                if (SWAGGER_2_YAML_PATTERN.matcher(trimmedLine).find()) {
                     log.debug("Detected Swagger 2.0 YAML format in file: {}", path);
                     return true;
                 }
                 
                 // Check for JSON format: "swagger": "2.0"
-                if (SWAGGER_2_JSON_PATTERN.matcher(line).find()) {
+                if (SWAGGER_2_JSON_PATTERN.matcher(trimmedLine).find()) {
                     log.debug("Detected Swagger 2.0 JSON format in file: {}", path);
                     return true;
                 }

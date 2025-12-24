@@ -66,7 +66,7 @@ public class TypeResolver {
                 // Filter out "null" to find primary types
                 Set<String> nonNullTypes = types.stream()
                     .filter(t -> !NULL_TYPE.equals(t))
-                    .collect(Collectors.toSet());
+                    .collect(Collectors.toCollection(java.util.TreeSet::new));
                 
                 if (nonNullTypes.isEmpty()) {
                     // Only "null" type exists
@@ -114,10 +114,13 @@ public class TypeResolver {
                 + "In Swagger 2.0 and OpenAPI 3.0.x, parameters should define 'type' directly, "
                 + "not use a 'schema' property (except for body parameters).";
         
+        // Validation for detecting when a request parameter is used with an actual schema objectD
+        // even though its forbidden by the spec
+        // https://github.com/docktape/swagger-brake/issues/28
         if (strictMode) {
             throw new IllegalStateException("Schema does not have any type. " + message);
         } else {
-            log.trace(message);
+            log.warn(message);
         }
     }
     
