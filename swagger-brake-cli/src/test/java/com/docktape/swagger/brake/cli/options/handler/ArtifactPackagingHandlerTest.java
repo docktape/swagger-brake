@@ -7,11 +7,11 @@ import com.docktape.swagger.brake.runner.ArtifactPackaging;
 import com.docktape.swagger.brake.runner.Options;
 import org.junit.jupiter.api.Test;
 
-public class ArtifactPackagingHandlerTest {
-    private ArtifactPackagingHandler underTest = new ArtifactPackagingHandler();
+class ArtifactPackagingHandlerTest {
+    private final ArtifactPackagingHandler underTest = new ArtifactPackagingHandler();
 
     @Test
-    public void testHandleWorksWhenJarGiven() {
+    void testHandleWorksWhenJarGiven() {
         // given
         String propertyValue = "jar";
         Options options = new Options();
@@ -22,7 +22,7 @@ public class ArtifactPackagingHandlerTest {
     }
 
     @Test
-    public void testHandleWorksWhenWarGiven() {
+    void testHandleWorksWhenWarGiven() {
         // given
         String propertyValue = "war";
         Options options = new Options();
@@ -33,7 +33,7 @@ public class ArtifactPackagingHandlerTest {
     }
 
     @Test
-    public void testHandleWorksWhenNullGiven() {
+    void testHandleWorksWhenNullGiven() {
         // given
         String propertyValue = null;
         Options options = new Options();
@@ -44,7 +44,7 @@ public class ArtifactPackagingHandlerTest {
     }
 
     @Test
-    public void testHandleWorksWhenEmptyGiven() {
+    void testHandleWorksWhenEmptyGiven() {
         // given
         String propertyValue = "";
         Options options = new Options();
@@ -55,7 +55,7 @@ public class ArtifactPackagingHandlerTest {
     }
 
     @Test
-    public void testHandleWorksWhenBlankGiven() {
+    void testHandleWorksWhenBlankGiven() {
         // given
         String propertyValue = "";
         Options options = new Options();
@@ -66,7 +66,7 @@ public class ArtifactPackagingHandlerTest {
     }
 
     @Test
-    public void testHandleThrowsExceptionWhenUnsupportedPackagingIsProvided() {
+    void testHandleThrowsExceptionWhenUnsupportedPackagingIsProvided() {
         // given
         String propertyValue = "something";
         Options options = new Options();
@@ -75,5 +75,4 @@ public class ArtifactPackagingHandlerTest {
         // then
         assertThat(iae.getMessage()).contains("not supported");
     }
-
 }

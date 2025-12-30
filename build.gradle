@@ -28,11 +28,16 @@ subprojects {
     apply plugin: 'maven-publish'
     apply plugin: 'checkstyle'
     apply plugin: 'com.github.spotbugs'
+    apply plugin: 'jacoco'
 
     java {
         toolchain {
             languageVersion = JavaLanguageVersion.of(21)
         }
+    }
+    
+    jacoco {
+        toolVersion = "0.8.12"
     }
 
     dependencies {

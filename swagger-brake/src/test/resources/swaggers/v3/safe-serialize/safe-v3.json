@@ -1,0 +1,2733 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "TEST-CONFIGURATION REST API -- [test]",
+    "license": {
+      "name": "View Source Code",
+      "url": "https://example.com/test/api-configuration"
+    },
+    "version": "TEST-12345-1.0.0-SNAPSHOT"
+  },
+  "servers": [
+    {
+      "url": "https://gateway.test.example.com/test-configuration",
+      "description": "Generated server url"
+    }
+  ],
+  "security": [
+    {
+      "ping-smallAapp": []
+    },
+    {
+      "bearer-jwt": []
+    }
+  ],
+  "tags": [
+    {
+      "name": "Actuator",
+      "description": "Monitor and interact",
+      "externalDocs": {
+        "description": "Spring Boot Actuator Web API Documentation",
+        "url": "https://docs.spring.io/spring-boot/docs/current/actuator-api/html/"
+      }
+    }
+  ],
+  "paths": {
+    "/api/testConfig/v1/segments/feature": {
+      "put": {
+        "tags": [
+          "segments-controller"
+        ],
+        "operationId": "updateSegments",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EditFeatureMessage"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/regions/{market}": {
+      "put": {
+        "tags": [
+          "regions-controller"
+        ],
+        "operationId": "updateRegionalMarket",
+        "parameters": [
+          {
+            "name": "market",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/RegionalMarket"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegionalMarketUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/camLockException/{entityId}": {
+      "get": {
+        "tags": [
+          "cam-lock-exception-controller"
+        ],
+        "operationId": "getCamLockException",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/CamLockExceptionDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "cam-lock-exception-controller"
+        ],
+        "operationId": "setCamLockException",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "expirationDate",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "delete": {
+        "tags": [
+          "cam-lock-exception-controller"
+        ],
+        "operationId": "deleteCamLockException",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/entities/{entityId}/segmentation/feature/{featureId}": {
+      "put": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "setSegmentationFeatureOverride",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "featureId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SegmentFeatureOverrideDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "patch": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "expireSegmentationFeatureOverride",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "featureId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SegmentFeatureOverrideDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/marketplaceAccess/{entity}": {
+      "get": {
+        "tags": [
+          "marketplace-access-controller"
+        ],
+        "operationId": "getEntityMarketplaceNumbers",
+        "parameters": [
+          {
+            "name": "entity",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Entity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/MarketplaceAccessDTO"
+                }
+              }
+            }
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "marketplace-access-controller"
+        ],
+        "operationId": "setEntityMarketplaceNumber",
+        "parameters": [
+          {
+            "name": "entity",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Entity"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/MarketplaceNumberDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/regions": {
+      "get": {
+        "tags": [
+          "regions-controller"
+        ],
+        "operationId": "getAllRegionalMarkets",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/RegionalMarketDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "performance-markets-controller"
+        ],
+        "operationId": "createRegionalMarket",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegionalMarketUpdateDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RegionalMarketDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/regions/{regionalMarketId}/add": {
+      "post": {
+        "tags": [
+          "regions-controller"
+        ],
+        "operationId": "addClientToRegionalMarket",
+        "parameters": [
+          {
+            "name": "regionalMarketId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RegionalMarketClientAddDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/actuator/restart": {
+      "post": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'restart'",
+        "operationId": "restart",
+        "responses": {
+          "204": {
+            "description": "No Content"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/regions/assignment": {
+      "patch": {
+        "tags": [
+          "regions-controller"
+        ],
+        "operationId": "reassignBulkClientsAndGroupsToOtherMarket",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BulkReassignmentDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/businesses/{entityId}": {
+      "patch": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "updateSecuritization",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EntitySecuritizationDTO"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/businesses/{entityId}/useAutoACH/{useAutoACH}": {
+      "patch": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "updateUseAutoACH",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "useAutoACH",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/businesses/{entityId}/sameDayDisbursementEnabled/{sameDayDisbursementEnabled}": {
+      "patch": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "updateSameDayDisbursementEnabled",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "sameDayDisbursementEnabled",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/businesses/{entityId}/payOnNotice/{payOnNotice}": {
+      "patch": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "updatePayOnNotice",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "payOnNotice",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "boolean"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/info": {
+      "get": {
+        "tags": [
+          "actuator-backwards-compatibility-controller"
+        ],
+        "operationId": "redirectInfo",
+        "responses": {
+          "301": {
+            "description": "Moved Permanently",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedirectView"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/health": {
+      "get": {
+        "tags": [
+          "actuator-backwards-compatibility-controller"
+        ],
+        "operationId": "redirectHealth",
+        "responses": {
+          "301": {
+            "description": "Moved Permanently",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/RedirectView"
+                }
+              }
+            }
+          }
+        },
+        "deprecated": true
+      }
+    },
+    "/api/testConfig/v1/segments": {
+      "get": {
+        "tags": [
+          "segments-controller"
+        ],
+        "operationId": "getActiveSegments",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/SegmentDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/segments/{segmentationFeatureId}/business/{entityId}": {
+      "get": {
+        "tags": [
+          "segments-controller"
+        ],
+        "operationId": "findSegmentationValueByEntityId",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          },
+          {
+            "name": "segmentationFeatureId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SegmentationValueDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/regions/regional_managers": {
+      "get": {
+        "tags": [
+          "regions-controller"
+        ],
+        "operationId": "getAllRegionalManagers",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/PerformanceManagerDTO"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/businesses/{entity}/payOnNotice": {
+      "get": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "getEntityPayOnNotice",
+        "parameters": [
+          {
+            "name": "entity",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Entity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayOnNoticeDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/businesses/{entityId}/useAutoACH": {
+      "get": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "getEntityUseAutoACH",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/UseAutoACHDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/businesses/{entityId}/segmentation": {
+      "get": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "getEntitySegment",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/SegmentDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/accounts/search/clients": {
+      "get": {
+        "tags": [
+          "account-controller"
+        ],
+        "operationId": "searchClients",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Entity"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/accounts/search/clientsAndGroups": {
+      "get": {
+        "tags": [
+          "account-controller"
+        ],
+        "operationId": "searchClientsAndGroups",
+        "parameters": [
+          {
+            "name": "query",
+            "in": "query",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClientGroupSearchDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/businesses/eligible/{entityId}": {
+      "get": {
+        "tags": [
+          "entity-controller"
+        ],
+        "operationId": "checkPONEligibility",
+        "parameters": [
+          {
+            "name": "entityId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "$ref": "#/components/schemas/PayOnNoticeDTO"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/access/roleList": {
+      "get": {
+        "tags": [
+          "access-controller"
+        ],
+        "operationId": "getUserRoles",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "*/*": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator root web endpoint",
+        "operationId": "links",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Link"
+                    }
+                  }
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Link"
+                    }
+                  }
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "additionalProperties": {
+                    "type": "object",
+                    "additionalProperties": {
+                      "$ref": "#/components/schemas/Link"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/status": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'status'",
+        "operationId": "status",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/isAvailable": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'isAvailable'",
+        "operationId": "isAvailable",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/info": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'info'",
+        "operationId": "info",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/actuator/health": {
+      "get": {
+        "tags": [
+          "Actuator"
+        ],
+        "summary": "Actuator web endpoint 'health'",
+        "operationId": "health",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/vnd.spring-boot.actuator.v3+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/vnd.spring-boot.actuator.v2+json": {
+                "schema": {
+                  "type": "object"
+                }
+              },
+              "application/json": {
+                "schema": {
+                  "type": "object"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/regions/{market}/clients/{entity}": {
+      "delete": {
+        "tags": [
+          "regions-controller"
+        ],
+        "operationId": "removeClient",
+        "parameters": [
+          {
+            "name": "market",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/RegionalMarket"
+            }
+          },
+          {
+            "name": "entity",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Entity"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/regions/{market}/client_groups/{clientGroup}": {
+      "delete": {
+        "tags": [
+          "regions-controller"
+        ],
+        "operationId": "removeClientGroup",
+        "parameters": [
+          {
+            "name": "market",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/RegionalMarket"
+            }
+          },
+          {
+            "name": "clientGroup",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/ClientGroup"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/api/testConfig/v1/marketplaceAccess/{entity}/{marketplaceNumber}": {
+      "delete": {
+        "tags": [
+          "marketplace-access-controller"
+        ],
+        "operationId": "removeEntityMarketplaceNumber",
+        "parameters": [
+          {
+            "name": "entity",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "$ref": "#/components/schemas/Entity"
+            }
+          },
+          {
+            "name": "marketplaceNumber",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "EditFeatureMessage": {
+        "type": "object",
+        "properties": {
+          "featureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "segmentId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "value": {
+            "type": "string"
+          },
+          "effectiveDate": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "RegionalMarket": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": {
+            "type": "string"
+          },
+          "vpUserAccount": {
+            "$ref": "#/components/schemas/UserAccount"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "systemAMarketNumber": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "UserAccount": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "firstName": {
+            "type": "string"
+          },
+          "lastName": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "networkLogin": {
+            "type": "string"
+          }
+        }
+      },
+      "RegionalMarketUpdateDTO": {
+        "type": "object",
+        "properties": {
+          "systemAId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "manager": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "active",
+          "systemAId",
+          "manager",
+          "name"
+        ]
+      },
+      "SegmentFeatureOverrideDTO": {
+        "type": "object",
+        "properties": {
+          "value": {
+            "type": "string"
+          },
+          "expire": {
+            "type": "boolean"
+          }
+        }
+      },
+      "MarketplaceNumber": {
+        "type": "object",
+        "properties": {
+          "marketplaceNumberId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "marketplaceNumberTypeId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "entity": {
+            "$ref": "#/components/schemas/Entity"
+          },
+          "marketplaceNumber": {
+            "type": "string"
+          }
+        }
+      },
+      "Entity": {
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "entityNumber": {
+            "type": "string"
+          },
+          "entityName": {
+            "type": "string"
+          },
+          "excludedFromSecuritization": {
+            "type": "boolean"
+          },
+          "buyerEntityRelationshipStatusId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "marketplaceAccessNumber": {
+            "type": "string"
+          },
+          "clientDeferredPayment": {
+            "type": "boolean"
+          },
+          "sameDayDisbursementEnabled": {
+            "type": "boolean"
+          },
+          "clientMeetsAccountPONCriteria": {
+            "$ref": "#/components/schemas/Entity",
+            "writeOnly": true
+          },
+          "marketplaceNumbers": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/MarketplaceNumber"
+            }
+          },
+          "clientGroupId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "regionalMarketId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "aeFirstName": {
+            "type": "string"
+          },
+          "aeLastName": {
+            "type": "string"
+          },
+          "rdFirstName": {
+            "type": "string"
+          },
+          "rdLastName": {
+            "type": "string"
+          },
+          "useAutoACH": {
+            "type": "boolean"
+          },
+          "accountRelationshipStatus": {
+            "$ref": "#/components/schemas/AccountRelationshipStatus"
+          }
+        }
+      },
+      "AccountRelationshipStatus": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "MarketplaceNumberDTO": {
+        "type": "object",
+        "properties": {
+          "marketplaceNumber": {
+            "type": "string"
+          },
+          "marketplaceNumberType": {
+            "type": "integer",
+            "format": "int32",
+            "maximum": 2,
+            "minimum": 1
+          }
+        },
+        "required": [
+          "marketplaceNumber",
+          "marketplaceNumberType"
+        ]
+      },
+      "RegionalClientDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "entityNumber": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "name": {
+            "type": "string"
+          },
+          "aeName": {
+            "type": "string"
+          },
+          "rdName": {
+            "type": "string"
+          },
+          "performingStatus": {
+            "type": "string"
+          }
+        }
+      },
+      "RegionalClientGroupDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "clients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegionalClientDTO"
+            }
+          }
+        }
+      },
+      "RegionalMarketDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "manager": {
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "systemAId": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "clients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegionalClientDTO"
+            }
+          },
+          "clientGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/RegionalClientGroupDTO"
+            }
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "RegionalMarketClientAddDTO": {
+        "type": "object",
+        "properties": {
+          "regionalMarketId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "clientId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isClientGroup": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "clientGroup": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "clientId",
+          "regionalMarketId"
+        ]
+      },
+      "BulkReassignmentDTO": {
+        "type": "object",
+        "properties": {
+          "destinationRegionalMarketId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "originRegionalMarketId": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "originRegionalMarketId"
+        ]
+      },
+      "EntitySecuritizationDTO": {
+        "type": "object",
+        "properties": {
+          "excludedFromSecuritization": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ApplicationContext": {
+        "type": "object",
+        "properties": {
+          "startupDate": {
+            "type": "integer",
+            "format": "int64"
+          },
+          "autowireCapableBeanFactory": {
+            "$ref": "#/components/schemas/AutowireCapableBeanFactory"
+          },
+          "applicationName": {
+            "type": "string"
+          },
+          "parent": {
+            "$ref": "#/components/schemas/ApplicationContext"
+          },
+          "id": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/Environment"
+          },
+          "beanDefinitionCount": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "beanDefinitionNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "parentBeanFactory": {
+            "$ref": "#/components/schemas/BeanFactory"
+          },
+          "classLoader": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "registeredAsParallelCapable": {
+                "type": "boolean"
+              },
+              "parent": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "registeredAsParallelCapable": {
+                    "type": "boolean"
+                  },
+                  "unnamedModule": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "classLoader": {
+                        "type": "object",
+                        "properties": {
+                          "name": {
+                            "type": "string"
+                          },
+                          "registeredAsParallelCapable": {
+                            "type": "boolean"
+                          },
+                          "definedPackages": {
+                            "type": "array",
+                            "items": {
+                              "type": "object",
+                              "properties": {
+                                "name": {
+                                  "type": "string"
+                                },
+                                "annotations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "declaredAnnotations": {
+                                  "type": "array",
+                                  "items": {
+                                    "type": "object"
+                                  }
+                                },
+                                "sealed": {
+                                  "type": "boolean"
+                                },
+                                "specificationTitle": {
+                                  "type": "string"
+                                },
+                                "specificationVersion": {
+                                  "type": "string"
+                                },
+                                "specificationVendor": {
+                                  "type": "string"
+                                },
+                                "implementationTitle": {
+                                  "type": "string"
+                                },
+                                "implementationVersion": {
+                                  "type": "string"
+                                },
+                                "implementationVendor": {
+                                  "type": "string"
+                                }
+                              }
+                            }
+                          },
+                          "defaultAssertionStatus": {
+                            "type": "boolean",
+                            "writeOnly": true
+                          }
+                        }
+                      },
+                      "descriptor": {
+                        "type": "object",
+                        "properties": {
+                          "open": {
+                            "type": "boolean"
+                          },
+                          "automatic": {
+                            "type": "boolean"
+                          }
+                        }
+                      },
+                      "named": {
+                        "type": "boolean"
+                      },
+                      "annotations": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        }
+                      },
+                      "declaredAnnotations": {
+                        "type": "array",
+                        "items": {
+                          "type": "object"
+                        }
+                      },
+                      "packages": {
+                        "type": "array",
+                        "items": {
+                          "type": "string"
+                        },
+                        "uniqueItems": true
+                      },
+                      "nativeAccessEnabled": {
+                        "type": "boolean"
+                      },
+                      "layer": {
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "definedPackages": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "name": {
+                          "type": "string"
+                        },
+                        "annotations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        },
+                        "declaredAnnotations": {
+                          "type": "array",
+                          "items": {
+                            "type": "object"
+                          }
+                        },
+                        "sealed": {
+                          "type": "boolean"
+                        },
+                        "specificationTitle": {
+                          "type": "string"
+                        },
+                        "specificationVersion": {
+                          "type": "string"
+                        },
+                        "specificationVendor": {
+                          "type": "string"
+                        },
+                        "implementationTitle": {
+                          "type": "string"
+                        },
+                        "implementationVersion": {
+                          "type": "string"
+                        },
+                        "implementationVendor": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  },
+                  "defaultAssertionStatus": {
+                    "type": "boolean",
+                    "writeOnly": true
+                  }
+                }
+              },
+              "unnamedModule": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "classLoader": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "registeredAsParallelCapable": {
+                        "type": "boolean"
+                      },
+                      "definedPackages": {
+                        "type": "array",
+                        "items": {
+                          "type": "object",
+                          "properties": {
+                            "name": {
+                              "type": "string"
+                            },
+                            "annotations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object"
+                              }
+                            },
+                            "declaredAnnotations": {
+                              "type": "array",
+                              "items": {
+                                "type": "object"
+                              }
+                            },
+                            "sealed": {
+                              "type": "boolean"
+                            },
+                            "specificationTitle": {
+                              "type": "string"
+                            },
+                            "specificationVersion": {
+                              "type": "string"
+                            },
+                            "specificationVendor": {
+                              "type": "string"
+                            },
+                            "implementationTitle": {
+                              "type": "string"
+                            },
+                            "implementationVersion": {
+                              "type": "string"
+                            },
+                            "implementationVendor": {
+                              "type": "string"
+                            }
+                          }
+                        }
+                      },
+                      "defaultAssertionStatus": {
+                        "type": "boolean",
+                        "writeOnly": true
+                      }
+                    }
+                  },
+                  "descriptor": {
+                    "type": "object",
+                    "properties": {
+                      "open": {
+                        "type": "boolean"
+                      },
+                      "automatic": {
+                        "type": "boolean"
+                      }
+                    }
+                  },
+                  "named": {
+                    "type": "boolean"
+                  },
+                  "annotations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "declaredAnnotations": {
+                    "type": "array",
+                    "items": {
+                      "type": "object"
+                    }
+                  },
+                  "packages": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    },
+                    "uniqueItems": true
+                  },
+                  "nativeAccessEnabled": {
+                    "type": "boolean"
+                  },
+                  "layer": {
+                    "type": "object"
+                  }
+                }
+              },
+              "definedPackages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "annotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "declaredAnnotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "sealed": {
+                      "type": "boolean"
+                    },
+                    "specificationTitle": {
+                      "type": "string"
+                    },
+                    "specificationVersion": {
+                      "type": "string"
+                    },
+                    "specificationVendor": {
+                      "type": "string"
+                    },
+                    "implementationTitle": {
+                      "type": "string"
+                    },
+                    "implementationVersion": {
+                      "type": "string"
+                    },
+                    "implementationVendor": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "defaultAssertionStatus": {
+                "type": "boolean",
+                "writeOnly": true
+              }
+            }
+          }
+        }
+      },
+      "AutowireCapableBeanFactory": {
+        "type": "object"
+      },
+      "BeanFactory": {
+        "type": "object"
+      },
+      "DefaultHttpStatusCode": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          }
+        ]
+      },
+      "Environment": {
+        "type": "object",
+        "properties": {
+          "activeProfiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "defaultProfiles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "FilterRegistration": {
+        "type": "object",
+        "properties": {
+          "servletNameMappings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "urlPatternMappings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "initParameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "className": {
+            "type": "string"
+          }
+        }
+      },
+      "HttpStatus": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/HttpStatusCode"
+          }
+        ],
+        "enum": [
+          "100 CONTINUE",
+          "101 SWITCHING_PROTOCOLS",
+          "102 PROCESSING",
+          "103 EARLY_HINTS",
+          "103 CHECKPOINT",
+          "200 OK",
+          "201 CREATED",
+          "202 ACCEPTED",
+          "203 NON_AUTHORITATIVE_INFORMATION",
+          "204 NO_CONTENT",
+          "205 RESET_CONTENT",
+          "206 PARTIAL_CONTENT",
+          "207 MULTI_STATUS",
+          "208 ALREADY_REPORTED",
+          "226 IM_USED",
+          "300 MULTIPLE_CHOICES",
+          "301 MOVED_PERMANENTLY",
+          "302 FOUND",
+          "302 MOVED_TEMPORARILY",
+          "303 SEE_OTHER",
+          "304 NOT_MODIFIED",
+          "305 USE_PROXY",
+          "307 TEMPORARY_REDIRECT",
+          "308 PERMANENT_REDIRECT",
+          "400 BAD_REQUEST",
+          "401 UNAUTHORIZED",
+          "402 PAYMENT_REQUIRED",
+          "403 FORBIDDEN",
+          "404 NOT_FOUND",
+          "405 METHOD_NOT_ALLOWED",
+          "406 NOT_ACCEPTABLE",
+          "407 PROXY_AUTHENTICATION_REQUIRED",
+          "408 REQUEST_TIMEOUT",
+          "409 CONFLICT",
+          "410 GONE",
+          "411 LENGTH_REQUIRED",
+          "412 PRECONDITION_FAILED",
+          "413 PAYLOAD_TOO_LARGE",
+          "413 REQUEST_ENTITY_TOO_LARGE",
+          "414 URI_TOO_LONG",
+          "414 REQUEST_URI_TOO_LONG",
+          "415 UNSUPPORTED_MEDIA_TYPE",
+          "416 REQUESTED_RANGE_NOT_SATISFIABLE",
+          "417 EXPECTATION_FAILED",
+          "418 I_AM_A_TEAPOT",
+          "419 INSUFFICIENT_SPACE_ON_RESOURCE",
+          "420 METHOD_FAILURE",
+          "421 DESTINATION_LOCKED",
+          "422 UNPROCESSABLE_ENTITY",
+          "423 LOCKED",
+          "424 FAILED_DEPENDENCY",
+          "425 TOO_EARLY",
+          "426 UPGRADE_REQUIRED",
+          "428 PRECONDITION_REQUIRED",
+          "429 TOO_MANY_REQUESTS",
+          "431 REQUEST_HEADER_FIELDS_TOO_LARGE",
+          "451 UNAVAILABLE_FOR_LEGAL_REASONS",
+          "500 INTERNAL_SERVER_ERROR",
+          "501 NOT_IMPLEMENTED",
+          "502 BAD_GATEWAY",
+          "503 SERVICE_UNAVAILABLE",
+          "504 GATEWAY_TIMEOUT",
+          "505 HTTP_VERSION_NOT_SUPPORTED",
+          "506 VARIANT_ALSO_NEGOTIATES",
+          "507 INSUFFICIENT_STORAGE",
+          "508 LOOP_DETECTED",
+          "509 BANDWIDTH_LIMIT_EXCEEDED",
+          "510 NOT_EXTENDED",
+          "511 NETWORK_AUTHENTICATION_REQUIRED"
+        ]
+      },
+      "HttpStatusCode": {
+        "type": "object",
+        "properties": {
+          "is1xxInformational": {
+            "type": "boolean"
+          },
+          "is2xxSuccessful": {
+            "type": "boolean"
+          },
+          "is3xxRedirection": {
+            "type": "boolean"
+          },
+          "is4xxClientError": {
+            "type": "boolean"
+          },
+          "is5xxServerError": {
+            "type": "boolean"
+          },
+          "error": {
+            "type": "boolean"
+          }
+        }
+      },
+      "JspConfigDescriptor": {
+        "type": "object",
+        "properties": {
+          "jspPropertyGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/JspPropertyGroupDescriptor"
+            }
+          },
+          "taglibs": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TaglibDescriptor"
+            }
+          }
+        }
+      },
+      "JspPropertyGroupDescriptor": {
+        "type": "object",
+        "properties": {
+          "deferredSyntaxAllowedAsLiteral": {
+            "type": "string"
+          },
+          "errorOnUndeclaredNamespace": {
+            "type": "string"
+          },
+          "trimDirectiveWhitespaces": {
+            "type": "string"
+          },
+          "errorOnELNotFound": {
+            "type": "string"
+          },
+          "pageEncoding": {
+            "type": "string"
+          },
+          "scriptingInvalid": {
+            "type": "string"
+          },
+          "includePreludes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "includeCodas": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "elIgnored": {
+            "type": "string"
+          },
+          "isXml": {
+            "type": "string"
+          },
+          "urlPatterns": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "defaultContentType": {
+            "type": "string"
+          },
+          "buffer": {
+            "type": "string"
+          }
+        }
+      },
+      "RedirectView": {
+        "type": "object",
+        "properties": {
+          "applicationContext": {
+            "$ref": "#/components/schemas/ApplicationContext"
+          },
+          "servletContext": {
+            "$ref": "#/components/schemas/ServletContext",
+            "writeOnly": true
+          },
+          "contentType": {
+            "type": "string"
+          },
+          "requestContextAttribute": {
+            "type": "string"
+          },
+          "staticAttributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "exposePathVariables": {
+            "type": "boolean"
+          },
+          "exposeContextBeansAsAttributes": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "exposedContextBeanNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "writeOnly": true
+          },
+          "beanName": {
+            "type": "string"
+          },
+          "url": {
+            "type": "string"
+          },
+          "contextRelative": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "http10Compatible": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "exposeModelAttributes": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "encodingScheme": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "statusCode": {
+            "oneOf": [
+              {
+                "$ref": "#/components/schemas/DefaultHttpStatusCode"
+              },
+              {
+                "$ref": "#/components/schemas/HttpStatus"
+              }
+            ],
+            "writeOnly": true
+          },
+          "expandUriTemplateVariables": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "propagateQueryParams": {
+            "type": "boolean",
+            "writeOnly": true
+          },
+          "hosts": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "propagateQueryProperties": {
+            "type": "boolean"
+          },
+          "redirectView": {
+            "type": "boolean"
+          },
+          "attributesCSV": {
+            "type": "string",
+            "writeOnly": true
+          },
+          "attributesMap": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            }
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            },
+            "writeOnly": true
+          }
+        }
+      },
+      "ServletContext": {
+        "type": "object",
+        "properties": {
+          "defaultSessionTrackingModes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "COOKIE",
+                "URL",
+                "SSL"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "effectiveSessionTrackingModes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "COOKIE",
+                "URL",
+                "SSL"
+              ]
+            },
+            "uniqueItems": true
+          },
+          "effectiveMajorVersion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "effectiveMinorVersion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "filterRegistrations": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/FilterRegistration"
+            }
+          },
+          "jspConfigDescriptor": {
+            "$ref": "#/components/schemas/JspConfigDescriptor"
+          },
+          "requestCharacterEncoding": {
+            "type": "string"
+          },
+          "responseCharacterEncoding": {
+            "type": "string"
+          },
+          "sessionTrackingModes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "COOKIE",
+                "URL",
+                "SSL"
+              ]
+            },
+            "uniqueItems": true,
+            "writeOnly": true
+          },
+          "serverInfo": {
+            "type": "string"
+          },
+          "virtualServerName": {
+            "type": "string"
+          },
+          "sessionCookieConfig": {
+            "$ref": "#/components/schemas/SessionCookieConfig"
+          },
+          "initParameterNames": {
+            "type": "object"
+          },
+          "servletContextName": {
+            "type": "string"
+          },
+          "contextPath": {
+            "type": "string"
+          },
+          "servletRegistrations": {
+            "type": "object",
+            "additionalProperties": {
+              "$ref": "#/components/schemas/ServletRegistration"
+            }
+          },
+          "attributeNames": {
+            "type": "object"
+          },
+          "sessionTimeout": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "classLoader": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "registeredAsParallelCapable": {
+                "type": "boolean"
+              },
+              "definedPackages": {
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "name": {
+                      "type": "string"
+                    },
+                    "annotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "declaredAnnotations": {
+                      "type": "array",
+                      "items": {
+                        "type": "object"
+                      }
+                    },
+                    "sealed": {
+                      "type": "boolean"
+                    },
+                    "specificationTitle": {
+                      "type": "string"
+                    },
+                    "specificationVersion": {
+                      "type": "string"
+                    },
+                    "specificationVendor": {
+                      "type": "string"
+                    },
+                    "implementationTitle": {
+                      "type": "string"
+                    },
+                    "implementationVersion": {
+                      "type": "string"
+                    },
+                    "implementationVendor": {
+                      "type": "string"
+                    }
+                  }
+                }
+              },
+              "defaultAssertionStatus": {
+                "type": "boolean",
+                "writeOnly": true
+              }
+            }
+          },
+          "majorVersion": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "minorVersion": {
+            "type": "integer",
+            "format": "int32"
+          }
+        }
+      },
+      "ServletRegistration": {
+        "type": "object",
+        "properties": {
+          "runAsRole": {
+            "type": "string"
+          },
+          "mappings": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "initParameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "name": {
+            "type": "string"
+          },
+          "className": {
+            "type": "string"
+          }
+        }
+      },
+      "SessionCookieConfig": {
+        "type": "object",
+        "properties": {
+          "maxAge": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "httpOnly": {
+            "type": "boolean"
+          },
+          "domain": {
+            "type": "string"
+          },
+          "secure": {
+            "type": "boolean"
+          },
+          "path": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "attributes": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          },
+          "comment": {
+            "type": "string",
+            "deprecated": true
+          }
+        }
+      },
+      "TaglibDescriptor": {
+        "type": "object",
+        "properties": {
+          "taglibLocation": {
+            "type": "string"
+          },
+          "taglibURI": {
+            "type": "string"
+          }
+        }
+      },
+      "SegmentCriteriaDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "operator": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "optionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "operatorId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "effectiveDate": {
+            "type": "string"
+          }
+        }
+      },
+      "SegmentDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "isActive": {
+            "type": "boolean"
+          },
+          "criteria": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SegmentCriteriaDTO"
+            }
+          },
+          "features": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SegmentFeatureDTO"
+            }
+          }
+        }
+      },
+      "SegmentFeatureDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "featureId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          },
+          "overriddenValue": {
+            "type": "string"
+          },
+          "effectiveDate": {
+            "type": "string"
+          },
+          "expirationDate": {
+            "type": "string"
+          },
+          "featureDataGroupId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "isEditable": {
+            "type": "boolean"
+          },
+          "isOverridable": {
+            "type": "boolean"
+          },
+          "futureUpdate": {
+            "$ref": "#/components/schemas/SegmentFeatureDTO"
+          }
+        },
+        "required": [
+          "featureId",
+          "id",
+          "name",
+          "value"
+        ]
+      },
+      "SegmentationValueDTO": {
+        "type": "object",
+        "properties": {
+          "segmentationValue": {
+            "type": "string"
+          }
+        }
+      },
+      "PerformanceManagerDTO": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "CamLockExceptionDTO": {
+        "type": "object",
+        "properties": {
+          "entityId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "exceptionId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "expirationDate": {
+            "type": "string",
+            "format": "date"
+          }
+        },
+        "required": [
+          "entityId"
+        ]
+      },
+      "PayOnNoticeDTO": {
+        "type": "object",
+        "properties": {
+          "payOnNotice": {
+            "type": "boolean"
+          },
+          "ponEligible": {
+            "type": "boolean"
+          },
+          "clientKeepsDocumentMeetsCriteria": {
+            "type": "boolean"
+          },
+          "buyerMeetsCriteria": {
+            "type": "boolean"
+          },
+          "useAutoACHMeetsCriteria": {
+            "type": "boolean"
+          },
+          "buyerPayWhenTitleIsInPossessionMeetsCriteria": {
+            "type": "boolean"
+          },
+          "canBePaidDirectlyForSpecificSourceMeetsCriteria": {
+            "type": "boolean"
+          },
+          "sameDayDisbursementEnabled": {
+            "type": "boolean"
+          }
+        }
+      },
+      "UseAutoACHDTO": {
+        "type": "object",
+        "properties": {
+          "useAutoACH": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ClientGroup": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "description": {
+            "type": "string"
+          },
+          "regionalMarketId": {
+            "type": "string",
+            "format": "uuid"
+          },
+          "active": {
+            "type": "boolean"
+          }
+        }
+      },
+      "ClientGroupSearchDTO": {
+        "type": "object",
+        "properties": {
+          "clients": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Entity"
+            }
+          },
+          "groups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ClientGroup"
+            }
+          }
+        }
+      },
+      "MarketplaceAccessDTO": {
+        "type": "object",
+        "properties": {
+          "marketplaceAccessNumber": {
+            "type": "string"
+          },
+          "marketplaceNumbers": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "Link": {
+        "type": "object",
+        "properties": {
+          "href": {
+            "type": "string"
+          },
+          "templated": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "ping-smallapp": {
+        "type": "oauth2",
+        "name": "ping-Asmallapp",
+        "flows": {
+          "implicit": {
+            "authorizationUrl": "https://pf-Angc.azsharedsvc.nonprod.ngcaz.net/as/authorization.oauth2"
+          }
+        }
+      },
+      "bearer-jwt": {
+        "type": "http",
+        "description": "#### Paste the token only, **DO NOT** include the word `Bearer`",
+        "name": "bearer-jwt",
+        "in": "header",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}

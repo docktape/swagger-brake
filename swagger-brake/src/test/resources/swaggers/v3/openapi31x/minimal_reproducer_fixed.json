@@ -1,0 +1,80 @@
+{
+  "openapi": "3.1.0",
+  "info": {
+    "title": "Fixed swagger-brake spec",
+    "description": "Same spec as minimal_reproducer.json but with explicit 'type: object' fields added",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/api/search": {
+      "get": {
+        "summary": "Search with pagination",
+        "parameters": [
+          {
+            "name": "pageable",
+            "in": "query",
+            "required": false,
+            "description": "Pagination parameters",
+            "schema": {
+              "$ref": "#/components/schemas/PageRequest"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SearchResponse"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "PageRequest": {
+        "type": "object",
+        "description": "Pagination request - now includes explicit 'type: object'",
+        "properties": {
+          "page": {
+            "type": "integer",
+            "format": "int32",
+            "minimum": 0,
+            "description": "Page number"
+          },
+          "size": {
+            "type": "integer", 
+            "format": "int32",
+            "minimum": 1,
+            "description": "Page size"
+          }
+        }
+      },
+      "SearchResponse": {
+        "type": "object",
+        "description": "Search response",
+        "properties": {
+          "results": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

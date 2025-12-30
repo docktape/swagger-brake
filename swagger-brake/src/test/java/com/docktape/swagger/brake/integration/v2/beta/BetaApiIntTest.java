@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.integration.v2.beta;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Collection;
 
@@ -14,9 +15,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class BetaApiIntTest extends AbstractSwaggerBrakeIntTest {
+class BetaApiIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testBetaApiAdditionDoesntTriggerABreak() {
+    void testBetaApiAdditionDoesntTriggerABreak() {
         // given
         String oldApiPath = "swaggers/v2/beta/betaapiadded/petstore.yaml";
         String newApiPath = "swaggers/v2/beta/betaapiadded/petstore_v2.yaml";
@@ -27,7 +28,7 @@ public class BetaApiIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testBetaApiModificationDoesntTriggerABreak() {
+    void testBetaApiModificationDoesntTriggerABreak() {
         // given
         String oldApiPath = "swaggers/v2/beta/betaapimodified/petstore.yaml";
         String newApiPath = "swaggers/v2/beta/betaapimodified/petstore_v2.yaml";
@@ -38,7 +39,7 @@ public class BetaApiIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testBetaApiModificationDoesntTriggerABreakWhenUsingCustomAttribute() {
+    void testBetaApiModificationDoesntTriggerABreakWhenUsingCustomAttribute() {
         // given
         String oldApiPath = "swaggers/v2/beta/customextensionname/petstore.yaml";
         String newApiPath = "swaggers/v2/beta/customextensionname/petstore_v2.yaml";
@@ -54,7 +55,7 @@ public class BetaApiIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testBetaApiToStandardApiDoesntTriggerABreak() {
+    void testBetaApiToStandardApiDoesntTriggerABreak() {
         // given
         String oldApiPath = "swaggers/v2/beta/betaapitostandard/petstore.yaml";
         String newApiPath = "swaggers/v2/beta/betaapitostandard/petstore_v2.yaml";
@@ -65,7 +66,7 @@ public class BetaApiIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testBetaApiRemovalDoesntTriggerABreak() {
+    void testBetaApiRemovalDoesntTriggerABreak() {
         // given
         String oldApiPath = "swaggers/v2/beta/betaapiremoved/petstore.yaml";
         String newApiPath = "swaggers/v2/beta/betaapiremoved/petstore_v2.yaml";
@@ -76,7 +77,7 @@ public class BetaApiIntTest extends AbstractSwaggerBrakeIntTest {
     }
 
     @Test
-    public void testStandardApiToBetaApiTriggersABreak() {
+    void testStandardApiToBetaApiTriggersABreak() {
         // given
         String oldApiPath = "swaggers/v2/beta/standardapitobeta/petstore.yaml";
         String newApiPath = "swaggers/v2/beta/standardapitobeta/petstore_v2.yaml";
@@ -84,7 +85,9 @@ public class BetaApiIntTest extends AbstractSwaggerBrakeIntTest {
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result.size()).isEqualTo(1);
-        assertThat(result).containsExactly(bc1);
+        assertAll(
+                () -> assertThat(result).hasSize(1),
+                () -> assertThat(result).containsExactly(bc1)
+        );
     }
 }

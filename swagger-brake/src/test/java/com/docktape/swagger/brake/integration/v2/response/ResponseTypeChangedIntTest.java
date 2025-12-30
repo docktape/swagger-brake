@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.integration.v2.response;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 
 import java.util.Arrays;
 import java.util.Collection;
@@ -14,9 +15,9 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 @ExtendWith(SpringExtension.class)
-public class ResponseTypeChangedIntTest extends AbstractSwaggerBrakeIntTest {
+class ResponseTypeChangedIntTest extends AbstractSwaggerBrakeIntTest {
     @Test
-    public void testResponseTypeChangeIsBreakingChangeWhenExistingAttributeRemoved() {
+    void testResponseTypeChangeIsBreakingChangeWhenExistingAttributeRemoved() {
         // given
         String oldApiPath = "swaggers/v2/response/typechanged/petstore.yaml";
         String newApiPath = "swaggers/v2/response/typechanged/petstore_v2.yaml";
@@ -26,7 +27,9 @@ public class ResponseTypeChangedIntTest extends AbstractSwaggerBrakeIntTest {
         // when
         Collection<BreakingChange> result = execute(oldApiPath, newApiPath);
         // then
-        assertThat(result).hasSize(2);
-        assertThat(result).hasSameElementsAs(expected);
+        assertAll(
+                () -> assertThat(result).hasSize(2),
+                () -> assertThat(result).hasSameElementsAs(expected)
+        );
     }
 }

@@ -5,11 +5,11 @@ import static org.assertj.core.api.Assertions.assertThat;
 import com.docktape.swagger.brake.runner.Options;
 import org.junit.jupiter.api.Test;
 
-public class DeprecatedApiDeletionAllowedHandlerTest {
-    private DeprecatedApiDeletionAllowedHandler underTest = new DeprecatedApiDeletionAllowedHandler();
+class DeprecatedApiDeletionAllowedHandlerTest {
+    private final DeprecatedApiDeletionAllowedHandler underTest = new DeprecatedApiDeletionAllowedHandler();
 
     @Test
-    public void testHandleShouldGiveTrueValueForTheOptionWhenNullValueGiven() {
+    void testHandleShouldGiveTrueValueForTheOptionWhenNullValueGiven() {
         // given
         Options options = new Options();
 
@@ -20,7 +20,7 @@ public class DeprecatedApiDeletionAllowedHandlerTest {
     }
 
     @Test
-    public void testHandleShouldGiveTrueValueForTheOptionWhenEmptyValueGiven() {
+    void testHandleShouldGiveTrueValueForTheOptionWhenEmptyValueGiven() {
         // given
         Options options = new Options();
 
@@ -31,7 +31,7 @@ public class DeprecatedApiDeletionAllowedHandlerTest {
     }
 
     @Test
-    public void testHandleShouldGiveTrueValueForTheOptionWhenTrueValueGiven() {
+    void testHandleShouldGiveTrueValueForTheOptionWhenTrueValueGiven() {
         // given
         Options options = new Options();
 
@@ -42,7 +42,7 @@ public class DeprecatedApiDeletionAllowedHandlerTest {
     }
 
     @Test
-    public void testHandleShouldGiveTrueValueForTheOptionWhenRandomValueGiven() {
+    void testHandleShouldGiveTrueValueForTheOptionWhenRandomValueGiven() {
         // given
         Options options = new Options();
 
@@ -53,7 +53,7 @@ public class DeprecatedApiDeletionAllowedHandlerTest {
     }
 
     @Test
-    public void testHandleShouldGiveFalseValueForTheOptionWhenFalseValueGiven() {
+    void testHandleShouldGiveFalseValueForTheOptionWhenFalseValueGiven() {
         // given
         Options options = new Options();
 

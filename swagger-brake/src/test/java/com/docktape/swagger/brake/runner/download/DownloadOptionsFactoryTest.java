@@ -6,11 +6,11 @@ import com.docktape.swagger.brake.maven.DownloadOptions;
 import com.docktape.swagger.brake.runner.Options;
 import org.junit.jupiter.api.Test;
 
-public class DownloadOptionsFactoryTest {
+class DownloadOptionsFactoryTest {
     private DownloadOptionsFactory underTest = new DownloadOptionsFactory();
 
     @Test
-    public void testCreateShouldWorkProperly() {
+    void testCreateShouldWorkProperly() {
         // given
         String groupId = "groupId";
         String artifactId = "artifactId";

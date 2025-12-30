@@ -25,7 +25,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class HtmlReporterTest {
+class HtmlReporterTest {
     @Mock
     private FileWriter fileWriter;
 
@@ -42,7 +42,7 @@ public class HtmlReporterTest {
     private HtmlReporter underTest;
 
     @Test
-    public void testReportShouldWorkCorrectly() throws IOException {
+    void testReportShouldWorkCorrectly() throws IOException {
         // given
         Collection<BreakingChange> breakingChanges = Collections.singletonList(mock(BreakingChange.class));
 
@@ -61,7 +61,7 @@ public class HtmlReporterTest {
     }
 
     @Test
-    public void testCanReportShouldReturnFalseIfOutputFormatIsJson() {
+    void testCanReportShouldReturnFalseIfOutputFormatIsJson() {
         // given
         // when
         boolean result = underTest.canReport(OutputFormat.JSON);
@@ -70,7 +70,7 @@ public class HtmlReporterTest {
     }
 
     @Test
-    public void testCanReportShouldReturnTrueIfOutputFormatIsHtml() {
+    void testCanReportShouldReturnTrueIfOutputFormatIsHtml() {
         // given
         // when
         boolean result = underTest.canReport(OutputFormat.HTML);

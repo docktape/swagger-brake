@@ -26,8 +26,15 @@ public enum CliOption {
     API_FILENAME("api-filename"),
     BETA_API_EXTENSION_NAME("beta-api-extension-name"),
     EXCLUDED_PATHS("excluded-paths"),
-    IGNORED_BREAKING_CHANGE_RULES("ignored-breaking-change-rules");
-
+    IGNORED_BREAKING_CHANGE_RULES("ignored-breaking-change-rules"),
+    /**
+     * Strict validation mode option. When enabled (default), malformed OpenAPI specifications will cause failures.
+     */
+    STRICT_VALIDATION("strict-validation"),
+    /**
+     * Maximum depth for log serialization of Swagger/OpenAPI objects to prevent StackOverflowError with circular references.
+     */
+    MAX_LOG_SERIALIZATION_DEPTH("max-log-serialization-depth");
 
     private final String cliOptionName;
 

@@ -9,11 +9,11 @@ import com.docktape.swagger.brake.core.rule.request.parameter.constraint.Constra
 import com.docktape.swagger.brake.core.rule.request.parameter.constraint.NumberConstrainedValue;
 import org.junit.jupiter.api.Test;
 
-public class NumberMinimumConstraintTest {
+class NumberMinimumConstraintTest {
     private NumberMinimumConstraint underTest = new NumberMinimumConstraint();
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
         // given
         NumberConstrainedValue oldRequestParameter = null;
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
@@ -29,7 +29,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,
@@ -45,7 +45,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotIntegerTyped() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotIntegerTyped() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -66,7 +66,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMinimumValueSetIsExtended() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMinimumValueSetIsExtended() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -87,7 +87,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReturnEmptyOptionalWhenMinimumValueSetIsExtendedWithExclusiveMaximumSetting() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenMinimumValueSetIsExtendedWithExclusiveMaximumSetting() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -108,7 +108,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetIsLimitedWithExclusiveMaximumSetting() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetIsLimitedWithExclusiveMaximumSetting() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -132,7 +132,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetIsLimitedWithExclusiveMaximumSettingEdgeCase1() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetIsLimitedWithExclusiveMaximumSettingEdgeCase1() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -153,7 +153,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetIsLimitedWithExclusiveMaximumSettingEdgeCase2() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetIsLimitedWithExclusiveMaximumSettingEdgeCase2() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -174,7 +174,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForInt64() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForInt64() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -198,7 +198,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForInt32() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForInt32() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -222,7 +222,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForInteger() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForInteger() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -246,7 +246,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForNumber() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForNumber() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -270,7 +270,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForFloat() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForFloat() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -294,7 +294,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForDouble() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueSetGetsLimitedForDouble() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
@@ -318,7 +318,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueGetsSet() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueGetsSet() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             null,
@@ -342,7 +342,7 @@ public class NumberMinimumConstraintTest {
     }
 
     @Test
-    public void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueGetsRemoved() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenMinimumValueGetsRemoved() {
         // given
         NumberConstrainedValue oldRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,

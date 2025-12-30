@@ -36,7 +36,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
 @SuppressFBWarnings("RV_RETURN_VALUE_IGNORED_NO_SIDE_EFFECT")
-public class RunnerIntTest {
+class RunnerIntTest {
     @Mock
     private ReporterFactory reporterFactory;
 
@@ -69,13 +69,13 @@ public class RunnerIntTest {
     private Runner underTest;
 
     @BeforeEach
-    public void setUp() {
+    void setUp() {
         artifactDownloaderHandler = new ArtifactDownloaderHandler(downloaderFactory, apiFileResolver, downloadOptionsFactory);
         underTest = new Runner(optionsValidator, artifactDownloaderHandler, openApiFactory, checkerOptionsFactory, checker, reporterFactory, apiInfoFactory);
     }
 
     @Test
-    public void testOptionValidationWorksWhenMavenConfigurationIsSetWithoutOneRepo() {
+    void testOptionValidationWorksWhenMavenConfigurationIsSetWithoutOneRepo() {
         // given
         String oldApiPath = "oldApiPath";
         Options options = new Options();
@@ -115,7 +115,7 @@ public class RunnerIntTest {
     }
 
     @Test
-    public void testOptionValidationWorksWhenMavenConfigurationIsSetWithAllRepos() {
+    void testOptionValidationWorksWhenMavenConfigurationIsSetWithAllRepos() {
         // given
         String oldApiPath = "oldApiPath";
         Options options = new Options();

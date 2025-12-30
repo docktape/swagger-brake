@@ -24,7 +24,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class JsonReporterTest {
+class JsonReporterTest {
 
     @Mock
     private FileWriter fileWriter;
@@ -39,7 +39,7 @@ public class JsonReporterTest {
     private JsonReporter underTest;
 
     @Test
-    public void testReportShouldWorkCorrectly() throws IOException {
+    void testReportShouldWorkCorrectly() throws IOException {
         // given
         BreakingChange bc = mock(BreakingChange.class);
 
@@ -60,7 +60,7 @@ public class JsonReporterTest {
     }
 
     @Test
-    public void testCanReportShouldReturnTrueIfOutputFormatIsJson() {
+    void testCanReportShouldReturnTrueIfOutputFormatIsJson() {
         // given
         // when
         boolean result = underTest.canReport(OutputFormat.JSON);
@@ -69,7 +69,7 @@ public class JsonReporterTest {
     }
 
     @Test
-    public void testCanReportShouldReturnFalseIfOutputFormatIsHtml() {
+    void testCanReportShouldReturnFalseIfOutputFormatIsHtml() {
         // given
         // when
         boolean result = underTest.canReport(OutputFormat.HTML);

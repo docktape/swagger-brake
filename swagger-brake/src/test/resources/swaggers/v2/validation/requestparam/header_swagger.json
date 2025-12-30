@@ -21,9 +21,7 @@
             "name": "access_token",
             "description": "access_token",
             "required": false,
-            "schema": {
-              "type": "string"
-            }
+            "type": "string"
           }
         ],
         "responses": {

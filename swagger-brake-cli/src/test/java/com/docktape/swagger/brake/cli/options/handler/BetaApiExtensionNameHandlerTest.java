@@ -6,11 +6,11 @@ import com.docktape.swagger.brake.cli.options.CliOption;
 import com.docktape.swagger.brake.runner.Options;
 import org.junit.jupiter.api.Test;
 
-public class BetaApiExtensionNameHandlerTest {
-    private BetaApiExtensionNameHandler underTest = new BetaApiExtensionNameHandler();
+class BetaApiExtensionNameHandlerTest {
+    private final BetaApiExtensionNameHandler underTest = new BetaApiExtensionNameHandler();
 
     @Test
-    public void testHandleWorks() {
+    void testHandleWorks() {
         // given
         String propertyValue = "something";
         Options options = new Options();
@@ -21,7 +21,7 @@ public class BetaApiExtensionNameHandlerTest {
     }
 
     @Test
-    public void testHandleDoesNotDoAnythingIfPropertyIsNull() {
+    void testHandleDoesNotDoAnythingIfPropertyIsNull() {
         // given
         String propertyValue = null;
         Options options = new Options();
@@ -32,7 +32,7 @@ public class BetaApiExtensionNameHandlerTest {
     }
 
     @Test
-    public void testHandleDoesNotDoAnythingIfPropertyIsEmpty() {
+    void testHandleDoesNotDoAnythingIfPropertyIsEmpty() {
         // given
         String propertyValue = "";
         Options options = new Options();
@@ -43,7 +43,7 @@ public class BetaApiExtensionNameHandlerTest {
     }
 
     @Test
-    public void testHandleDoesNotDoAnythingIfPropertyIsBlank() {
+    void testHandleDoesNotDoAnythingIfPropertyIsBlank() {
         // given
         String propertyValue = "   ";
         Options options = new Options();
@@ -54,7 +54,7 @@ public class BetaApiExtensionNameHandlerTest {
     }
 
     @Test
-    public void testGetHandledCliOptionIsCorrect() {
+    void testGetHandledCliOptionIsCorrect() {
         // given
         // when
         CliOption result = underTest.getHandledCliOption();

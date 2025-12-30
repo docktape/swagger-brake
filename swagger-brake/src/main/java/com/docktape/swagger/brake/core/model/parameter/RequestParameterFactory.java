@@ -8,6 +8,7 @@ import com.docktape.swagger.brake.core.model.AttributeType;
 import com.docktape.swagger.brake.core.model.RequestParameterInType;
 import com.docktape.swagger.brake.core.model.service.RequestParameterInTypeResolver;
 import com.docktape.swagger.brake.core.model.transformer.SchemaTransformer;
+import com.docktape.swagger.brake.core.model.transformer.TypeResolver;
 import io.swagger.v3.oas.models.media.Schema;
 import io.swagger.v3.oas.models.parameters.Parameter;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Component;
 public class RequestParameterFactory {
     private final SchemaTransformer schemaTransformer;
     private final RequestParameterInTypeResolver requestParameterInTypeResolver;
+    private final TypeResolver typeResolver;
 
     /**
      * Creates a new @{@link RequestParameter} instance. Based on the incoming argument,
@@ -32,13 +34,8 @@ public class RequestParameterFactory {
         boolean required = BooleanUtils.toBoolean(from.getRequired());
         Schema swSchema = from.getSchema();
         if (swSchema != null) {
-            // Validation for detecting when a request parameter is used with an actual schema object
-            // even though its forbidden by the spec
-            // https://github.com/docktape/swagger-brake/issues/28
-            String type = swSchema.getType();
-            if (type == null) {
-                throw new IllegalStateException("schema does not have any type");
-            }
+            // Use TypeResolver to handle both OpenAPI 3.0.x single types and 3.1.x type arrays
+            String type = typeResolver.resolveType(swSchema);
             String format = swSchema.getFormat();
             AttributeType requestParameterType = AttributeType.from(type, format);
             com.docktape.swagger.brake.core.model.Schema transformedSchema = schemaTransformer.transform(swSchema);

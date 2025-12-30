@@ -1,5 +1,38 @@
 # Changelog
 
+## 2.7.0-SNAPSHOT
+### Migration Notes
+**No breaking changes—default behavior unchanged.** 
+
+The new `--strict-validation` option provides flexibility when customer specs are missing the `type` field on schemas. Use `--strict-validation=false` to allow default types (object/null) for comparison instead of failing. Default is `true`, which preserves current behavior.
+
+### New Features
+* Added `--strict-validation` CLI option (default: `true`) to handle specs missing type field by allowing default types (object/null) for comparison. This gives consumers flexibility to scan valid OpenAPI 3.1.x specs even when type fields are missing. See [CLI documentation](../cli/README.md#strict-validation-mode) for details.
+* Added OpenAPI 3.1.x specification support as a natural extension to the library:
+  * Type array support (e.g., `["string", "null"]`) in addition to OpenAPI 3.0.x single type strings
+  * Version-aware nullable handling: OpenAPI 3.0.x uses `nullable: true` flag, while 3.1.x uses type arrays with `"null"`
+  * Automatic version detection via `OpenApiVersion` enum and `OpenApiVersionContext`
+  * Union type detection with warnings for multiple non-null types
+  * Full backward compatibility with Swagger 2.0 and OpenAPI 3.0.x specifications
+* Added `--max-log-serialization-depth` CLI option (and `maxLogSerializationDepth` configuration) to control depth of object serialization in logs (1-20 range, default: 3). See [Configuration documentation](../configuration/README.md#configuring-log-serialization-depth) for details.
+
+### Bug Fixes
+* Fixed StackOverflowError when processing OpenAPI 3.1.x schemas with circular references (e.g., Business → AuctionNumber → Business)
+
+### Enhancements
+* Implemented `SafeSwaggerSerializer` with ThreadLocal-based cycle detection and depth limiting for safe logging of swagger-parser objects. Optional metrics logging available via `SWAGGER_BRAKE_ENABLE_METRICS_LOGGING=true` environment variable (see [Troubleshooting](../troubleshooting/README.md#debugging-logging-issues)).
+* Added version-aware type resolution with `OpenApiVersionContext` to differentiate between OpenAPI 3.0.x and 3.1.x specifications
+* Enhanced nullable type detection supporting both OpenAPI 3.0.x (`nullable` flag) and 3.1.x (type arrays with `"null"`)
+
+### Build
+* Added Checkstyle RegexpSingleline rule to prevent future usage of `toString()` on swagger-parser objects that could cause StackOverflowError
+* Added JaCoCo coverage verification for OpenAPI 3.1.x related classes (80% coverage requirement)
+
+### Testing
+* Added comprehensive integration test suite for OpenAPI 3.1.x features (type arrays, version detection, circular references)
+* Added backward compatibility regression test suite ensuring Swagger 2.0 and OpenAPI 3.0.x continue to work correctly
+* Spec v2 Validation/RequestParam, updated test files to reflect https://github.com/OAI/OpenAPI-Specification/blob/main/versions/2.0.md#parameter-object
+
 ## 2.5.0-SNAPSHOT
 TBD
 

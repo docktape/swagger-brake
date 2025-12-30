@@ -5,10 +5,10 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import org.junit.jupiter.api.Test;
 
-public class PathNormalizerTest {
+class PathNormalizerTest {
 
     @Test
-    public void testNormalizePathSlashesThrowsExceptionWhenNullGiven() {
+    void testNormalizePathSlashesThrowsExceptionWhenNullGiven() {
         // given
         // when
         assertThatThrownBy(() -> PathNormalizer.normalizePathSlashes(null)).isExactlyInstanceOf(IllegalArgumentException.class);
@@ -16,7 +16,7 @@ public class PathNormalizerTest {
     }
 
     @Test
-    public void testNormalizePathSlashesThrowsExceptionWhenBlankGiven() {
+    void testNormalizePathSlashesThrowsExceptionWhenBlankGiven() {
         // given
         // when
         assertThatThrownBy(() -> PathNormalizer.normalizePathSlashes("   ")).isExactlyInstanceOf(IllegalArgumentException.class);
@@ -24,7 +24,7 @@ public class PathNormalizerTest {
     }
 
     @Test
-    public void testNormalizePathSlashesAddsNecessaryLeadingSlashesIfMissing() {
+    void testNormalizePathSlashesAddsNecessaryLeadingSlashesIfMissing() {
         // given
         // when
         String result = PathNormalizer.normalizePathSlashes("test/path");
@@ -33,7 +33,7 @@ public class PathNormalizerTest {
     }
 
     @Test
-    public void testNormalizePathSlashesRemovesUnnecessaryTrailingSlashesIfAny() {
+    void testNormalizePathSlashesRemovesUnnecessaryTrailingSlashesIfAny() {
         // given
         // when
         String result = PathNormalizer.normalizePathSlashes("/test/path/");
@@ -42,7 +42,7 @@ public class PathNormalizerTest {
     }
 
     @Test
-    public void testNormalizePathSlashesRemovesAndAddsSlashesWhereNeeded() {
+    void testNormalizePathSlashesRemovesAndAddsSlashesWhereNeeded() {
         // given
         // when
         String result = PathNormalizer.normalizePathSlashes("test/path/");

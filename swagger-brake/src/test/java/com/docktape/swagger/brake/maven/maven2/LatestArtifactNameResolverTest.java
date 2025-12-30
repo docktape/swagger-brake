@@ -16,7 +16,7 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 @ExtendWith(MockitoExtension.class)
-public class LatestArtifactNameResolverTest {
+class LatestArtifactNameResolverTest {
     @Mock
     private Maven2UrlFactory urlFactory;
 
@@ -30,7 +30,7 @@ public class LatestArtifactNameResolverTest {
     private LatestArtifactNameResolver underTest;
 
     @Test
-    public void testResolveSnapshotShouldWorkProperly() {
+    void testResolveSnapshotShouldWorkProperly() {
         // given
         String latestVersion = "1.2.0-SNAPSHOT";
         String artifactId = "swagger-brake-example";
@@ -53,7 +53,7 @@ public class LatestArtifactNameResolverTest {
     }
 
     @Test
-    public void testResolveReleaseShouldWorkProperly() {
+    void testResolveReleaseShouldWorkProperly() {
         // given
         String latestVersion = "1.2.0";
         String artifactId = "swagger-brake-example";

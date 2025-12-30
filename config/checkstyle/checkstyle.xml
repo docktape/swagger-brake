@@ -7,6 +7,10 @@
     <property name="severity" value="error"/>
     <property name="fileExtensions" value="java"/>
 
+    <module name="SuppressionFilter">
+        <property name="file" value="${config_loc}/suppressions.xml"/>
+    </module>
+
     <module name="FileTabCharacter">
         <property name="eachLine" value="true"/>
     </module>
@@ -15,6 +19,13 @@
         <property name="max" value="180"/>
         <property name="ignorePattern" value="^package.*|^import.*|a href|href|http://|https://|ftp://"/>
     </module>
+
+    <!-- Prevent usage of toString() on swagger-parser objects to avoid StackOverflowError with circular references -->
+    <module name="RegexpSingleline">
+        <property name="format" value="io\.swagger\.v3\.oas\.models\..*\.toString\(\)"/>
+        <property name="message" value="Do not call toString() on swagger-parser objects (io.swagger.v3.oas.models.*). Use SafeSwaggerSerializer.serialize() instead to prevent StackOverflowError with circular references."/>
+    </module>
+
     <module name="TreeWalker">
         <module name="OuterTypeFilename"/>
         <module name="IllegalTokenText">
