@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class SwaggerBrakeVersion {
-    public static final SwaggerBrakeVersion V_LATEST_VERSION = new SwaggerBrakeVersion("2.6.0");
+    public static final SwaggerBrakeVersion V_LATEST_VERSION = new SwaggerBrakeVersion("2.7.0-SNAPSHOT");
 
     private final String version;
 

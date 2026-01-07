@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.8"
-        classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.21.0"
+        classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.22.0"
     }
 }
 apply plugin: 'base'

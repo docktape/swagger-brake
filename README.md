@@ -50,4 +50,9 @@ limitations under the License.
 ```
 
 ## Publishing
+
+### Snapshot
+`./gradlew clean publish jreleaserDeploy`
+
+### Release
 `./gradlew clean publish jreleaserFullRelease`
