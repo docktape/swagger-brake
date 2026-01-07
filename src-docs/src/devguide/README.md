@@ -18,13 +18,13 @@ For Maven:
 <dependency>
     <groupId>com.docktape</groupId>
     <artifactId>swagger-brake</artifactId>
-    <version>2.6.0</version>
+    <version>2.7.0</version>
 </dependency>
 ```
 
 For Gradle:
 ```groovy
-compile group: 'com.docktape', name: 'swagger-brake', version: '2.6.0'
+compile group: 'com.docktape', name: 'swagger-brake', version: '2.7.0'
 ```
 
 The entrypoint for the execution is the `com.docktape.swagger.brake.runner.Starter` class. There are several methods available:
