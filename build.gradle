@@ -37,7 +37,7 @@ subprojects {
     }
     
     jacoco {
-        toolVersion = "0.8.12"
+        toolVersion = "0.8.14"
     }
 
     dependencies {
@@ -47,7 +47,7 @@ subprojects {
         compileOnly "org.projectlombok:lombok:1.18.42"
         annotationProcessor "org.projectlombok:lombok:1.18.42"
 
-        implementation 'io.projectreactor:reactor-core:3.8.1'
+        implementation 'io.projectreactor:reactor-core:3.8.2'
 
         implementation 'com.google.guava:guava:33.5.0-jre'
         implementation "org.apache.commons:commons-collections4:4.5.0"
@@ -72,7 +72,7 @@ subprojects {
     }
 
     checkstyle {
-        toolVersion = '12.3.0'
+        toolVersion = '12.3.1'
     }
 
     tasks.withType(Checkstyle) {
