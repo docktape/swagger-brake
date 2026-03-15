@@ -10,7 +10,7 @@ buildscript {
     }
     dependencies {
         classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.8"
-        classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.22.0"
+        classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.23.0"
     }
 }
 apply plugin: 'base'
@@ -44,22 +44,22 @@ subprojects {
         compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}"
         testCompileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}"
 
-        compileOnly "org.projectlombok:lombok:1.18.42"
-        annotationProcessor "org.projectlombok:lombok:1.18.42"
+        compileOnly "org.projectlombok:lombok:1.18.44"
+        annotationProcessor "org.projectlombok:lombok:1.18.44"
 
-        implementation 'io.projectreactor:reactor-core:3.8.2'
+        implementation 'io.projectreactor:reactor-core:3.8.4'
 
         implementation 'com.google.guava:guava:33.5.0-jre'
         implementation "org.apache.commons:commons-collections4:4.5.0"
         implementation "org.apache.commons:commons-lang3:3.20.0"
-        implementation "org.springframework:spring-context:6.2.15"
-        implementation "org.springframework:spring-context:6.2.15"
+        implementation "org.springframework:spring-context:6.2.17"
+        implementation "org.springframework:spring-context:6.2.17"
         implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.19.2"
 
-        testImplementation "org.assertj:assertj-core:3.27.6"
-        testImplementation "org.springframework:spring-test:6.2.15"
-        testImplementation "org.mockito:mockito-core:5.21.0"
-        testImplementation "org.mockito:mockito-junit-jupiter:5.21.0"
+        testImplementation "org.assertj:assertj-core:3.27.7"
+        testImplementation "org.springframework:spring-test:6.2.17"
+        testImplementation "org.mockito:mockito-core:5.23.0"
+        testImplementation "org.mockito:mockito-junit-jupiter:5.23.0"
     }
 
     tasks.named('test') {
