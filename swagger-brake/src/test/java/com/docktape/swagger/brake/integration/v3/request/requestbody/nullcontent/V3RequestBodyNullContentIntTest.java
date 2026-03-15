@@ -16,7 +16,7 @@ class V3RequestBodyNullContentIntTest extends AbstractSwaggerBrakeIntTest {
     private static final String SPEC = "swaggers/v3/request/requestbody/nullcontent/swagger_3.1.json";
 
     @Test
-    void testRequestBodyWithNullContentDoesNotThrowNPE() {
+    void testRequestBodyWithNullContentDoesNotThrowNpe() {
         // given - a spec where requestBody has no 'content' field (content is null)
         // when
         Collection<BreakingChange> result = execute(SPEC, SPEC);
