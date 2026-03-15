@@ -1,0 +1,24 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "Test API",
+    "version": "1.0.0"
+  },
+  "components": {},
+  "paths": {
+    "/test": {
+      "post": {
+        "operationId": "testEndpoint",
+        "requestBody": {
+          "description": "A request body without content field",
+          "required": false
+        },
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
