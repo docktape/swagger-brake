@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.4.8"
+        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.5.0"
         classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.23.0"
     }
 }
@@ -47,17 +47,17 @@ subprojects {
         compileOnly "org.projectlombok:lombok:1.18.44"
         annotationProcessor "org.projectlombok:lombok:1.18.44"
 
-        implementation 'io.projectreactor:reactor-core:3.8.4'
+        implementation 'io.projectreactor:reactor-core:3.8.5'
 
-        implementation 'com.google.guava:guava:33.5.0-jre'
+        implementation 'com.google.guava:guava:33.6.0-jre'
         implementation "org.apache.commons:commons-collections4:4.5.0"
         implementation "org.apache.commons:commons-lang3:3.20.0"
-        implementation "org.springframework:spring-context:7.0.6"
-        implementation "org.springframework:spring-context:7.0.6"
+        implementation "org.springframework:spring-context:7.0.7"
+        implementation "org.springframework:spring-context:7.0.7"
         implementation "com.fasterxml.jackson.dataformat:jackson-dataformat-xml:2.19.2"
 
         testImplementation "org.assertj:assertj-core:3.27.7"
-        testImplementation "org.springframework:spring-test:7.0.6"
+        testImplementation "org.springframework:spring-test:7.0.7"
         testImplementation "org.mockito:mockito-core:5.23.0"
         testImplementation "org.mockito:mockito-junit-jupiter:5.23.0"
     }
@@ -72,7 +72,7 @@ subprojects {
     }
 
     checkstyle {
-        toolVersion = '13.3.0'
+        toolVersion = '13.4.0'
     }
 
     tasks.withType(Checkstyle) {
