@@ -44,8 +44,8 @@ subprojects {
         compileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}"
         testCompileOnly "com.github.spotbugs:spotbugs-annotations:${spotbugs.toolVersion.get()}"
 
-        compileOnly "org.projectlombok:lombok:1.18.44"
-        annotationProcessor "org.projectlombok:lombok:1.18.44"
+        compileOnly "org.projectlombok:lombok:1.18.46"
+        annotationProcessor "org.projectlombok:lombok:1.18.46"
 
         implementation 'io.projectreactor:reactor-core:3.8.5'
 

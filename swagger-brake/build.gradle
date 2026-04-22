@@ -9,10 +9,10 @@ repositories {
 }
 
 dependencies {
-    compileOnly "org.projectlombok:lombok:1.18.44"
-    annotationProcessor "org.projectlombok:lombok:1.18.44"
-    testCompileOnly "org.projectlombok:lombok:1.18.44"
-    testAnnotationProcessor "org.projectlombok:lombok:1.18.44"
+    compileOnly "org.projectlombok:lombok:1.18.46"
+    annotationProcessor "org.projectlombok:lombok:1.18.46"
+    testCompileOnly "org.projectlombok:lombok:1.18.46"
+    testAnnotationProcessor "org.projectlombok:lombok:1.18.46"
     
     implementation "org.apache.commons:commons-collections4:4.5.0"
     implementation "io.swagger.parser.v3:swagger-parser:2.1.35"
