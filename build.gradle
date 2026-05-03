@@ -9,8 +9,8 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.5.1"
-        classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.23.0"
+        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.5.4"
+        classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.24.0"
     }
 }
 apply plugin: 'base'
@@ -72,7 +72,7 @@ subprojects {
     }
 
     checkstyle {
-        toolVersion = '13.4.0'
+        toolVersion = '13.4.2'
     }
 
     tasks.withType(Checkstyle) {
