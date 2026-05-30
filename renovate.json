@@ -5,6 +5,7 @@
   ],
   "minimumReleaseAge": "30 days",
   "schedule": ["on monday"],
+  "updateNotScheduled": false,
   "vulnerabilityAlerts": {
     "minimumReleaseAge": "0 days",
     "enabled": true,
