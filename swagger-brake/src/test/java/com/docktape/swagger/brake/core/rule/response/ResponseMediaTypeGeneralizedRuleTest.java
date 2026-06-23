@@ -50,8 +50,8 @@ class ResponseMediaTypeGeneralizedRuleTest {
         Path oldPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(oldResponse), false, false);
         Path newPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(newResponse), false, false);
 
-        Specification oldApi = new Specification(List.of(oldPath));
-        Specification newApi = new Specification(List.of(newPath));
+        Specification oldApi = new Specification(List.of(oldPath), List.of());
+        Specification newApi = new Specification(List.of(newPath), List.of());
 
         // when
         Collection<ResponseMediaTypeGeneralizedBreakingChange> result = underTest.checkRule(oldApi, newApi);
@@ -77,8 +77,8 @@ class ResponseMediaTypeGeneralizedRuleTest {
         Path oldPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(response), false, false);
         Path newPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(response), false, false);
 
-        Specification oldApi = new Specification(List.of(oldPath));
-        Specification newApi = new Specification(List.of(newPath));
+        Specification oldApi = new Specification(List.of(oldPath), List.of());
+        Specification newApi = new Specification(List.of(newPath), List.of());
 
         // when
         Collection<ResponseMediaTypeGeneralizedBreakingChange> result = underTest.checkRule(oldApi, newApi);
@@ -106,8 +106,8 @@ class ResponseMediaTypeGeneralizedRuleTest {
         Path oldPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(oldResponse), false, false);
         Path newPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(newResponse), false, false);
 
-        Specification oldApi = new Specification(List.of(oldPath));
-        Specification newApi = new Specification(List.of(newPath));
+        Specification oldApi = new Specification(List.of(oldPath), List.of());
+        Specification newApi = new Specification(List.of(newPath), List.of());
 
         // when
         Collection<ResponseMediaTypeGeneralizedBreakingChange> result = underTest.checkRule(oldApi, newApi);
@@ -134,8 +134,8 @@ class ResponseMediaTypeGeneralizedRuleTest {
         Path oldPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(oldResponse), false, false);
         Path newPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(newResponse), false, false);
 
-        Specification oldApi = new Specification(List.of(oldPath));
-        Specification newApi = new Specification(List.of(newPath));
+        Specification oldApi = new Specification(List.of(oldPath), List.of());
+        Specification newApi = new Specification(List.of(newPath), List.of());
 
         // when
         Collection<ResponseMediaTypeGeneralizedBreakingChange> result = underTest.checkRule(oldApi, newApi);

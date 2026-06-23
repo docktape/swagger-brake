@@ -16,4 +16,5 @@ public class NumberConstrainedValue implements ConstrainedValue {
     private final BigDecimal minimum;
     private final boolean exclusiveMaximum;
     private final boolean exclusiveMinimum;
+    private final BigDecimal multipleOf;
 }

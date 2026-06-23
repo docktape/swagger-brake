@@ -45,6 +45,7 @@ public class RequestParameterFactory {
                 Boolean exclusiveMaximum = swSchema.getExclusiveMaximum();
                 BigDecimal minimum = swSchema.getMinimum();
                 Boolean exclusiveMinimum = swSchema.getExclusiveMinimum();
+                BigDecimal multipleOf = swSchema.getMultipleOf();
                 return NumberRequestParameter.builder()
                     .inType(inType)
                     .name(name)
@@ -56,6 +57,7 @@ public class RequestParameterFactory {
                     .exclusiveMaximum(BooleanUtils.toBoolean(exclusiveMaximum))
                     .minimum(minimum)
                     .exclusiveMinimum(BooleanUtils.toBoolean(exclusiveMinimum))
+                    .multipleOf(multipleOf)
                     .build();
             } else if (AttributeType.getStringTypes().contains(requestParameterType)) {
                 Integer maxLength = swSchema.getMaxLength();

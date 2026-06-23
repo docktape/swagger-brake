@@ -118,6 +118,7 @@ public class SchemaTransformer implements Transformer<io.swagger.v3.oas.models.m
         schemaBuilder.uniqueItems(swSchema.getUniqueItems());
         schemaBuilder.maximum(swSchema.getMaximum());
         schemaBuilder.minimum(swSchema.getMinimum());
+        schemaBuilder.multipleOf(swSchema.getMultipleOf());
         
         // Handle exclusive bounds based on OpenAPI version
         // In OpenAPI 3.0.x: exclusiveMaximum/exclusiveMinimum are Boolean modifiers, stored via getExclusiveMaximum()/getExclusiveMinimum()
