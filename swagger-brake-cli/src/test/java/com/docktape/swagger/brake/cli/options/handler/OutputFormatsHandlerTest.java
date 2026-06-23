@@ -79,4 +79,24 @@ class OutputFormatsHandlerTest {
         // then
         assertThat(options.getOutputFormats()).isEqualTo(of(OutputFormat.HTML, OutputFormat.JSON));
     }
+
+    @Test
+    void testHandleShouldSetFormatToGitHubActionsWhenPropertyValueIsGithubactions() {
+        // given
+        Options options = new Options();
+        // when
+        underTest.handle("githubactions", options);
+        // then
+        assertThat(options.getOutputFormats()).isEqualTo(of(OutputFormat.GITHUB_ACTIONS));
+    }
+
+    @Test
+    void testHandleShouldSetFormatToGitHubActionsWhenPropertyValueIsGithubActionsWithUnderscore() {
+        // given
+        Options options = new Options();
+        // when
+        underTest.handle("github_actions", options);
+        // then
+        assertThat(options.getOutputFormats()).isEqualTo(of(OutputFormat.GITHUB_ACTIONS));
+    }
 }
