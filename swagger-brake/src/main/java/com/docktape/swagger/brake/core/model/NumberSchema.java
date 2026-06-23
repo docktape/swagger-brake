@@ -14,7 +14,7 @@ public class NumberSchema extends Schema {
     private final BigDecimal maximum;
     private final BigDecimal minimum;
     private final BigDecimal multipleOf;
-    
+
     /**
      * Deprecated: Use {@link #exclusiveMaximumValue} instead.
      *
@@ -23,7 +23,7 @@ public class NumberSchema extends Schema {
      */
     @Deprecated
     private final boolean exclusiveMaximum;
-    
+
     /**
      * Deprecated: Use {@link #exclusiveMinimumValue} instead.
      *
@@ -32,13 +32,13 @@ public class NumberSchema extends Schema {
      */
     @Deprecated
     private final boolean exclusiveMinimum;
-    
+
     /**
      * The exclusive maximum value constraint (OpenAPI 3.1.x / JSON Schema Draft 2020-12).
      * If non-null, the value must be strictly less than this number.
      */
     private final BigDecimal exclusiveMaximumValue;
-    
+
     /**
      * The exclusive minimum value constraint (OpenAPI 3.1.x / JSON Schema Draft 2020-12).
      * If non-null, the value must be strictly greater than this number.
@@ -60,7 +60,7 @@ public class NumberSchema extends Schema {
     @Deprecated
     public NumberSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
                         BigDecimal maximum, BigDecimal minimum, boolean exclusiveMaximum, boolean exclusiveMinimum) {
-        super(type, enumValues, schemaAttributes, schema, null, null);
+        super(type, enumValues, schemaAttributes, schema, null, null, null);
         this.maximum = maximum;
         this.minimum = minimum;
         this.exclusiveMaximum = exclusiveMaximum;
@@ -102,7 +102,7 @@ public class NumberSchema extends Schema {
     public NumberSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
                         BigDecimal maximum, BigDecimal minimum, BigDecimal exclusiveMaximumValue, BigDecimal exclusiveMinimumValue,
                         BigDecimal multipleOf) {
-        super(type, enumValues, schemaAttributes, schema, null, null);
+        super(type, enumValues, schemaAttributes, schema, null, null, null);
         this.maximum = maximum;
         this.minimum = minimum;
         this.exclusiveMaximumValue = exclusiveMaximumValue;

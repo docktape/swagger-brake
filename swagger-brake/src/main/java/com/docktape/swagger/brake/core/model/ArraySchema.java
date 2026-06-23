@@ -27,7 +27,7 @@ public class ArraySchema extends Schema {
      */
     public ArraySchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes,
             Schema schema, Integer maxItems, Integer minItems, Boolean uniqueItems, String constValue) {
-        super(type, enumValues, schemaAttributes, schema, null, constValue);
+        super(type, enumValues, schemaAttributes, schema, null, constValue, null);
         this.maxItems = maxItems;
         this.minItems = minItems;
         this.uniqueItems = uniqueItems;

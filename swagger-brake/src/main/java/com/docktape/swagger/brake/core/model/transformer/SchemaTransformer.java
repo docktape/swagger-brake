@@ -176,6 +176,14 @@ public class SchemaTransformer implements Transformer<io.swagger.v3.oas.models.m
         if (constObj != null) {
             schemaBuilder.constValue(constObj.toString());
         }
+        Object additionalProperties = swSchema.getAdditionalProperties();
+        if (additionalProperties instanceof Boolean) {
+            schemaBuilder.additionalPropertiesAllowed((Boolean) additionalProperties);
+        } else if (additionalProperties instanceof io.swagger.v3.oas.models.media.Schema) {
+            // A schema as additionalProperties means additional properties are allowed (just constrained)
+            schemaBuilder.additionalPropertiesAllowed(Boolean.TRUE);
+        }
+        // null means unspecified, leave additionalPropertiesAllowed as null
         return schemaBuilder.build();
     }
 
