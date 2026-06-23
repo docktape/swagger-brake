@@ -1,0 +1,21 @@
+openapi: "3.0.1"
+info:
+  title: Petstore
+  version: "1.0"
+servers:
+  - url: https://staging.example.com/v1
+    description: Staging server
+paths:
+  /pets:
+    get:
+      summary: List all pets
+      operationId: listPets
+      responses:
+        "200":
+          description: A list of pets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string

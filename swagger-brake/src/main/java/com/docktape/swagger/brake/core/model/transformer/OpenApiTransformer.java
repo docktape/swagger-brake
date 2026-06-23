@@ -1,11 +1,15 @@
 package com.docktape.swagger.brake.core.model.transformer;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import com.docktape.swagger.brake.core.model.Path;
 import com.docktape.swagger.brake.core.model.Specification;
 import com.docktape.swagger.brake.core.model.store.*;
 import io.swagger.v3.oas.models.OpenAPI;
+import io.swagger.v3.oas.models.servers.Server;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -34,6 +38,18 @@ public class OpenApiTransformer implements Transformer<OpenAPI, Specification> {
         } finally {
             StoreProvider.clear();
         }
-        return new Specification(paths);
+        List<String> serverUrls = extractServerUrls(from);
+        return new Specification(paths, serverUrls);
+    }
+
+    private List<String> extractServerUrls(OpenAPI from) {
+        List<Server> servers = from.getServers();
+        if (servers == null) {
+            return Collections.emptyList();
+        }
+        return servers.stream()
+            .map(Server::getUrl)
+            .filter(url -> url != null)
+            .collect(Collectors.toList());
     }
 }

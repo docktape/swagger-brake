@@ -30,4 +30,5 @@ public class Options {
     private Set<String> ignoredBreakingChangeRules = Collections.emptySet();
     private Boolean strictValidation;
     private Integer maxLogSerializationDepth;
+    private Boolean serverUrlChangeEnabled;
 }
