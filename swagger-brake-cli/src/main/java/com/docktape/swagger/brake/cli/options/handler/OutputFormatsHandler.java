@@ -6,8 +6,10 @@ import static java.util.stream.Collectors.toSet;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
+import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.ImmutableSet;
 import com.docktape.swagger.brake.cli.options.CliOption;
 import com.docktape.swagger.brake.runner.Options;
@@ -19,6 +21,10 @@ import org.springframework.stereotype.Component;
 @Component
 @Slf4j
 public class OutputFormatsHandler implements CliOptionHandler {
+    private static final Map<String, String> FORMAT_ALIASES = ImmutableMap.of(
+        "GITHUBACTIONS", "GITHUB_ACTIONS"
+    );
+
     @Override
     public void handle(String optionValue, Options options) {
         Set<OutputFormat> formats = ImmutableSet.of(OutputFormat.STDOUT);
@@ -26,7 +32,8 @@ public class OutputFormatsHandler implements CliOptionHandler {
         if (!StringUtils.isBlank(optionValue)) {
             try {
                 String[] formatStrings = optionValue.split(",");
-                formats = Arrays.stream(formatStrings).map(String::trim).map(String::toUpperCase).map(OutputFormat::valueOf).collect(toSet());
+                formats = Arrays.stream(formatStrings).map(String::trim).map(String::toUpperCase)
+                    .map(s -> FORMAT_ALIASES.getOrDefault(s, s)).map(OutputFormat::valueOf).collect(toSet());
             } catch (IllegalArgumentException e) {
                 log.debug("Format cannot be resolved", e);
             }
