@@ -44,6 +44,7 @@ public class SchemaBuilder {
     private Set<String> extensibleEnum;
     private BigDecimal multipleOf;
     private String constValue;
+    private Boolean additionalPropertiesAllowed;
 
     public SchemaBuilder(String type) {
         this.type = type;
@@ -188,6 +189,16 @@ public class SchemaBuilder {
     }
 
     /**
+     * Sets whether additional properties are allowed.
+     * @param additionalPropertiesAllowed null means unspecified (treated as allowed), true means allowed, false means disallowed
+     * @return this builder
+     */
+    public SchemaBuilder additionalPropertiesAllowed(Boolean additionalPropertiesAllowed) {
+        this.additionalPropertiesAllowed = additionalPropertiesAllowed;
+        return this;
+    }
+
+    /**
      * Builds a {@link Schema} instance.
      * @return the constructed {@link Schema} instance.
      */
@@ -226,7 +237,7 @@ public class SchemaBuilder {
         } else if (AttributeType.getArrayTypes().contains(attributeType)) {
             return new ArraySchema(type, enumValues, schemaAttributes, schema, maxItems, minItems, uniqueItems, constValue);
         } else {
-            return new Schema(type, enumValues, schemaAttributes, schema, extensibleEnum, constValue);
+            return new Schema(type, enumValues, schemaAttributes, schema, extensibleEnum, constValue, additionalPropertiesAllowed);
         }
     }
 }

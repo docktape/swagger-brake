@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
 import lombok.ToString;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -21,7 +20,6 @@ import org.springframework.util.CollectionUtils;
 @Getter
 @EqualsAndHashCode
 @ToString
-@RequiredArgsConstructor
 public class Schema {
     public static final String LEVEL_DELIMITER_REPLACE_VALUE = "$";
     public static final String LEVEL_DELIMITER = ".";
@@ -31,6 +29,66 @@ public class Schema {
     private final Schema schema;
     private final Set<String> extensibleEnum;
     private final String constValue;
+    private final Boolean additionalPropertiesAllowed;
+
+    /**
+     * Constructs a Schema without extensibleEnum, constValue or additionalPropertiesAllowed.
+     * @param type the type
+     * @param enumValues the enum values
+     * @param schemaAttributes the schema attributes
+     * @param schema the nested schema
+     */
+    public Schema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema) {
+        this(type, enumValues, schemaAttributes, schema, null, null, null);
+    }
+
+    /**
+     * Constructs a Schema with extensibleEnum values.
+     * @param type the type
+     * @param enumValues the enum values
+     * @param schemaAttributes the schema attributes
+     * @param schema the nested schema
+     * @param extensibleEnum the x-extensible-enum values
+     */
+    public Schema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
+                  Set<String> extensibleEnum) {
+        this(type, enumValues, schemaAttributes, schema, extensibleEnum, null, null);
+    }
+
+    /**
+     * Constructs a Schema with extensibleEnum and constValue.
+     * @param type the type
+     * @param enumValues the enum values
+     * @param schemaAttributes the schema attributes
+     * @param schema the nested schema
+     * @param extensibleEnum the x-extensible-enum values
+     * @param constValue the const value (nullable)
+     */
+    public Schema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
+                  Set<String> extensibleEnum, String constValue) {
+        this(type, enumValues, schemaAttributes, schema, extensibleEnum, constValue, null);
+    }
+
+    /**
+     * Constructs a Schema with all fields.
+     * @param type the type
+     * @param enumValues the enum values
+     * @param schemaAttributes the schema attributes
+     * @param schema the nested schema
+     * @param extensibleEnum the x-extensible-enum values
+     * @param constValue the const value (nullable)
+     * @param additionalPropertiesAllowed null means unspecified (treated as allowed), true means allowed, false means disallowed
+     */
+    public Schema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
+                  Set<String> extensibleEnum, String constValue, Boolean additionalPropertiesAllowed) {
+        this.type = type;
+        this.enumValues = enumValues;
+        this.schemaAttributes = schemaAttributes;
+        this.schema = schema;
+        this.extensibleEnum = extensibleEnum;
+        this.constValue = constValue;
+        this.additionalPropertiesAllowed = additionalPropertiesAllowed;
+    }
 
     public Optional<Schema> getSchema() {
         return Optional.ofNullable(schema);
