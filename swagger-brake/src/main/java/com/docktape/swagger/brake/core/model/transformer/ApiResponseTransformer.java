@@ -1,5 +1,6 @@
 package com.docktape.swagger.brake.core.model.transformer;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -7,13 +8,16 @@ import java.util.Set;
 
 import com.docktape.swagger.brake.core.model.MediaType;
 import com.docktape.swagger.brake.core.model.Response;
+import com.docktape.swagger.brake.core.model.ResponseHeader;
 import com.docktape.swagger.brake.core.model.Schema;
 import com.docktape.swagger.brake.core.model.service.TypeRefNameResolver;
 import com.docktape.swagger.brake.core.model.store.ResponseStore;
 import com.docktape.swagger.brake.core.model.store.StoreProvider;
+import io.swagger.v3.oas.models.headers.Header;
 import io.swagger.v3.oas.models.media.Content;
 import io.swagger.v3.oas.models.responses.ApiResponse;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.stereotype.Component;
 
@@ -37,7 +41,29 @@ public class ApiResponseTransformer implements Transformer<Pair<String, ApiRespo
                 }
             }
         }
-        return new Response(from.getKey(), schemaRefs);
+        Map<String, ResponseHeader> headers = transformHeaders(from.getValue().getHeaders());
+        return new Response(from.getKey(), schemaRefs, headers);
+    }
+
+    private Map<String, ResponseHeader> transformHeaders(Map<String, Header> rawHeaders) {
+        if (rawHeaders == null || rawHeaders.isEmpty()) {
+            return Collections.emptyMap();
+        }
+        Map<String, ResponseHeader> result = new HashMap<>();
+        for (Map.Entry<String, Header> entry : rawHeaders.entrySet()) {
+            String name = entry.getKey();
+            Header header = entry.getValue();
+            boolean required = BooleanUtils.isTrue(header.getRequired());
+            String type = resolveHeaderType(header);
+            result.put(name, new ResponseHeader(name, required, type));
+        }
+        return result;
+    }
+
+    private String resolveHeaderType(Header header) {
+        return Optional.ofNullable(header.getSchema())
+            .map(io.swagger.v3.oas.models.media.Schema::getType)
+            .orElse("string");
     }
 
     /*
