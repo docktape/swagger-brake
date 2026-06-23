@@ -1,0 +1,21 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+servers:
+  - url: http://petstore.swagger.io/v1
+paths:
+  /pet:
+    post:
+      summary: Add a new pet
+      operationId: addPet
+      responses:
+        '201':
+          description: Pet created
+components:
+  schemas:
+    Pet:
+      type: object
+      properties:
+        name:
+          type: string
