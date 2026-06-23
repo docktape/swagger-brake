@@ -60,7 +60,7 @@ public class NumberSchema extends Schema {
     @Deprecated
     public NumberSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
                         BigDecimal maximum, BigDecimal minimum, boolean exclusiveMaximum, boolean exclusiveMinimum) {
-        super(type, enumValues, schemaAttributes, schema, null);
+        super(type, enumValues, schemaAttributes, schema, null, null);
         this.maximum = maximum;
         this.minimum = minimum;
         this.exclusiveMaximum = exclusiveMaximum;
@@ -102,7 +102,7 @@ public class NumberSchema extends Schema {
     public NumberSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
                         BigDecimal maximum, BigDecimal minimum, BigDecimal exclusiveMaximumValue, BigDecimal exclusiveMinimumValue,
                         BigDecimal multipleOf) {
-        super(type, enumValues, schemaAttributes, schema, null);
+        super(type, enumValues, schemaAttributes, schema, null, null);
         this.maximum = maximum;
         this.minimum = minimum;
         this.exclusiveMaximumValue = exclusiveMaximumValue;

@@ -41,11 +41,11 @@ class ResponseMediaTypeGeneralizedRuleTest {
 
         Map<MediaType, Schema> oldMediaTypes = new HashMap<>();
         oldMediaTypes.put(oldMediaType, schema);
-        Response oldResponse = new Response("200", oldMediaTypes);
+        Response oldResponse = new Response("200", oldMediaTypes, Collections.emptyMap());
 
         Map<MediaType, Schema> newMediaTypes = new HashMap<>();
         newMediaTypes.put(newMediaType, schema);
-        Response newResponse = new Response("200", newMediaTypes);
+        Response newResponse = new Response("200", newMediaTypes, Collections.emptyMap());
 
         Path oldPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(oldResponse), false, false);
         Path newPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(newResponse), false, false);
@@ -72,7 +72,7 @@ class ResponseMediaTypeGeneralizedRuleTest {
 
         Map<MediaType, Schema> mediaTypes = new HashMap<>();
         mediaTypes.put(mediaType, schema);
-        Response response = new Response("200", mediaTypes);
+        Response response = new Response("200", mediaTypes, Collections.emptyMap());
 
         Path oldPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(response), false, false);
         Path newPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(response), false, false);
@@ -96,12 +96,12 @@ class ResponseMediaTypeGeneralizedRuleTest {
 
         Map<MediaType, Schema> oldMediaTypes = new HashMap<>();
         oldMediaTypes.put(oldMediaType, schema);
-        Response oldResponse = new Response("200", oldMediaTypes);
+        Response oldResponse = new Response("200", oldMediaTypes, Collections.emptyMap());
 
         Map<MediaType, Schema> newMediaTypes = new HashMap<>();
         newMediaTypes.put(oldMediaType, schema);
         newMediaTypes.put(newGeneralMediaType, schema);
-        Response newResponse = new Response("200", newMediaTypes);
+        Response newResponse = new Response("200", newMediaTypes, Collections.emptyMap());
 
         Path oldPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(oldResponse), false, false);
         Path newPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(newResponse), false, false);
@@ -125,11 +125,11 @@ class ResponseMediaTypeGeneralizedRuleTest {
 
         Map<MediaType, Schema> oldMediaTypes = new HashMap<>();
         oldMediaTypes.put(oldMediaType, schema);
-        Response oldResponse = new Response("200", oldMediaTypes);
+        Response oldResponse = new Response("200", oldMediaTypes, Collections.emptyMap());
 
         Map<MediaType, Schema> newMediaTypes = new HashMap<>();
         newMediaTypes.put(newMediaType, schema);
-        Response newResponse = new Response("200", newMediaTypes);
+        Response newResponse = new Response("200", newMediaTypes, Collections.emptyMap());
 
         Path oldPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(oldResponse), false, false);
         Path newPath = new Path("/pets", HttpMethod.GET, null, Collections.emptyList(), List.of(newResponse), false, false);

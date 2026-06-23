@@ -30,6 +30,7 @@ public class Schema {
     private final Set<SchemaAttribute> schemaAttributes;
     private final Schema schema;
     private final Set<String> extensibleEnum;
+    private final String constValue;
 
     public Optional<Schema> getSchema() {
         return Optional.ofNullable(schema);

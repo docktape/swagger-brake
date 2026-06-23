@@ -22,10 +22,11 @@ public class StringSchema extends Schema {
      * @param maxLength the maxLength constraint
      * @param minLength the minLength constraint
      * @param extEnum the x-extensible-enum values
+     * @param constValue the const value (nullable)
      */
     public StringSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
-                        Integer maxLength, Integer minLength, Set<String> extEnum) {
-        super(type, enumValues, schemaAttributes, schema, extEnum);
+                        Integer maxLength, Integer minLength, Set<String> extEnum, String constValue) {
+        super(type, enumValues, schemaAttributes, schema, extEnum, constValue);
         this.maxLength = maxLength;
         this.minLength = minLength;
     }
