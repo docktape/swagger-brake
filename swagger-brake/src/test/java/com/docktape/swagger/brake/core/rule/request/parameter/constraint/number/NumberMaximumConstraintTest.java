@@ -20,7 +20,8 @@ class NumberMaximumConstraintTest {
             BigDecimal.ONE,
             BigDecimal.ZERO,
             true,
-            true
+            true,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -35,7 +36,8 @@ class NumberMaximumConstraintTest {
             BigDecimal.ONE,
             BigDecimal.ZERO,
             true,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = null;
         // when
@@ -51,13 +53,15 @@ class NumberMaximumConstraintTest {
             BigDecimal.ONE,
             BigDecimal.ZERO,
             true,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
             BigDecimal.ZERO,
             true,
-            true
+            true,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -72,13 +76,15 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN,
             BigDecimal.ZERO,
             true,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -93,13 +99,15 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
             BigDecimal.ZERO,
             true,
-            true
+            true,
+            null
         );
         ConstraintChange expected = new ConstraintChange(
             "exclusiveMaximum", false, true
@@ -117,13 +125,16 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN.add(BigDecimal.ONE),
             BigDecimal.ZERO,
             true,
-            true
+            true,
+            null
         );
+
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -138,14 +149,17 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.TEN.add(BigDecimal.ONE),
             BigDecimal.ZERO,
             true,
-            true
+            true,
+            null
         );
+
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
         // then
@@ -159,13 +173,15 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         ConstraintChange expected = new ConstraintChange(
             "maximum", BigDecimal.TEN, BigDecimal.ONE
@@ -183,13 +199,15 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         ConstraintChange expected = new ConstraintChange(
             "maximum", BigDecimal.TEN, BigDecimal.ONE
@@ -207,13 +225,15 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         ConstraintChange expected = new ConstraintChange(
             "maximum", BigDecimal.TEN, BigDecimal.ONE
@@ -231,13 +251,15 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         ConstraintChange expected = new ConstraintChange(
             "maximum", BigDecimal.TEN, BigDecimal.ONE
@@ -255,14 +277,18 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN.add(new BigDecimal("0.5")),
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
+
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE.add(new BigDecimal("0.5")),
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
+
         ConstraintChange expected = new ConstraintChange(
             "maximum", BigDecimal.TEN.add(new BigDecimal("0.5")), BigDecimal.ONE.add(new BigDecimal("0.5"))
         );
@@ -279,14 +305,18 @@ class NumberMaximumConstraintTest {
             BigDecimal.TEN.add(new BigDecimal("0.5")),
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
+
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE.add(new BigDecimal("0.5")),
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
+
         ConstraintChange expected = new ConstraintChange(
             "maximum", BigDecimal.TEN.add(new BigDecimal("0.5")), BigDecimal.ONE.add(new BigDecimal("0.5"))
         );
@@ -303,13 +333,15 @@ class NumberMaximumConstraintTest {
             null,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             BigDecimal.ONE,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         ConstraintChange expected = new ConstraintChange(
             "maximum", null, BigDecimal.ONE
@@ -327,13 +359,15 @@ class NumberMaximumConstraintTest {
             BigDecimal.ONE,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         NumberConstrainedValue newRequestParameter = new NumberConstrainedValue(
             null,
             BigDecimal.ZERO,
             false,
-            true
+            true,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);

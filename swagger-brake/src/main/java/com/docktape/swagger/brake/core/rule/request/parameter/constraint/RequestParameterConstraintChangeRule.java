@@ -72,7 +72,7 @@ public class RequestParameterConstraintChangeRule implements BreakingChangeRule<
             return new ArrayConstrainedValue(arSchema.getMaxItems(), arSchema.getMinItems(), arSchema.getUniqueItems());
         } else if (schema instanceof NumberSchema) {
             NumberSchema nuSchema = (NumberSchema) schema;
-            return new NumberConstrainedValue(nuSchema.getMaximum(), nuSchema.getMinimum(), nuSchema.isExclusiveMaximum(), nuSchema.isExclusiveMinimum());
+            return new NumberConstrainedValue(nuSchema.getMaximum(), nuSchema.getMinimum(), nuSchema.isExclusiveMaximum(), nuSchema.isExclusiveMinimum(), nuSchema.getMultipleOf());
         } else if (schema instanceof StringSchema) {
             StringSchema stSchema = (StringSchema) schema;
             return new StringConstrainedValue(stSchema.getMaxLength(), stSchema.getMinLength());
@@ -87,7 +87,8 @@ public class RequestParameterConstraintChangeRule implements BreakingChangeRule<
             return new ArrayConstrainedValue(arParameter.getMaxItems(), arParameter.getMinItems(), arParameter.getUniqueItems());
         } else if (parameter instanceof NumberRequestParameter) {
             NumberRequestParameter nuParameter = (NumberRequestParameter) parameter;
-            return new NumberConstrainedValue(nuParameter.getMaximum(), nuParameter.getMinimum(), nuParameter.isExclusiveMaximum(), nuParameter.isExclusiveMinimum());
+            return new NumberConstrainedValue(nuParameter.getMaximum(), nuParameter.getMinimum(),
+                nuParameter.isExclusiveMaximum(), nuParameter.isExclusiveMinimum(), nuParameter.getMultipleOf());
         } else if (parameter instanceof StringRequestParameter) {
             StringRequestParameter stParameter = (StringRequestParameter) parameter;
             return new StringConstrainedValue(stParameter.getMaxLength(), stParameter.getMinLength());

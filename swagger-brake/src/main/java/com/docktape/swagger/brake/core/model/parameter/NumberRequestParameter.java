@@ -19,6 +19,7 @@ public class NumberRequestParameter extends RequestParameter {
     private BigDecimal minimum;
     private boolean exclusiveMaximum;
     private boolean exclusiveMinimum;
+    private BigDecimal multipleOf;
 
     /**
      * Constructor to create an instance.
@@ -31,16 +32,19 @@ public class NumberRequestParameter extends RequestParameter {
      * @param minimum the minimum
      * @param exclusiveMaximum whether its exclusively maximized
      * @param exclusiveMinimum whether its exclusively minimized
+     * @param multipleOf the multipleOf constraint
      */
     public NumberRequestParameter(RequestParameterInType inType, String name,
                                   boolean required, Schema schema, AttributeType requestParameterType,
                                   BigDecimal maximum, BigDecimal minimum,
-                                  boolean exclusiveMaximum, boolean exclusiveMinimum) {
+                                  boolean exclusiveMaximum, boolean exclusiveMinimum,
+                                  BigDecimal multipleOf) {
         super(inType, name, required, schema, requestParameterType);
         this.maximum = maximum;
         this.minimum = minimum;
         this.exclusiveMaximum = exclusiveMaximum;
         this.exclusiveMinimum = exclusiveMinimum;
+        this.multipleOf = multipleOf;
     }
 
     /**

@@ -13,6 +13,7 @@ import lombok.ToString;
 public class NumberSchema extends Schema {
     private final BigDecimal maximum;
     private final BigDecimal minimum;
+    private final BigDecimal multipleOf;
     
     /**
      * Deprecated: Use {@link #exclusiveMaximumValue} instead.
@@ -67,6 +68,7 @@ public class NumberSchema extends Schema {
         // Convert boolean to numeric representation for backward compatibility
         this.exclusiveMaximumValue = exclusiveMaximum && maximum != null ? maximum : null;
         this.exclusiveMinimumValue = exclusiveMinimum && minimum != null ? minimum : null;
+        this.multipleOf = null;
     }
 
     /**
@@ -82,6 +84,24 @@ public class NumberSchema extends Schema {
      */
     public NumberSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
                         BigDecimal maximum, BigDecimal minimum, BigDecimal exclusiveMaximumValue, BigDecimal exclusiveMinimumValue) {
+        this(type, enumValues, schemaAttributes, schema, maximum, minimum, exclusiveMaximumValue, exclusiveMinimumValue, null);
+    }
+
+    /**
+     * Constructs a number schema with numeric exclusive bounds and a multipleOf constraint.
+     * @param type the type
+     * @param enumValues the enum values
+     * @param schemaAttributes the attributes
+     * @param schema the underlying schema
+     * @param maximum the maximum constraint
+     * @param minimum the minimum constraint
+     * @param exclusiveMaximumValue the exclusive maximum value (can be different from maximum)
+     * @param exclusiveMinimumValue the exclusive minimum value (can be different from minimum)
+     * @param multipleOf the multipleOf constraint
+     */
+    public NumberSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
+                        BigDecimal maximum, BigDecimal minimum, BigDecimal exclusiveMaximumValue, BigDecimal exclusiveMinimumValue,
+                        BigDecimal multipleOf) {
         super(type, enumValues, schemaAttributes, schema, null);
         this.maximum = maximum;
         this.minimum = minimum;
@@ -90,5 +110,6 @@ public class NumberSchema extends Schema {
         // Set boolean flags based on numeric values for backward compatibility
         this.exclusiveMaximum = exclusiveMaximumValue != null;
         this.exclusiveMinimum = exclusiveMinimumValue != null;
+        this.multipleOf = multipleOf;
     }
 }

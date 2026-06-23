@@ -41,6 +41,7 @@ public class SchemaBuilder {
     private BigDecimal exclusiveMaximumValue;
     private BigDecimal exclusiveMinimumValue;
     private Set<String> extensibleEnum;
+    private BigDecimal multipleOf;
 
     public SchemaBuilder(String type) {
         this.type = type;
@@ -160,6 +161,16 @@ public class SchemaBuilder {
     }
 
     /**
+     * Sets the multipleOf constraint.
+     * @param multipleOf the multipleOf value
+     * @return this builder
+     */
+    public SchemaBuilder multipleOf(BigDecimal multipleOf) {
+        this.multipleOf = multipleOf;
+        return this;
+    }
+
+    /**
      * Builds a {@link Schema} instance.
      * @return the constructed {@link Schema} instance.
      */
@@ -194,7 +205,7 @@ public class SchemaBuilder {
             BigDecimal effectiveExclusiveMin = exclusiveMinimumValue != null ? exclusiveMinimumValue
                 : (exclusiveMinimum && minimum != null ? minimum : null);
             return new NumberSchema(type, enumValues, schemaAttributes, schema, maximum, minimum,
-                effectiveExclusiveMax, effectiveExclusiveMin);
+                effectiveExclusiveMax, effectiveExclusiveMin, multipleOf);
         } else if (AttributeType.getArrayTypes().contains(attributeType)) {
             return new ArraySchema(type, enumValues, schemaAttributes, schema, maxItems, minItems, uniqueItems);
         } else {
