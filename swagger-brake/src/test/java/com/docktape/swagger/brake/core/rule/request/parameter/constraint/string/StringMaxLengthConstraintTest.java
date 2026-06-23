@@ -17,7 +17,8 @@ class StringMaxLengthConstraintTest {
         StringConstrainedValue oldRequestParameter = null;
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
             1,
-            1
+            1,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -30,7 +31,8 @@ class StringMaxLengthConstraintTest {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
-            1
+            1,
+            null
         );
         StringConstrainedValue newRequestParameter = null;
         // when
@@ -44,11 +46,13 @@ class StringMaxLengthConstraintTest {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
-            1
+            1,
+            null
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
             1,
-            1
+            1,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -61,11 +65,13 @@ class StringMaxLengthConstraintTest {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
-            1
+            1,
+            null
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
             2,
-            1
+            1,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -78,11 +84,13 @@ class StringMaxLengthConstraintTest {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             1,
-            1
+            1,
+            null
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
             null,
-            1
+            1,
+            null
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -95,11 +103,13 @@ class StringMaxLengthConstraintTest {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             2,
-            1
+            1,
+            null
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
             1,
-            1
+            1,
+            null
         );
         ConstraintChange expected = new ConstraintChange(
             "maxLength", 2, 1
@@ -115,11 +125,13 @@ class StringMaxLengthConstraintTest {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
             null,
-            1
+            1,
+            null
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
             1,
-            1
+            1,
+            null
         );
         ConstraintChange expected = new ConstraintChange(
             "maxLength", null, 1

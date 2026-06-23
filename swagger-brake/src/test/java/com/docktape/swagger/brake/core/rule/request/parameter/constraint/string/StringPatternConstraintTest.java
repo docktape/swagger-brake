@@ -8,17 +8,17 @@ import com.docktape.swagger.brake.core.rule.request.parameter.constraint.Constra
 import com.docktape.swagger.brake.core.rule.request.parameter.constraint.StringConstrainedValue;
 import org.junit.jupiter.api.Test;
 
-class StringMinLengthConstraintTest {
-    private StringMinLengthConstraint underTest = new StringMinLengthConstraint();
+class StringPatternConstraintTest {
+    private StringPatternConstraint underTest = new StringPatternConstraint();
 
     @Test
     void testValidateConstraintsShouldReturnEmptyOptionalWhenNullOldRequestParamIsGiven() {
         // given
         StringConstrainedValue oldRequestParameter = null;
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
-            1,
-            1,
-            null
+            null,
+            null,
+            "[a-z]+"
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -30,9 +30,9 @@ class StringMinLengthConstraintTest {
     void testValidateConstraintsShouldReturnEmptyOptionalWhenNullNewRequestParamIsGiven() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
-            1,
-            1,
-            null
+            null,
+            null,
+            "[a-z]+"
         );
         StringConstrainedValue newRequestParameter = null;
         // when
@@ -42,17 +42,17 @@ class StringMinLengthConstraintTest {
     }
 
     @Test
-    void testValidateConstraintsShouldReturnEmptyOptionalWhenRequestParameterIsNotStringTyped() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenPatternIsNotChanged() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
-            1,
-            1,
-            null
+            null,
+            null,
+            "[a-z]+"
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
-            1,
-            1,
-            null
+            null,
+            null,
+            "[a-z]+"
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -61,34 +61,15 @@ class StringMinLengthConstraintTest {
     }
 
     @Test
-    void testValidateConstraintsShouldReturnEmptyOptionalWhenMinLengthIsExtended() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenBothPatternsAreNull() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
-            1,
-            1,
+            null,
+            null,
             null
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
-            1,
-            0,
-            null
-        );
-        // when
-        Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
-        // then
-        assertThat(result).isNotPresent();
-    }
-
-    @Test
-    void testValidateConstraintsShouldReturnEmptyOptionalWhenMinLengthIsRemoved() {
-        // given
-        StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
-            1,
-            1,
-            null
-        );
-        StringConstrainedValue newRequestParameter = new StringConstrainedValue(
-            1,
+            null,
             null,
             null
         );
@@ -99,20 +80,39 @@ class StringMinLengthConstraintTest {
     }
 
     @Test
-    void testValidateConstraintsShouldReportConstraintChangeWhenMinLengthGetsLimited() {
+    void testValidateConstraintsShouldReturnEmptyOptionalWhenPatternIsRemoved() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
-            5,
-            1,
+            null,
+            null,
+            "[a-z]+"
+        );
+        StringConstrainedValue newRequestParameter = new StringConstrainedValue(
+            null,
+            null,
+            null
+        );
+        // when
+        Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
+        // then
+        assertThat(result).isNotPresent();
+    }
+
+    @Test
+    void testValidateConstraintsShouldReportConstraintChangeWhenPatternIsAdded() {
+        // given
+        StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
+            null,
+            null,
             null
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
-            5,
-            2,
-            null
+            null,
+            null,
+            "[a-z]+"
         );
         ConstraintChange expected = new ConstraintChange(
-            "minLength", 1, 2
+            "pattern", null, "[a-z]+"
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);
@@ -121,20 +121,20 @@ class StringMinLengthConstraintTest {
     }
 
     @Test
-    void testValidateConstraintsShouldReportConstraintChangeWhenMinLengthGetsSet() {
+    void testValidateConstraintsShouldReportConstraintChangeWhenPatternIsChanged() {
         // given
         StringConstrainedValue oldRequestParameter = new StringConstrainedValue(
-            1,
             null,
-            null
+            null,
+            "[a-z]+"
         );
         StringConstrainedValue newRequestParameter = new StringConstrainedValue(
-            1,
-            1,
-            null
+            null,
+            null,
+            "[A-Z]+"
         );
         ConstraintChange expected = new ConstraintChange(
-            "minLength", null, 1
+            "pattern", "[a-z]+", "[A-Z]+"
         );
         // when
         Optional<ConstraintChange> result = underTest.validateConstraints(oldRequestParameter, newRequestParameter);

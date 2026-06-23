@@ -75,7 +75,7 @@ public class RequestParameterConstraintChangeRule implements BreakingChangeRule<
             return new NumberConstrainedValue(nuSchema.getMaximum(), nuSchema.getMinimum(), nuSchema.isExclusiveMaximum(), nuSchema.isExclusiveMinimum(), nuSchema.getMultipleOf());
         } else if (schema instanceof StringSchema) {
             StringSchema stSchema = (StringSchema) schema;
-            return new StringConstrainedValue(stSchema.getMaxLength(), stSchema.getMinLength());
+            return new StringConstrainedValue(stSchema.getMaxLength(), stSchema.getMinLength(), stSchema.getPattern());
         } else {
             return new NoConstrainedValue();
         }
@@ -91,7 +91,7 @@ public class RequestParameterConstraintChangeRule implements BreakingChangeRule<
                 nuParameter.isExclusiveMaximum(), nuParameter.isExclusiveMinimum(), nuParameter.getMultipleOf());
         } else if (parameter instanceof StringRequestParameter) {
             StringRequestParameter stParameter = (StringRequestParameter) parameter;
-            return new StringConstrainedValue(stParameter.getMaxLength(), stParameter.getMinLength());
+            return new StringConstrainedValue(stParameter.getMaxLength(), stParameter.getMinLength(), stParameter.getPattern());
         } else {
             return new NoConstrainedValue();
         }

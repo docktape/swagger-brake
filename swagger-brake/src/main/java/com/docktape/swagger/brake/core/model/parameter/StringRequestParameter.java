@@ -15,6 +15,7 @@ import lombok.experimental.SuperBuilder;
 public class StringRequestParameter extends RequestParameter {
     private Integer maxLength;
     private Integer minLength;
+    private String pattern;
 
     /**
      * Constructor to create an instance.
@@ -25,12 +26,14 @@ public class StringRequestParameter extends RequestParameter {
      * @param requestParameterType the {@link AttributeType}
      * @param maxLength the maximum length
      * @param minLength the minimum length
+     * @param pattern the pattern constraint
      */
     public StringRequestParameter(RequestParameterInType inType, String name,
                                   boolean required, Schema schema, AttributeType requestParameterType,
-                                  Integer maxLength, Integer minLength) {
+                                  Integer maxLength, Integer minLength, String pattern) {
         super(inType, name, required, schema, requestParameterType);
         this.maxLength = maxLength;
         this.minLength = minLength;
+        this.pattern = pattern;
     }
 }

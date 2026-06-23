@@ -18,6 +18,7 @@ public class SchemaBuilder {
     private Schema schema;
     private Integer maxLength;
     private Integer minLength;
+    private String pattern;
     private Integer maxItems;
     private Integer minItems;
     private Boolean uniqueItems;
@@ -75,6 +76,11 @@ public class SchemaBuilder {
 
     public SchemaBuilder minLength(Integer minLength) {
         this.minLength = minLength;
+        return this;
+    }
+
+    public SchemaBuilder pattern(String pattern) {
+        this.pattern = pattern;
         return this;
     }
 
@@ -208,7 +214,7 @@ public class SchemaBuilder {
             schemaAttributes = new TreeSet<>(attributes);
         }
         if (AttributeType.getStringTypes().contains(attributeType)) {
-            return new StringSchema(type, enumValues, schemaAttributes, schema, maxLength, minLength, extensibleEnum, constValue);
+            return new StringSchema(type, enumValues, schemaAttributes, schema, maxLength, minLength, extensibleEnum, constValue, pattern);
         } else if (AttributeType.getNumberTypes().contains(attributeType)) {
             // Use numeric exclusive bounds if available, otherwise convert from boolean flags
             BigDecimal effectiveExclusiveMax = exclusiveMaximumValue != null ? exclusiveMaximumValue
