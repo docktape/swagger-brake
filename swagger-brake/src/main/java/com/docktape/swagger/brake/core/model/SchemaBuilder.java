@@ -42,6 +42,7 @@ public class SchemaBuilder {
     private BigDecimal exclusiveMinimumValue;
     private Set<String> extensibleEnum;
     private BigDecimal multipleOf;
+    private String constValue;
 
     public SchemaBuilder(String type) {
         this.type = type;
@@ -171,6 +172,16 @@ public class SchemaBuilder {
     }
 
     /**
+     * Sets the const value (OpenAPI 3.1.x / JSON Schema).
+     * @param constValue the const value (nullable)
+     * @return this builder
+     */
+    public SchemaBuilder constValue(String constValue) {
+        this.constValue = constValue;
+        return this;
+    }
+
+    /**
      * Builds a {@link Schema} instance.
      * @return the constructed {@link Schema} instance.
      */
@@ -197,7 +208,7 @@ public class SchemaBuilder {
             schemaAttributes = new TreeSet<>(attributes);
         }
         if (AttributeType.getStringTypes().contains(attributeType)) {
-            return new StringSchema(type, enumValues, schemaAttributes, schema, maxLength, minLength, extensibleEnum);
+            return new StringSchema(type, enumValues, schemaAttributes, schema, maxLength, minLength, extensibleEnum, constValue);
         } else if (AttributeType.getNumberTypes().contains(attributeType)) {
             // Use numeric exclusive bounds if available, otherwise convert from boolean flags
             BigDecimal effectiveExclusiveMax = exclusiveMaximumValue != null ? exclusiveMaximumValue
@@ -207,9 +218,9 @@ public class SchemaBuilder {
             return new NumberSchema(type, enumValues, schemaAttributes, schema, maximum, minimum,
                 effectiveExclusiveMax, effectiveExclusiveMin, multipleOf);
         } else if (AttributeType.getArrayTypes().contains(attributeType)) {
-            return new ArraySchema(type, enumValues, schemaAttributes, schema, maxItems, minItems, uniqueItems);
+            return new ArraySchema(type, enumValues, schemaAttributes, schema, maxItems, minItems, uniqueItems, constValue);
         } else {
-            return new Schema(type, enumValues, schemaAttributes, schema, extensibleEnum);
+            return new Schema(type, enumValues, schemaAttributes, schema, extensibleEnum, constValue);
         }
     }
 }

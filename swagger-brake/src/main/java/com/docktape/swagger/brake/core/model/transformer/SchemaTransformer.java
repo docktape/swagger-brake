@@ -172,6 +172,10 @@ public class SchemaTransformer implements Transformer<io.swagger.v3.oas.models.m
                 schemaBuilder.extensibleEnum(extEnumValues);
             }
         }
+        Object constObj = swSchema.getConst();
+        if (constObj != null) {
+            schemaBuilder.constValue(constObj.toString());
+        }
         return schemaBuilder.build();
     }
 
