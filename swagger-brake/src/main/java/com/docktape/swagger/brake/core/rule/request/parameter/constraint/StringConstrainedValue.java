@@ -12,4 +12,5 @@ import lombok.ToString;
 public class StringConstrainedValue implements ConstrainedValue {
     private final Integer maxLength;
     private final Integer minLength;
+    private final String pattern;
 }

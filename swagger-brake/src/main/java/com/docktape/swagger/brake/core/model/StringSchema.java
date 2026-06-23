@@ -12,6 +12,7 @@ import lombok.ToString;
 public class StringSchema extends Schema {
     private final Integer maxLength;
     private final Integer minLength;
+    private final String pattern;
 
     /**
      * Constructs a string schema.
@@ -23,11 +24,13 @@ public class StringSchema extends Schema {
      * @param minLength the minLength constraint
      * @param extEnum the x-extensible-enum values
      * @param constValue the const value (nullable)
+     * @param pattern the pattern constraint
      */
     public StringSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
-                        Integer maxLength, Integer minLength, Set<String> extEnum, String constValue) {
+                        Integer maxLength, Integer minLength, Set<String> extEnum, String constValue, String pattern) {
         super(type, enumValues, schemaAttributes, schema, extEnum, constValue);
         this.maxLength = maxLength;
         this.minLength = minLength;
+        this.pattern = pattern;
     }
 }

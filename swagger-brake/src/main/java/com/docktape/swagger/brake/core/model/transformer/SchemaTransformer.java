@@ -113,6 +113,7 @@ public class SchemaTransformer implements Transformer<io.swagger.v3.oas.models.m
         SchemaBuilder schemaBuilder = new SchemaBuilder(schemaType);
         schemaBuilder.maxLength(swSchema.getMaxLength());
         schemaBuilder.minLength(swSchema.getMinLength());
+        schemaBuilder.pattern(swSchema.getPattern());
         schemaBuilder.maxItems(swSchema.getMaxItems());
         schemaBuilder.minItems(swSchema.getMinItems());
         schemaBuilder.uniqueItems(swSchema.getUniqueItems());

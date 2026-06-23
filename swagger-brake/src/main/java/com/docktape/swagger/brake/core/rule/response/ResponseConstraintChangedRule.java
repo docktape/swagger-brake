@@ -83,7 +83,7 @@ public class ResponseConstraintChangedRule implements BreakingChangeRule<Respons
             return new NumberConstrainedValue(nuSchema.getMaximum(), nuSchema.getMinimum(), nuSchema.isExclusiveMaximum(), nuSchema.isExclusiveMinimum(), nuSchema.getMultipleOf());
         } else if (schema instanceof StringSchema) {
             StringSchema stSchema = (StringSchema) schema;
-            return new StringConstrainedValue(stSchema.getMaxLength(), stSchema.getMinLength());
+            return new StringConstrainedValue(stSchema.getMaxLength(), stSchema.getMinLength(), stSchema.getPattern());
         } else {
             return new NoConstrainedValue();
         }

@@ -62,6 +62,7 @@ public class RequestParameterFactory {
             } else if (AttributeType.getStringTypes().contains(requestParameterType)) {
                 Integer maxLength = swSchema.getMaxLength();
                 Integer minLength = swSchema.getMinLength();
+                String pattern = swSchema.getPattern();
                 return StringRequestParameter.builder()
                     .inType(inType)
                     .name(name)
@@ -71,6 +72,7 @@ public class RequestParameterFactory {
                     .defaultValue(defaultValue)
                     .maxLength(maxLength)
                     .minLength(minLength)
+                    .pattern(pattern)
                     .build();
             } else if (AttributeType.getArrayTypes().contains(requestParameterType)) {
                 Integer maxItems = swSchema.getMaxItems();
