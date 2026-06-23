@@ -3,6 +3,7 @@ package com.docktape.swagger.brake.core.model;
 import java.math.BigDecimal;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Set;
 import java.util.TreeSet;
 
 import org.apache.commons.lang3.BooleanUtils;
@@ -39,6 +40,7 @@ public class SchemaBuilder {
 
     private BigDecimal exclusiveMaximumValue;
     private BigDecimal exclusiveMinimumValue;
+    private Set<String> extensibleEnum;
 
     public SchemaBuilder(String type) {
         this.type = type;
@@ -148,6 +150,16 @@ public class SchemaBuilder {
     }
 
     /**
+     * Sets the x-extensible-enum values.
+     * @param values the x-extensible-enum values
+     * @return this builder
+     */
+    public SchemaBuilder extensibleEnum(Set<String> values) {
+        this.extensibleEnum = values;
+        return this;
+    }
+
+    /**
      * Builds a {@link Schema} instance.
      * @return the constructed {@link Schema} instance.
      */
@@ -174,19 +186,19 @@ public class SchemaBuilder {
             schemaAttributes = new TreeSet<>(attributes);
         }
         if (AttributeType.getStringTypes().contains(attributeType)) {
-            return new StringSchema(type, enumValues, schemaAttributes, schema, maxLength, minLength);
+            return new StringSchema(type, enumValues, schemaAttributes, schema, maxLength, minLength, extensibleEnum);
         } else if (AttributeType.getNumberTypes().contains(attributeType)) {
             // Use numeric exclusive bounds if available, otherwise convert from boolean flags
-            BigDecimal effectiveExclusiveMax = exclusiveMaximumValue != null ? exclusiveMaximumValue 
+            BigDecimal effectiveExclusiveMax = exclusiveMaximumValue != null ? exclusiveMaximumValue
                 : (exclusiveMaximum && maximum != null ? maximum : null);
             BigDecimal effectiveExclusiveMin = exclusiveMinimumValue != null ? exclusiveMinimumValue
                 : (exclusiveMinimum && minimum != null ? minimum : null);
-            return new NumberSchema(type, enumValues, schemaAttributes, schema, maximum, minimum, 
+            return new NumberSchema(type, enumValues, schemaAttributes, schema, maximum, minimum,
                 effectiveExclusiveMax, effectiveExclusiveMin);
         } else if (AttributeType.getArrayTypes().contains(attributeType)) {
             return new ArraySchema(type, enumValues, schemaAttributes, schema, maxItems, minItems, uniqueItems);
         } else {
-            return new Schema(type, enumValues, schemaAttributes, schema);
+            return new Schema(type, enumValues, schemaAttributes, schema, extensibleEnum);
         }
     }
 }

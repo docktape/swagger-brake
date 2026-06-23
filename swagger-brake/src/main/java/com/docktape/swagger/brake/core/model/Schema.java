@@ -29,6 +29,7 @@ public class Schema {
     private final Set<String> enumValues;
     private final Set<SchemaAttribute> schemaAttributes;
     private final Schema schema;
+    private final Set<String> extensibleEnum;
 
     public Optional<Schema> getSchema() {
         return Optional.ofNullable(schema);
@@ -45,6 +46,45 @@ public class Schema {
         }
         Collection<String> result = internalGetEnums(schemaAttrs, "");
         result.addAll(Optional.ofNullable(schema).map(Schema::getEnumValues).orElse(enumValues));
+        return result;
+    }
+
+    /**
+     * Returns all the x-extensible-enum values with attribute names recursively within the schema.
+     * @return map from attribute name (leveled) to its x-extensible-enum values.
+     */
+    public Map<String, Set<String>> getXExtensibleEnums() {
+        Collection<SchemaAttribute> schemaAttrs = schemaAttributes;
+        if (CollectionUtils.isEmpty(schemaAttrs)) {
+            schemaAttrs = Optional.ofNullable(schema).map(Schema::getSchemaAttributes).orElse(Collections.emptySet());
+        }
+        Map<String, Set<String>> result = internalGetXExtensibleEnums(schemaAttrs, "");
+        Set<String> rootExtEnum = Optional.ofNullable(schema)
+            .map(Schema::getExtensibleEnum)
+            .orElse(extensibleEnum);
+        if (rootExtEnum != null && !rootExtEnum.isEmpty()) {
+            result.put("", rootExtEnum);
+        }
+        return result;
+    }
+
+    private Map<String, Set<String>> internalGetXExtensibleEnums(Collection<SchemaAttribute> schemaAttributes, String levelName) {
+        Map<String, Set<String>> result = new HashMap<>();
+        for (SchemaAttribute schemaAttribute : schemaAttributes) {
+            Schema childSchema = schemaAttribute.getSchema();
+            if (childSchema != null) {
+                String attrName = generateLeveledName(schemaAttribute.getName(), levelName);
+                Set<String> extEnum = childSchema.getExtensibleEnum();
+                if (extEnum != null && !extEnum.isEmpty()) {
+                    result.put(attrName, extEnum);
+                }
+                Collection<SchemaAttribute> childSchemaAttributes = childSchema.getSchemaAttributes();
+                if (isEmpty(childSchemaAttributes)) {
+                    childSchemaAttributes = childSchema.getSchema().map(Schema::getSchemaAttributes).orElse(Collections.emptySet());
+                }
+                result.putAll(internalGetXExtensibleEnums(childSchemaAttributes, attrName));
+            }
+        }
         return result;
     }
 

@@ -59,7 +59,7 @@ public class NumberSchema extends Schema {
     @Deprecated
     public NumberSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
                         BigDecimal maximum, BigDecimal minimum, boolean exclusiveMaximum, boolean exclusiveMinimum) {
-        super(type, enumValues, schemaAttributes, schema);
+        super(type, enumValues, schemaAttributes, schema, null);
         this.maximum = maximum;
         this.minimum = minimum;
         this.exclusiveMaximum = exclusiveMaximum;
@@ -68,7 +68,7 @@ public class NumberSchema extends Schema {
         this.exclusiveMaximumValue = exclusiveMaximum && maximum != null ? maximum : null;
         this.exclusiveMinimumValue = exclusiveMinimum && minimum != null ? minimum : null;
     }
-    
+
     /**
      * Constructs a number schema with numeric exclusive bounds (OpenAPI 3.1.x).
      * @param type the type
@@ -82,7 +82,7 @@ public class NumberSchema extends Schema {
      */
     public NumberSchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema,
                         BigDecimal maximum, BigDecimal minimum, BigDecimal exclusiveMaximumValue, BigDecimal exclusiveMinimumValue) {
-        super(type, enumValues, schemaAttributes, schema);
+        super(type, enumValues, schemaAttributes, schema, null);
         this.maximum = maximum;
         this.minimum = minimum;
         this.exclusiveMaximumValue = exclusiveMaximumValue;

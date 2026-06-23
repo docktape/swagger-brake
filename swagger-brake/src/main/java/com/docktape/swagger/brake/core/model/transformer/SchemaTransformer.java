@@ -157,6 +157,19 @@ public class SchemaTransformer implements Transformer<io.swagger.v3.oas.models.m
             List<String> enumValues = rawEnums.stream().filter(Objects::nonNull).map(Object::toString).toList();
             schemaBuilder.enumValues(enumValues);
         }
+        Map<String, Object> extensions = swSchema.getExtensions();
+        if (extensions != null) {
+            Object extEnumRaw = extensions.get("x-extensible-enum");
+            if (extEnumRaw instanceof List) {
+                java.util.Set<String> extEnumValues = new java.util.LinkedHashSet<>();
+                for (Object item : (List<?>) extEnumRaw) {
+                    if (item != null) {
+                        extEnumValues.add(item.toString());
+                    }
+                }
+                schemaBuilder.extensibleEnum(extEnumValues);
+            }
+        }
         return schemaBuilder.build();
     }
 
