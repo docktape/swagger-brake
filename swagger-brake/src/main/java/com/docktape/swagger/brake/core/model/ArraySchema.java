@@ -25,7 +25,7 @@ public class ArraySchema extends Schema {
      * @param uniqueItems the uniqueItems constraint
      */
     public ArraySchema(String type, Set<String> enumValues, Set<SchemaAttribute> schemaAttributes, Schema schema, Integer maxItems, Integer minItems, Boolean uniqueItems) {
-        super(type, enumValues, schemaAttributes, schema);
+        super(type, enumValues, schemaAttributes, schema, null);
         this.maxItems = maxItems;
         this.minItems = minItems;
         this.uniqueItems = uniqueItems;
