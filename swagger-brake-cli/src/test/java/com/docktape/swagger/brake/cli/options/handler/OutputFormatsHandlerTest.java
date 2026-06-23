@@ -99,4 +99,14 @@ class OutputFormatsHandlerTest {
         // then
         assertThat(options.getOutputFormats()).isEqualTo(of(OutputFormat.GITHUB_ACTIONS));
     }
+
+    @Test
+    void testHandleShouldSetFormatToMarkdownWhenPropertyValueIsMarkdown() {
+        // given
+        Options options = new Options();
+        // when
+        underTest.handle("markdown", options);
+        // then
+        assertThat(options.getOutputFormats()).isEqualTo(of(OutputFormat.MARKDOWN));
+    }
 }
