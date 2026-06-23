@@ -109,4 +109,14 @@ class OutputFormatsHandlerTest {
         // then
         assertThat(options.getOutputFormats()).isEqualTo(of(OutputFormat.MARKDOWN));
     }
+
+    @Test
+    void testHandleShouldSetFormatToJunitWhenPropertyValueIsJunit() {
+        // given
+        Options options = new Options();
+        // when
+        underTest.handle("junit", options);
+        // then
+        assertThat(options.getOutputFormats()).isEqualTo(of(OutputFormat.JUNIT));
+    }
 }
