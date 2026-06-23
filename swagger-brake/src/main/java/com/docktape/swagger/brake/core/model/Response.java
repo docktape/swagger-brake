@@ -16,6 +16,7 @@ import lombok.ToString;
 public class Response {
     private final String code;
     private final Map<MediaType, Schema> mediaTypes;
+    private final Map<String, ResponseHeader> headers;
 
     public Optional<Schema> getSchemaByMediaType(MediaType mediaType) {
         return Optional.ofNullable(mediaTypes.get(mediaType));

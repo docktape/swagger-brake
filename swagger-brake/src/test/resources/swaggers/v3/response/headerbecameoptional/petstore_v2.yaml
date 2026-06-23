@@ -1,0 +1,25 @@
+openapi: "3.0.0"
+info:
+  version: 1.0.0
+  title: Swagger Petstore
+servers:
+  - url: http://petstore.swagger.io/v1
+paths:
+  /pet:
+    get:
+      summary: Get a pet
+      operationId: getPet
+      responses:
+        '200':
+          description: Successful response
+          headers:
+            X-Rate-Limit:
+              required: false
+              schema:
+                type: integer
+            X-Optional-Header:
+              required: false
+              schema:
+                type: string
+components:
+  schemas: {}
