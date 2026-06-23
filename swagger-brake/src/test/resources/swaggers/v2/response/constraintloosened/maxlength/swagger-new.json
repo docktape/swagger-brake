@@ -1,0 +1,50 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Swagger Petstore"
+  },
+  "host": "petstore.swagger.io",
+  "basePath": "/v2",
+  "schemes": [
+    "https"
+  ],
+  "paths": {
+    "/store/order/{orderId}": {
+      "get": {
+        "operationId": "getOrderById",
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "orderId",
+            "in": "path",
+            "required": true,
+            "type": "integer",
+            "format": "int64"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "successful operation",
+            "schema": {
+              "$ref": "#/definitions/Order"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "Order": {
+      "type": "object",
+      "properties": {
+        "status": {
+          "type": "string",
+          "maxLength": 20
+        }
+      }
+    }
+  }
+}
