@@ -15,6 +15,7 @@ import lombok.ToString;
 @ToString
 public class Request {
     private final Map<MediaType, Schema> mediaTypes;
+    private final boolean required;
 
     public Optional<Schema> getSchemaByMediaType(MediaType mediaType) {
         return Optional.ofNullable(mediaTypes.get(mediaType));
