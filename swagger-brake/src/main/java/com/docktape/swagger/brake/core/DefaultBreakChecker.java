@@ -2,7 +2,9 @@ package com.docktape.swagger.brake.core;
 
 import static java.util.stream.Collectors.toList;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
 
 import com.docktape.swagger.brake.core.model.Specification;
 import com.docktape.swagger.brake.core.rule.BreakingChangeRule;
@@ -32,9 +34,16 @@ class DefaultBreakChecker implements BreakChecker {
         if (newApi == null) {
             throw new IllegalArgumentException("newApi must be provided");
         }
+        Specification webhookOldSpec = new Specification(oldApi.getWebhooks(), Collections.emptyList(), Collections.emptyList());
+        Specification webhookNewSpec = new Specification(newApi.getWebhooks(), Collections.emptyList(), Collections.emptyList());
         return rules.parallelStream()
-                .map(rule -> rule.checkRule(oldApi, newApi))
-                .flatMap(Collection::stream)
+                .flatMap(rule -> {
+                    Collection<? extends BreakingChange> pathChanges = rule.checkRule(oldApi, newApi);
+                    Collection<? extends BreakingChange> webhookChanges = rule.checkRule(webhookOldSpec, webhookNewSpec);
+                    Collection<BreakingChange> combined = new ArrayList<>(pathChanges);
+                    combined.addAll(webhookChanges);
+                    return combined.stream();
+                })
                 .sorted(Comparator.comparing(bc -> bc.getClass().getSimpleName()))
                 .collect(toList());
     }
