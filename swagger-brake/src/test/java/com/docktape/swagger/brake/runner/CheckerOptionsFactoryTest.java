@@ -46,4 +46,43 @@ class CheckerOptionsFactoryTest {
         // then
         assertThat(result.isDeprecatedApiDeletionAllowed()).isFalse();
     }
+
+    @Test
+    void testCreateShouldLeaveFalseForServerUrlChangeEnabledWhenNullOptionGiven() {
+        // given
+        Options options = new Options();
+        options.setServerUrlChangeEnabled(null);
+
+        // when
+        CheckerOptions result = underTest.create(options);
+
+        // then
+        assertThat(result.isServerUrlChangeEnabled()).isFalse();
+    }
+
+    @Test
+    void testCreateShouldSetTrueForServerUrlChangeEnabledWhenTrueOptionGiven() {
+        // given
+        Options options = new Options();
+        options.setServerUrlChangeEnabled(true);
+
+        // when
+        CheckerOptions result = underTest.create(options);
+
+        // then
+        assertThat(result.isServerUrlChangeEnabled()).isTrue();
+    }
+
+    @Test
+    void testCreateShouldSetFalseForServerUrlChangeEnabledWhenFalseOptionGiven() {
+        // given
+        Options options = new Options();
+        options.setServerUrlChangeEnabled(false);
+
+        // when
+        CheckerOptions result = underTest.create(options);
+
+        // then
+        assertThat(result.isServerUrlChangeEnabled()).isFalse();
+    }
 }

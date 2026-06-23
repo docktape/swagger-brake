@@ -13,6 +13,7 @@ public class CheckerOptions {
     private boolean strictValidation = true;
     private int maxLogSerializationDepth = 3;
     private int maxSchemaTransformationDepth = 50;
+    private boolean serverUrlChangeEnabled = false;
 
     public void setMaxLogSerializationDepth(int maxLogSerializationDepth) {
         if (maxLogSerializationDepth < 1 || maxLogSerializationDepth > 20) {

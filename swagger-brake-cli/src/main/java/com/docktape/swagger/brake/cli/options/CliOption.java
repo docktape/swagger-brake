@@ -34,7 +34,11 @@ public enum CliOption {
     /**
      * Maximum depth for log serialization of Swagger/OpenAPI objects to prevent StackOverflowError with circular references.
      */
-    MAX_LOG_SERIALIZATION_DEPTH("max-log-serialization-depth");
+    MAX_LOG_SERIALIZATION_DEPTH("max-log-serialization-depth"),
+    /**
+     * Whether to enable detection of server URL changes. Defaults to false.
+     */
+    SERVER_URL_CHANGE_ENABLED("server-url-change-enabled");
 
     private final String cliOptionName;
 

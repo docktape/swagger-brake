@@ -20,6 +20,7 @@ public class CheckerOptionsFactory {
         checkerOptions.setExcludedPaths(options.getExcludedPaths());
         checkerOptions.setStrictValidation(isStrictValidationEnabled(options));
         checkerOptions.setMaxLogSerializationDepth(getMaxLogSerializationDepth(options, checkerOptions.getMaxLogSerializationDepth()));
+        checkerOptions.setServerUrlChangeEnabled(isServerUrlChangeEnabled(options));
         return checkerOptions;
     }
 
@@ -38,5 +39,9 @@ public class CheckerOptionsFactory {
     private int getMaxLogSerializationDepth(Options options, int defaultValue) {
         Integer maxDepth = options.getMaxLogSerializationDepth();
         return maxDepth != null ? maxDepth : defaultValue;
+    }
+
+    private boolean isServerUrlChangeEnabled(Options options) {
+        return BooleanUtils.toBooleanDefaultIfNull(options.getServerUrlChangeEnabled(), false);
     }
 }

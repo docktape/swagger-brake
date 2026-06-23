@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.core.model;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Optional;
 
 import lombok.EqualsAndHashCode;
@@ -14,6 +15,7 @@ import lombok.ToString;
 @ToString
 public class Specification {
     private final Collection<Path> paths;
+    private final List<String> serverUrls;
 
     public Optional<Path> getPath(Path path) {
         return getPath(path.getPath(), path.getMethod());
