@@ -12,6 +12,7 @@ import java.util.Set;
 import static java.util.stream.Collectors.toSet;
 
 import org.apache.commons.collections4.CollectionUtils;
+import org.apache.commons.lang3.BooleanUtils;
 import static org.apache.commons.lang3.StringUtils.isBlank;
 import static org.apache.commons.lang3.StringUtils.isNotBlank;
 import org.springframework.stereotype.Component;
@@ -212,7 +213,8 @@ public class SchemaTransformer implements Transformer<io.swagger.v3.oas.models.m
                 Boolean deprecatedInSchema = newInternalSchema.getDeprecated();
                 boolean deprecated = deprecatedInSchema == null ? false : deprecatedInSchema;
                 boolean required = requiredAttributes.contains(attributeName);
-                result.add(new SchemaAttribute(attributeName, schema, required, deprecated));
+                boolean nullable = BooleanUtils.isTrue(newInternalSchema.getNullable());
+                result.add(new SchemaAttribute(attributeName, schema, required, deprecated, nullable));
             } finally {
                 SchemaTransformationContext.exitSchema(newInternalSchema);
             }
