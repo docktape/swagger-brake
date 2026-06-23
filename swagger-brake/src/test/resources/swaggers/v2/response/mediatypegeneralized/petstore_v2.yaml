@@ -1,0 +1,29 @@
+---
+swagger: "2.0"
+info:
+  description: "Petstore"
+  version: "1.0.0"
+  title: "Swagger Petstore"
+host: "petstore.swagger.io"
+basePath: "/v2"
+schemes:
+- "https"
+paths:
+  /pet/findByStatus:
+    get:
+      summary: "Finds Pets by status"
+      operationId: "findPetsByStatus"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "status"
+        in: "query"
+        required: true
+        type: "string"
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            type: "object"
+        400:
+          description: "Invalid status value"
