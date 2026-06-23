@@ -33,6 +33,7 @@ public class RequestParameterFactory {
         String name = from.getName();
         boolean required = BooleanUtils.toBoolean(from.getRequired());
         Schema swSchema = from.getSchema();
+        String defaultValue = swSchema != null && swSchema.getDefault() != null ? swSchema.getDefault().toString() : null;
         if (swSchema != null) {
             // Use TypeResolver to handle both OpenAPI 3.0.x single types and 3.1.x type arrays
             String type = typeResolver.resolveType(swSchema);
@@ -50,6 +51,7 @@ public class RequestParameterFactory {
                     .required(required)
                     .requestParameterType(requestParameterType)
                     .schema(transformedSchema)
+                    .defaultValue(defaultValue)
                     .maximum(maximum)
                     .exclusiveMaximum(BooleanUtils.toBoolean(exclusiveMaximum))
                     .minimum(minimum)
@@ -64,6 +66,7 @@ public class RequestParameterFactory {
                     .required(required)
                     .requestParameterType(requestParameterType)
                     .schema(transformedSchema)
+                    .defaultValue(defaultValue)
                     .maxLength(maxLength)
                     .minLength(minLength)
                     .build();
@@ -77,6 +80,7 @@ public class RequestParameterFactory {
                     .required(required)
                     .requestParameterType(requestParameterType)
                     .schema(transformedSchema)
+                    .defaultValue(defaultValue)
                     .maxItems(maxItems)
                     .minItems(minItems)
                     .uniqueItems(uniqueItems)
@@ -89,6 +93,7 @@ public class RequestParameterFactory {
                     .required(required)
                     .requestParameterType(GENERIC)
                     .schema(transformedSchema)
+                    .defaultValue(defaultValue)
                     .build();
             }
         }

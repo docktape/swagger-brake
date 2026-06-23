@@ -22,9 +22,14 @@ public class RequestParameter {
     private final boolean required;
     private final Schema schema;
     private final AttributeType requestParameterType;
+    private final String defaultValue;
 
     public RequestParameter(RequestParameterInType inType, String name, boolean required, AttributeType requestParameterType) {
-        this(inType, name, required, null, requestParameterType);
+        this(inType, name, required, null, requestParameterType, null);
+    }
+
+    public RequestParameter(RequestParameterInType inType, String name, boolean required, Schema schema, AttributeType requestParameterType) {
+        this(inType, name, required, schema, requestParameterType, null);
     }
 
     public Optional<Schema> getSchema() {
