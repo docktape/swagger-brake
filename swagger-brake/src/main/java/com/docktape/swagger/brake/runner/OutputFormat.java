@@ -4,5 +4,6 @@ public enum OutputFormat {
     STDOUT,
     JSON,
     HTML,
-    GITHUB_ACTIONS
+    GITHUB_ACTIONS,
+    MARKDOWN
 }
