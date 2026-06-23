@@ -192,6 +192,20 @@ public class Schema {
     }
 
     /**
+     * Returns a map of attribute name to nullable flag for all attributes recursively.
+     * @return the nullable attribute map.
+     */
+    public Map<String, Boolean> getNullableAttributes() {
+        Collection<SchemaAttribute> schemaAttrs = schemaAttributes;
+        if (CollectionUtils.isEmpty(schemaAttrs)) {
+            schemaAttrs = Optional.ofNullable(schema).map(Schema::getSchemaAttributes).orElse(Collections.emptySet());
+        }
+        return internalGetAttributeData(schemaAttrs, "", SchemaAttribute::isNullable)
+            .stream()
+            .collect(toMap(Pair::getLeft, Pair::getRight, (a, b) -> a));
+    }
+
+    /**
      * Returns the schemas with attribute names recursively.
      * @return the schemas recursively
      */
