@@ -38,7 +38,11 @@ public enum CliOption {
     /**
      * Whether to enable detection of server URL changes. Defaults to false.
      */
-    SERVER_URL_CHANGE_ENABLED("server-url-change-enabled");
+    SERVER_URL_CHANGE_ENABLED("server-url-change-enabled"),
+    /**
+     * Minimum severity level at which breaking changes cause a CI failure. Accepted values: error, warning, info.
+     */
+    FAIL_ON_SEVERITY("fail-on-severity");
 
     private final String cliOptionName;
 

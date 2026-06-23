@@ -20,7 +20,7 @@ class StdOutReporter implements Reporter, CheckableReporter {
     private void printBreakingChangesIfAny(Collection<BreakingChange> breakingChanges) {
         if (!breakingChanges.isEmpty()) {
             System.err.println("There were breaking API changes");
-            breakingChanges.stream().map(bc -> bc.getRuleCode() + " " + bc.getMessage()).forEach(System.err::println);
+            breakingChanges.stream().map(bc -> "[" + bc.getSeverity() + "] " + bc.getRuleCode() + " " + bc.getMessage()).forEach(System.err::println);
         } else {
             System.out.println("No breaking API changes detected");
         }
@@ -29,7 +29,7 @@ class StdOutReporter implements Reporter, CheckableReporter {
     private void printIgnoredBreakingChangesIfAny(Collection<BreakingChange> ignoredBreakingChanges) {
         if (!ignoredBreakingChanges.isEmpty()) {
             System.out.println("There were ignored breaking API changes");
-            ignoredBreakingChanges.stream().map(bc -> bc.getRuleCode() + " " + bc.getMessage()).forEach(System.out::println);
+            ignoredBreakingChanges.stream().map(bc -> "[" + bc.getSeverity() + "] " + bc.getRuleCode() + " " + bc.getMessage()).forEach(System.out::println);
         }
     }
 

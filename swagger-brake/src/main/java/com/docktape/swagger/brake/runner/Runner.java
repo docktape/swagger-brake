@@ -1,6 +1,7 @@
 package com.docktape.swagger.brake.runner;
 
 import com.docktape.swagger.brake.core.ApiInfo;
+import com.docktape.swagger.brake.core.Severity;
 import com.docktape.swagger.brake.runner.openapi.ApiInfoFactory;
 import java.util.Collection;
 
@@ -57,8 +58,8 @@ public class Runner {
         Collection<BreakingChange> ignoredBreakingChanges = allBreakingChanges.stream().filter(bc -> isIgnoredBreakingChange(options, bc)).toList();
 
         ApiInfo apiInfo = apiInfoFactory.create(newApi);
-        reporterFactory.create(options).report(breakingChanges, options, apiInfo);
-        return breakingChanges;
+        reporterFactory.create(options).report(breakingChanges, ignoredBreakingChanges, options, apiInfo);
+        return breakingChanges.stream().filter(bc -> meetsFailOnSeverity(options.getFailOnSeverity(), bc.getSeverity())).toList();
     }
 
     private boolean isNotIgnoredBreakingChange(Options options, BreakingChange breakingChange) {
@@ -67,5 +68,9 @@ public class Runner {
 
     private boolean isIgnoredBreakingChange(Options options, BreakingChange breakingChange) {
         return options.getIgnoredBreakingChangeRules().contains(breakingChange.getRuleCode());
+    }
+
+    private boolean meetsFailOnSeverity(Severity failOnSeverity, Severity changeSeverity) {
+        return changeSeverity.ordinal() <= failOnSeverity.ordinal();
     }
 }

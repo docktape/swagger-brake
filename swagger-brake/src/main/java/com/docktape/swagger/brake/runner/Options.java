@@ -3,6 +3,7 @@ package com.docktape.swagger.brake.runner;
 import java.util.Collections;
 import java.util.Set;
 
+import com.docktape.swagger.brake.core.Severity;
 import lombok.Data;
 
 @Data
@@ -31,4 +32,5 @@ public class Options {
     private Boolean strictValidation;
     private Integer maxLogSerializationDepth;
     private Boolean serverUrlChangeEnabled;
+    private Severity failOnSeverity = Severity.ERROR;
 }

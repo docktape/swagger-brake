@@ -111,7 +111,7 @@ class RunnerIntTest {
         verify(openApiFactory).fromFile(oldApiPath);
         verify(openApiFactory).fromFile(options.getNewApiPath());
         verify(checker).check(eq(oldApi), eq(newApi), any(CheckerOptions.class));
-        verify(reporter).report(anyList(), eq(options), any(ApiInfo.class));
+        verify(reporter).report(anyList(), anyList(), eq(options), any(ApiInfo.class));
     }
 
     @Test
@@ -152,6 +152,6 @@ class RunnerIntTest {
         verify(openApiFactory).fromFile(oldApiPath);
         verify(openApiFactory).fromFile(options.getNewApiPath());
         verify(checker).check(eq(oldApi), eq(newApi), any(CheckerOptions.class));
-        verify(reporter).report(anyList(), eq(options), any(ApiInfo.class));
+        verify(reporter).report(anyList(), anyList(), eq(options), any(ApiInfo.class));
     }
 }
