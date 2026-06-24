@@ -35,12 +35,22 @@ reporting will always be enabled.
 To configure a custom reporting, the CLI accepts the `--output-formats` argument. The parameter
 accepts a comma separated list of reporting formats, in case you want to use multiple reporters.
 
-For file typed reporters like JSON or HTML, you must also pass the `--output-path` argument 
+For file typed reporters like JSON, HTML, or JUnit, you must also pass the `--output-path` argument 
 denoting the location where the reports should be saved.
 
 An example configuration could look the following:
 ```bash
 $ java -jar swagger-brake.jar --old-api=swagger.json --new-api=swagger2.json --output-formats=STDOUT,JSON,HTML --output-path=/home/user/swagger-brake
+```
+
+Example GitLab CI configuration publishing the JUnit report:
+```yaml
+swagger-brake:
+  script:
+    - java -jar swagger-brake.jar --old-api=swagger.json --new-api=swagger2.json --output-formats=JUNIT --output-path=build/swagger-brake
+  artifacts:
+    reports:
+      junit: build/swagger-brake/swagger-brake-junit.xml
 ```
 
 ## Deprecating APIs
@@ -176,7 +186,7 @@ $ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --m
 |:------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | `--old-api`                                | Denotes the path of the baseline API. Can be a relative path and an absolute one.                                                                         |
 | `--new-api`                                | Denotes the path of the new, changed API. Can be a relative path and an absolute one.                                                                     |
-| `--output-formats`                         | Specifies which reports shall be generated. Possible values: `STDOUT`, `JSON`, `HTML`                                                                     |
+| `--output-formats`                         | Specifies which reports shall be generated. Possible values: `STDOUT`, `JSON`, `HTML`, `JUNIT`                                                            |
 | `--output-path`                            | Denotes the folder where the file reports shall be saved. Can be a relative path and an absolute one. In case the path doesn't exist, it will be created. |
 | `--maven-repo-url`                         | Specifies the release repository base URL. Might be optional in case `--maven-snapshot-repo-url` is provided.                                             |
 | `--maven-snapshot-repo-url`                | Specifies the snapshot repository base URL. Might be optional in case `--maven-repo-url` is provided.                                                     |
