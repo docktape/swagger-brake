@@ -68,7 +68,8 @@ see the HTML report generated under the `target/swagger-brake` folder. For recon
 `<outputFilePath>` parameter.
 
 Overriding the reporting configuration is simple. In the plugin configuration, just set the `<outputFormats>` tag with
-an array of `<outputFormat>` values.
+an array of `<outputFormat>` values. The supported values are `STDOUT`, `JSON`, `HTML`, `MARKDOWN`,
+`GITHUB_ACTIONS` and `JUNIT`.
 
 Example:
 ```xml
@@ -317,7 +318,7 @@ Example:
 |:------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
 |           `<oldApi>`           |                                     Denotes the path of the baseline API. Can be a relative path and an absolute one.                                     |
 |           `<newApi>`           |                                   Denotes the path of the new, changed API. Can be a relative path and an absolute one.                                   |
-|       `<outputFormats>`        |                                   Specifies which reports shall be generated. Possible values: `STDOUT`, `JSON`, `HTML`                                   |
+|       `<outputFormats>`        |                     Specifies which reports shall be generated. Possible values: `STDOUT`, `JSON`, `HTML`, `MARKDOWN`, `GITHUB_ACTIONS`, `JUNIT`          |
 |       `<outputFilePath>`       | Denotes the folder where the file reports shall be saved. Can be a relative path and an absolute one. In case the path doesn't exist, it will be created. |
 |        `<mavenRepoUrl>`        |                        Specifies the release repository base URL. Might be optional in case `<mavenSnapshotRepoUrl>` is provided.                         |
 |    `<mavenSnapshotRepoUrl>`    |                            Specifies the snapshot repository base URL. Might be optional in case `<mavenRepoUrl>` is provided.                            |

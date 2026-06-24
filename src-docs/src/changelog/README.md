@@ -15,6 +15,26 @@ The new `--strict-validation` option provides flexibility when customer specs ar
   * Union type detection with warnings for multiple non-null types
   * Full backward compatibility with Swagger 2.0 and OpenAPI 3.0.x specifications
 * Added `--max-log-serialization-depth` CLI option (and `maxLogSerializationDepth` configuration) to control depth of object serialization in logs (1-20 range, default: 3). See [Configuration documentation](../configuration/README.md#configuring-log-serialization-depth) for details.
+* Added a batch of new breaking change rules (see [Rules](../rules/README.md)):
+  * R021 - a request field or parameter gaining an `enum` constraint
+  * R022 - a required response property becoming optional
+  * R023 - an optional request body becoming required
+  * R024 - removal of a value from an `x-extensible-enum` request property
+  * R025 - loosening of a response-side constraint (e.g. larger `maxLength`, smaller `minItems`)
+  * R026 - a request parameter `default` value being added, changed, or removed
+  * R027 - a request property becoming non-nullable
+  * R028 - a response property becoming nullable
+  * R029 - tightening `additionalProperties` on a request schema (e.g. `true` to `false`)
+  * R030 / R031 - changes to a `const` value on a request / response property (OpenAPI 3.1)
+  * R032 - removal of a response header
+  * R033 - a required response header becoming optional
+  * R034 - generalization of a response media type (e.g. `application/vnd.api+json` to `application/json`)
+  * R035 - server URL changes (opt-in, off by default; enable with `--server-url-change-enabled=true`)
+* Extended the R017 constraint rule with `multipleOf` (number) and `pattern` (string) constraint detection. See [Constraints](../constraints/README.md).
+* Cookie parameters are now included in the existing request parameter rules (R004-R008, R017).
+* OpenAPI 3.1 webhook operations are now traversed by the breaking change rules.
+* Introduced an `ERROR`/`WARNING`/`INFO` severity model. All built-in rules report `ERROR`; the `--fail-on-severity` CLI option controls which severity (and above) fails the check. See [Severity model](../configuration/README.md#severity-model).
+* Added `MARKDOWN`, `GITHUB_ACTIONS` and `JUNIT` output formats. See [Customizing reporting](../configuration/README.md#customizing-reporting).
 
 ### Bug Fixes
 * Fixed StackOverflowError when processing OpenAPI 3.1.x schemas with circular references (e.g., Business → AuctionNumber → Business)
