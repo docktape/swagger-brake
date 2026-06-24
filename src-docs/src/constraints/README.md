@@ -17,6 +17,13 @@ has the following definition with `maxLength`:
 Did not find the constraint you're looking for? It might not be implemented, feel free to file a ticket on 
 [GitHub](https://github.com/docktape/swagger-brake/issues).
 
+::: tip Response-side constraint checking
+As of R025 (`ResponseConstraintChangedRule`), all constraint checkers documented here also apply to
+**response schemas** with inverted logic: loosening a constraint on a response property is a breaking
+change. For example, raising a `maxLength` or increasing a `maximum` on a response field can break
+clients that sized buffers or validated values against the original bound.
+:::
+
 ## Array constraints
 ### maxItems constraint
 This constraint checks whether the `maxItems` constraint on an array typed attribute has been changed in a backward-incomptabile
@@ -185,6 +192,37 @@ swagger2.json
 }]
 ```
 
+### multipleOf constraint
+This constraint checks whether the `multipleOf` constraint on a number typed attribute has been changed in a backward-incompatible
+way:
+* if the old API did not have a `multipleOf` constraint at all but the new API has it
+* if the old API did have a `multipleOf` constraint and the new API has it too but it's a different value
+
+Removing `multipleOf` is not reported as a breaking change since it loosens the constraint.
+
+swagger.json
+```json
+"parameters": [{
+    "name": "quantity",
+    "in": "query",
+    "description": "Number of items",
+    "required": true,
+    "type": "integer"
+}]
+```
+
+swagger2.json
+```json
+"parameters": [{
+    "name": "quantity",
+    "in": "query",
+    "description": "Number of items",
+    "required": true,
+    "type": "integer",
+    "multipleOf": 5
+}]
+```
+
 ## String constraints
 ### maxLength constraint
 This constraint checks whether the `maxLength` constraint on a number typed attribute has been changed in a backward-incomptabile
@@ -243,5 +281,34 @@ swagger2.json
     "required": true,
     "type": "string",
     "minLength": 8
+}]
+```
+
+### pattern constraint
+This constraint checks whether a `pattern` (regex) constraint on a string typed attribute has been changed in a backward-incompatible
+way:
+* if the old API did not have a `pattern` constraint at all but the new API has it
+* if the old API did have a `pattern` constraint and the new API has it too but it's a different regex
+
+swagger.json
+```json
+"parameters": [{
+    "name": "code",
+    "in": "query",
+    "description": "Three-letter country code",
+    "required": true,
+    "type": "string"
+}]
+```
+
+swagger2.json
+```json
+"parameters": [{
+    "name": "code",
+    "in": "query",
+    "description": "Three-letter country code",
+    "required": true,
+    "type": "string",
+    "pattern": "^[A-Z]{3}$"
 }]
 ```

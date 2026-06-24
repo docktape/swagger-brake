@@ -10,6 +10,15 @@ passed):
 * `STDOUT` (default)
 * `JSON`
 * `HTML`
+* `MARKDOWN`
+* `GITHUB_ACTIONS`
+* `JUNIT`
+
+**MARKDOWN**: Generates a Markdown report file suitable for wikis, GitHub pull request comments, and other Markdown-aware systems.
+
+**GITHUB_ACTIONS**: Writes `::error::` workflow commands to stdout so that breaking changes are annotated on the PR Files Changed tab in GitHub Actions.
+
+**JUNIT**: Generates a JUnit XML report that can be picked up by CI systems (Jenkins, GitHub Actions, etc.) as a test result.
 
 CLI configuration [here](../cli/README.md#customizing-reporting).
 
@@ -29,7 +38,8 @@ An example JSON report looks the following:
     "pathDeletedBreakingChange" : [ {
       "path" : "/pet",
       "method" : "POST",
-      "message" : "Path /pet POST has been deleted"
+      "message" : "Path /pet POST has been deleted",
+      "severity" : "ERROR"
     } ]  
   }
 }
@@ -38,6 +48,37 @@ In case of no breaking changes, the JSON report will be an empty JSON.
 ```json
 { }
 ```
+
+## Severity model
+Every detected breaking change carries a severity. swagger-brake defines three levels:
+
+* `ERROR`
+* `WARNING`
+* `INFO`
+
+Currently all built-in rules report their breaking changes as `ERROR`, so by default any breaking
+change fails the check. The `WARNING` and `INFO` levels exist in the model so that the failure
+threshold can be tuned and so that future or custom rules can report at a lower severity.
+
+The severity is surfaced in the output:
+* the `STDOUT` reporter prefixes every line with the severity, e.g. `[ERROR] R002 Path /pet POST has been deleted`
+* the `JSON` reporter adds a `severity` field to each breaking change (see the example above)
+
+You can control which severity (and above) causes a non-zero exit code with the `fail-on-severity`
+setting. It accepts `error` (default), `warning`, or `info`. For example setting it to `info` makes
+every reported change - regardless of severity - fail the check, while `error` only fails on `ERROR`
+level changes.
+
+This is currently configurable through the CLI only - see the
+[CLI severity model](../cli/README.md#severity-model) section. The Maven and Gradle plugins always
+fail on any breaking change.
+
+## Server URL change detection
+By default, server URL changes are not reported as breaking changes because URL migrations are often intentional. To opt in:
+
+CLI: pass `--server-url-change-enabled=true`
+
+This enables [R035](../rules/README.md#r035---serverurlchangedrule-opt-in) which flags when a server URL is removed or modified between versions. This option is currently available through the CLI only.
 
 ## Deprecating APIs
 As an API evolves and time passes, some APIs might simply become unused and old.

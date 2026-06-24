@@ -34,9 +34,12 @@ reporting will always be enabled.
 
 To configure a custom reporting, the CLI accepts the `--output-formats` argument. The parameter
 accepts a comma separated list of reporting formats, in case you want to use multiple reporters.
+The supported values are `STDOUT`, `JSON`, `HTML`, `MARKDOWN`, `GITHUB_ACTIONS` and `JUNIT`.
 
-For file typed reporters like JSON or HTML, you must also pass the `--output-path` argument 
-denoting the location where the reports should be saved.
+For file typed reporters like JSON, HTML, MARKDOWN or JUNIT, you must also pass the `--output-path`
+argument denoting the location where the reports should be saved. The `GITHUB_ACTIONS` reporter
+writes `::error::` workflow commands to the console so the breaking changes show up as annotations
+on the GitHub Actions PR Files Changed tab.
 
 An example configuration could look the following:
 ```bash
@@ -171,12 +174,39 @@ $ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --m
 ```
 
 
+## Severity model
+For a description of the severity model, see the
+[Severity model](../configuration/README.md#severity-model) section.
+
+Every breaking change is reported at the `ERROR` severity by the built-in rules. The
+`--fail-on-severity` parameter controls the minimum severity (inclusive) that causes a non-zero exit
+code. It accepts `error` (default), `warning` or `info`.
+
+```bash
+# Only ERROR level breaking changes fail the build (default)
+$ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --fail-on-severity=error
+
+# Any reported change - including WARNING and INFO - fails the build
+$ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --fail-on-severity=info
+```
+
+## Server URL change detection
+For a description of this rule, see the
+[Server URL change detection](../configuration/README.md#server-url-change-detection) section.
+
+Server URL changes are not checked by default. Enable [R035](../rules/README.md#r035---serverurlchangedrule-opt-in)
+by passing `--server-url-change-enabled=true`.
+
+```bash
+$ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --server-url-change-enabled=true
+```
+
 ## Full list of parameters
 | <div style="width:250px">Parameter</div>   | Description                                                                                                                                               |
 |:------------------------------------------:|:---------------------------------------------------------------------------------------------------------------------------------------------------------:|
 | `--old-api`                                | Denotes the path of the baseline API. Can be a relative path and an absolute one.                                                                         |
 | `--new-api`                                | Denotes the path of the new, changed API. Can be a relative path and an absolute one.                                                                     |
-| `--output-formats`                         | Specifies which reports shall be generated. Possible values: `STDOUT`, `JSON`, `HTML`                                                                     |
+| `--output-formats`                         | Specifies which reports shall be generated. Possible values: `STDOUT`, `JSON`, `HTML`, `MARKDOWN`, `GITHUB_ACTIONS`, `JUNIT`                               |
 | `--output-path`                            | Denotes the folder where the file reports shall be saved. Can be a relative path and an absolute one. In case the path doesn't exist, it will be created. |
 | `--maven-repo-url`                         | Specifies the release repository base URL. Might be optional in case `--maven-snapshot-repo-url` is provided.                                             |
 | `--maven-snapshot-repo-url`                | Specifies the snapshot repository base URL. Might be optional in case `--maven-repo-url` is provided.                                                     |
@@ -191,4 +221,6 @@ $ java -jar swagger-brake.jar --old-api=swagger.yaml --new-api=swagger2.yaml --m
 | `--excluded-paths`                         | A comma separated list of path prefixes that shall be excluded from the scan.                
 | `--ignored-breaking-change-rules`          | Specifies which breaking changes shall be ignored. Rules have to be provided (find them in the doc). Multiple values can be provided by using comma. Example: R001,R002 |
 | `--strict-validation`                      | Controls validation behavior for schemas with missing type fields. Default is `true` (strict mode). Set to `false` for lenient mode with specs missing type fields. |
-| `--max-log-serialization-depth`            | Controls the maximum depth of object serialization in logs (1-20). Default is 3. Prevents StackOverflowError with circular references.                    |                
+| `--max-log-serialization-depth`            | Controls the maximum depth of object serialization in logs (1-20). Default is 3. Prevents StackOverflowError with circular references.                    |
+| `--server-url-change-enabled`              | Enables detection of server URL changes (rule R035). Defaults to `false` since URL migrations are often intentional.                                       |
+| `--fail-on-severity`                       | The minimum severity at which a breaking change fails the check. Accepted values: `error` (default), `warning`, `info`.                                    |
