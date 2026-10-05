@@ -9,20 +9,20 @@ repositories {
 }
 
 dependencies {
-    compileOnly "org.projectlombok:lombok:1.18.46"
-    annotationProcessor "org.projectlombok:lombok:1.18.46"
-    testCompileOnly "org.projectlombok:lombok:1.18.46"
-    testAnnotationProcessor "org.projectlombok:lombok:1.18.46"
+    compileOnly "org.projectlombok:lombok:1.18.48"
+    annotationProcessor "org.projectlombok:lombok:1.18.48"
+    testCompileOnly "org.projectlombok:lombok:1.18.48"
+    testAnnotationProcessor "org.projectlombok:lombok:1.18.48"
     
-    implementation "org.apache.commons:commons-collections4:4.5.0"
+    implementation "org.apache.commons:commons-collections4:4.6.0"
     implementation "io.swagger.parser.v3:swagger-parser:2.1.35"
     implementation "com.fasterxml.jackson.core:jackson-databind:2.19.2"
     implementation "com.github.spullara.mustache.java:compiler:0.9.14"
     implementation "org.apache.httpcomponents:httpclient:4.5.14"
 
-    testImplementation 'org.junit.jupiter:junit-jupiter:6.1.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter:6.1.3'
     testRuntimeOnly  'org.junit.platform:junit-platform-launcher'
-    testImplementation 'io.github.classgraph:classgraph:4.8.184'
+    testImplementation 'io.github.classgraph:classgraph:4.8.194'
     testImplementation 'ch.qos.logback:logback-classic:1.5.15'
 }
 
