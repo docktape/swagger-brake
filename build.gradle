@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.5.11"
+        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.5.12"
         classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.26.0"
     }
 }
@@ -49,7 +49,7 @@ subprojects {
 
         implementation 'io.projectreactor:reactor-core:3.8.7'
 
-        implementation 'com.google.guava:guava:33.7.1-jre'
+        implementation 'com.google.guava:guava:33.7.2-jre'
         implementation "org.apache.commons:commons-collections4:4.6.0"
         implementation "org.apache.commons:commons-lang3:3.21.0"
         implementation "org.springframework:spring-context:7.0.9"
