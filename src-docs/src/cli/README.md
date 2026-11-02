@@ -46,6 +46,16 @@ An example configuration could look the following:
 $ java -jar swagger-brake.jar --old-api=swagger.json --new-api=swagger2.json --output-formats=STDOUT,JSON,HTML --output-path=/home/user/swagger-brake
 ```
 
+Example GitLab CI configuration publishing the JUnit report:
+```yaml
+swagger-brake:
+  script:
+    - java -jar swagger-brake.jar --old-api=swagger.json --new-api=swagger2.json --output-formats=JUNIT --output-path=build/swagger-brake
+  artifacts:
+    reports:
+      junit: build/swagger-brake/swagger-brake-junit.xml
+```
+
 ## Deprecating APIs
 The API deprecation support is described in the 
 [Deprecating APIs](../configuration/README.md#deprecating-apis) section.
