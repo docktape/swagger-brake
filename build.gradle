@@ -9,7 +9,7 @@ buildscript {
         }
     }
     dependencies {
-        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.5.12"
+        classpath "com.github.spotbugs.snom:spotbugs-gradle-plugin:6.5.13"
         classpath "org.jreleaser:org.jreleaser.gradle.plugin:1.26.0"
     }
 }
